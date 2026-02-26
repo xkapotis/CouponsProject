@@ -1,0 +1,75 @@
+---
+title: "Coupon Acceptance Project"
+author: "Group 2"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+# 2.5 CoffeeHouse Visits vs Acceptance
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- clean_names(df)
+#names(df) to see if everything is lowecase after the clean_names command
+
+# Replace "nan" with NA
+df[df == "nan"] <- NA
+
+# Convert categorical variables to factor
+df <- df %>%
+  mutate(across(where(is.character), as.factor))
+##Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors. ##
+
+# Convert Target Variable to Factor
+df$y <- as.factor(df$y)
+
+
+#Why?
+#Because:
+  # If y is numeric (0/1), some models treat it as regression.
+  # If it is factor → classification.
+
+# Remove duplicates
+df <- distinct(df)
+
+# Check missing values
+colSums(is.na(df))
+
+table(df$y)
+prop.table(table(df$y))
+#they return 0 1 and sum how many zeros and ones
+#and the prop the same but perc in based total count results
+#check if the dataset is imbalanced.
+#This is extremely important for modeling quality.
+
+
+ggplot(df, aes(x = coffee_house, fill = y)) +
+  geom_bar(position = "fill") +
+  labs(title = "Acceptance by Coffee House Visit Frequency",
+       x = "Monthly Coffee Visits",
+       y = "Proportion",
+       fill = "Accepted (1)") +
+  theme_minimal()
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
