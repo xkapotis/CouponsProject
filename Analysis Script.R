@@ -306,14 +306,11 @@ library(caret)
 library(dplyr)
 
 # Keep modeling dataset
-df_model <- df %>%
-  select(-y_numeric)
+df_clean <- df %>%
+  select(-y, -y_numeric)
 
 # Remove rows with NA
 df_model <- na.omit(df_model)
-
-df_clean <- df %>%
-  select(-y, -y_numeric)
 
 
 # Train/Test Split (70% / 30%)
@@ -324,16 +321,22 @@ train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
 train_data <- df_clean[train_index, ]
 test_data  <- df_clean[-train_index, ]
 
+#positice class -> 1 not 0
+train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
+test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
+
 ### Model 1 – Logistic Regression ###
+
 
 model_log <- glm(y_factor ~ ., 
                  data = train_data,
                  family = binomial)
 
-# Predictions
 prob_log <- predict(model_log, test_data, type = "response")
 
-pred_log <- ifelse(prob_log > 0.5, 1, 0)
+# Reverse threshold
+pred_log <- ifelse(prob_log > 0.5, 0, 1)
+
 pred_log <- factor(pred_log, levels = c(0,1))
 
 confusionMatrix(pred_log, test_data$y_factor)
@@ -359,6 +362,8 @@ confusionMatrix(pred_tree, test_data$y_factor)
 
 ### Model 3 – Random Forest ###
 
+varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
+
 library(randomForest)
 
 model_rf <- randomForest(y_factor ~ ., 
@@ -369,8 +374,18 @@ pred_rf <- predict(model_rf, test_data)
 
 confusionMatrix(pred_rf, test_data$y_factor)
 
-### Model 3 – Random Forest ###
+# AUC value for Random Forest #
+library(pROC)
 
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+
+roc_rf <- roc(test_data$y_factor, rf_probs)
+
+auc(roc_rf)
+plot(roc_rf)
+# AUC value for Random Forest #
+
+### Model 3 – Random Forest ###
 
 ### Add cross - validation ###
 train_control <- trainControl(method = "cv", number = 5)
