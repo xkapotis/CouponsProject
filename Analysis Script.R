@@ -398,7 +398,47 @@ model_rf_cv <- train(y_factor ~ .,
 model_rf_cv
 ### Add cross - validation ###
 
+#plot all ROC curves on one graph (Logistic Regression, Decision Tree, Random Forest) for proper visual comparison.
+library(pROC)
 
+# Logistic Regression probabilities (probability of class 1)
+log_probs <- predict(model_log, test_data, type = "response")
+
+# Decision Tree probabilities
+tree_probs <- predict(model_tree, test_data, type = "prob")[,2]
+
+# Random Forest probabilities
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+
+#Step 2: Create ROC Objects
+roc_log  <- roc(test_data$y_factor, log_probs)
+roc_tree <- roc(test_data$y_factor, tree_probs)
+roc_rf   <- roc(test_data$y_factor, rf_probs)
+
+#Step 3: Plot All ROC Curves on One Graph
+plot(roc_log, 
+     col = "blue", 
+     lwd = 2,
+     main = "ROC Curve Comparison")
+
+plot(roc_tree, 
+     col = "green", 
+     lwd = 2,
+     add = TRUE)
+
+plot(roc_rf, 
+     col = "red", 
+     lwd = 2,
+     add = TRUE)
+
+legend("bottomright",
+       legend = c(
+         paste("Logistic Regression (AUC =", round(auc(roc_log),3),")"),
+         paste("Decision Tree (AUC =", round(auc(roc_tree),3),")"),
+         paste("Random Forest (AUC =", round(auc(roc_rf),3),")")
+       ),
+       col = c("blue", "green", "red"),
+       lwd = 2)
 
 ###################################
 ### Step 3: Predictive Modeling ###
