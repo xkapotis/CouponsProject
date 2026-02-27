@@ -94,7 +94,7 @@ df <- df %>%
 head(df)
 
 df_bckup <- df
-df <- df_bckup
+#df <- df_bckup
 
 # Transform the expiration values in hours #
 
@@ -292,24 +292,102 @@ ggplot(df, aes(x = coupon, fill = y_factor)) +
 ### Step 2: Advanced EDA ###
 
 
-### Step 3: Predictive Modeling ###
 
-set.seed(123)
+###################################
+### Step 3: Predictive Modeling ###
+###################################
+
+#We will use 3 models:  Logistic Regression, Decision Tree, Random Forest
+#Remove y_numeric
+#Keep y_factor as target
+#Remove irrelevant columns (IDs etc.)
 
 library(caret)
+library(dplyr)
 
-trainIndex <- createDataPartition(df$Y, p = 0.8, list = FALSE)
-train <- df[trainIndex, ]
-test  <- df[-trainIndex, ]
+# Keep modeling dataset
+df_model <- df %>%
+  select(-y_numeric)
 
-# Logistic Regression
-log_model <- glm(Y ~ ., data = train, family = binomial)
+# Remove rows with NA
+df_model <- na.omit(df_model)
+
+df_clean <- df %>%
+  select(-y, -y_numeric)
+
+
+# Train/Test Split (70% / 30%)
+set.seed(123)
+
+train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
+
+train_data <- df_clean[train_index, ]
+test_data  <- df_clean[-train_index, ]
+
+### Model 1 – Logistic Regression ###
+
+model_log <- glm(y_factor ~ ., 
+                 data = train_data,
+                 family = binomial)
 
 # Predictions
-pred <- predict(log_model, test, type = "response")
+prob_log <- predict(model_log, test_data, type = "response")
+
+pred_log <- ifelse(prob_log > 0.5, 1, 0)
+pred_log <- factor(pred_log, levels = c(0,1))
+
+confusionMatrix(pred_log, test_data$y_factor)
+
+### Model 1 – Logistic Regression ###
+
+### Model 2 – Decision Tree ###
+
+library(rpart)
+library(rpart.plot)
+
+model_tree <- rpart(y_factor ~ ., 
+                    data = train_data,
+                    method = "class")
+
+rpart.plot(model_tree)
+
+pred_tree <- predict(model_tree, test_data, type = "class")
+
+confusionMatrix(pred_tree, test_data$y_factor)
+
+### Model 2 – Decision Tree ###
+
+### Model 3 – Random Forest ###
+
+library(randomForest)
+
+model_rf <- randomForest(y_factor ~ ., 
+                         data = train_data,
+                         ntree = 200)
+
+pred_rf <- predict(model_rf, test_data)
+
+confusionMatrix(pred_rf, test_data$y_factor)
+
+### Model 3 – Random Forest ###
 
 
+### Add cross - validation ###
+train_control <- trainControl(method = "cv", number = 5)
+
+model_rf_cv <- train(y_factor ~ ., 
+                     data = train_data,
+                     method = "rf",
+                     trControl = train_control)
+
+model_rf_cv
+### Add cross - validation ###
+
+
+
+###################################
 ### Step 3: Predictive Modeling ###
+###################################
 
 
 
