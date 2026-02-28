@@ -15,7 +15,7 @@ execute:
   echo: true
 ---
 
-#  Introduction
+# Introduction
 
 \<---\>
 
@@ -34,9 +34,9 @@ library(janitor)
 
 ## 1.2 Load Data
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
 ```{r}
 
@@ -288,24 +288,24 @@ df %>%
 
 ##  {#fig-time}
 
-```{}
+```         
 ```
 
 # 4. Predictive Modeling
 
 ## 4.1 Logistic Regression
 
-```{}
+```         
 ```
 
 ## 4.2 Decision Tree
 
-```{}
+```         
 ```
 
 ## 4.3 Random Forest
 
-```{}
+```         
 ```
 
 # 5. Model Evaluation
@@ -318,7 +318,7 @@ df %>%
 
 ## 5.2 AUC Confidence Intervals
 
-```{}
+```         
 ```
 
 # 6. Marketing Campaign Strategy
@@ -337,11 +337,11 @@ Based on the modeling results:
 3.  Allocate more budget to top-performing coupon categories.
 4.  Use predictive scores to send personalized offers.
 
----
+------------------------------------------------------------------------
 
----
+------------------------------------------------------------------------
 
-```{}
+```         
 ```
 
 ```{r}
@@ -362,7 +362,7 @@ Based on the modeling results:
 
 ```
 
-```{}
+```         
 ```
 
 ## 
