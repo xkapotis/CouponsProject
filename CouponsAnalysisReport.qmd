@@ -30,6 +30,8 @@ library(randomForest)
 library(pROC)
 library(ggplot2)
 library(janitor)
+library(rpart)
+library(rpart.plot)
 ```
 
 ## Load Data
@@ -296,35 +298,145 @@ df %>%
 
 # Predictive Modeling
 
-## 4.1 Logistic Regression
+We will use 3 models:  Logistic Regression, Decision Tree, Random Forest
+Remove y_numeric
+Keep y_factor as target
+Remove irrelevant columns (IDs etc.)
 
-```         
+## Create Test and Training dataset
+
+Remove rows with NA
+
+Train/Test Split (70% / 30%)
+
+positive class -> 1 not 0
+```{R}
+df_clean <- df %>%
+  select(-y, -y_numeric)
+
+df_model <- na.omit(df_clean)
+
+
+df_pos = df_clean %>% filter(y_factor == 1)
+df_neg = df_clean %>% filter(y_factor == 0)
+set.seed(123)
+
+train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
+
+train_data <- df_clean[train_index, ]
+test_data  <- df_clean[-train_index, ]
+
+train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
+test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
+
 ```
 
-## 4.2 Decision Tree
+## Logistic Regression
 
-```         
+```{R}
+model_log <- glm(y_factor ~ ., 
+                 data = train_data,
+                 family = binomial)
+
+prob_log <- predict(model_log, test_data, type = "response")
+
+# Reverse threshold
+pred_log <- ifelse(prob_log > 0.5, 0, 1)
+
+pred_log <- factor(pred_log, levels = c(0,1))
+
+confusionMatrix(pred_log, test_data$y_factor)
 ```
 
-## 4.3 Random Forest
+## Decision Tree
 
-```         
+```{R}
+model_tree <- rpart(y_factor ~ ., 
+                    data = train_data,
+                    method = "class")
+
+rpart.plot(model_tree)
+
+pred_tree <- predict(model_tree, test_data, type = "class")
+
+confusionMatrix(pred_tree, test_data$y_factor)
 ```
 
-# 5. Model Evaluation
+## Random Forest
 
-## 5.1 ROC Curves with Confidence Intervals {#fig-roc}
+```{R}
+# I'm not sure where this came from, but it seems to not work
+#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
 
-```{r}
+model_rf <- randomForest(y_factor ~ ., 
+                         data = train_data,
+                         ntree = 200)
+pred_rf <- predict(model_rf, test_data)
+
+confusionMatrix(pred_rf, test_data$y_factor)
+
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+roc_rf <- roc(test_data$y_factor, rf_probs)
+
+auc(roc_rf)
+plot(roc_rf)
+```
+
+# Model Evaluation
+
+## Calculate Logistic Regression probabilities (probability of class 1)
+
+```{R}
+log_probs <- predict(model_log, test_data, type = "response")
+roc_log  <- roc(test_data$y_factor, log_probs)
+```
+
+## Decision Tree probabilities
+
+```{R}
+tree_probs <- predict(model_tree, test_data, type = "prob")[,2]
+roc_tree <- roc(test_data$y_factor, tree_probs)
 
 ```
 
-## 5.2 AUC Confidence Intervals
+## Random Forest probabilities
 
-```         
+```{R}
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+roc_rf   <- roc(test_data$y_factor, rf_probs)
 ```
 
-# 6. Marketing Campaign Strategy
+
+## Plot All ROC Curves on One Graph
+
+```{R}
+plot(roc_log, 
+     col = "blue", 
+     lwd = 2,
+     main = "ROC Curve Comparison")
+
+plot(roc_tree, 
+     col = "green", 
+     lwd = 2,
+     add = TRUE)
+
+plot(roc_rf, 
+     col = "red", 
+     lwd = 2,
+     add = TRUE)
+
+legend("bottomright",
+       legend = c(
+         paste("Logistic Regression (AUC =", round(auc(roc_log),3),")"),
+         paste("Decision Tree (AUC =", round(auc(roc_tree),3),")"),
+         paste("Random Forest (AUC =", round(auc(roc_rf),3),")")
+       ),
+       col = c("blue", "green", "red"),
+       lwd = 2)
+```
+
+
+# Marketing Campaign Strategy
 
 Based on the modeling results:
 

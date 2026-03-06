@@ -26,8 +26,8 @@ df$y <- as.factor(df$y)
 
 #Why?
 #Because:
-  # If y is numeric (0/1), some models treat it as regression.
-  # If it is factor → classification.
+# If y is numeric (0/1), some models treat it as regression.
+# If it is factor → classification.
 
 # Remove duplicates
 df <- distinct(df)
@@ -253,18 +253,13 @@ df_clean <- df %>%
   select(-y, -y_numeric)
 
 # Remove rows with NA
-df_model <- na.omit(df_clean)
+df_model <- na.omit(df_model)
 
 
-df_pos = df_clean %>% filter(y_factor == 1)
-df_neg = df_clean %>% filter(y_factor == 0)
 # Train/Test Split (70% / 30%)
 set.seed(123)
 
-train_index_positive <- createDataPartition((df_clean$y_factor == 1), p = 0.7, list = FALSE)
-train_index_negative <- createDataPartition((df_clean$y_factor == 0), p = 0.7, list = FALSE)
-
-train_data_pos <- df_clean[train_index_positive, ]
+train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
 
 train_data <- df_clean[train_index, ]
 test_data  <- df_clean[-train_index, ]
@@ -310,7 +305,7 @@ confusionMatrix(pred_tree, test_data$y_factor)
 
 ### Model 3 – Random Forest ###
 
-varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
+#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
 
 library(randomForest)
 
@@ -391,7 +386,6 @@ legend("bottomright",
 ###################################
 ### Step 3: Predictive Modeling ###
 ###################################
-
 
 
 
