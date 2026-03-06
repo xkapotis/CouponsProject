@@ -218,18 +218,14 @@ df <- df %>%
   )
 ```
 
-## 
+-------------------------------------------------
+
+
+# Exploratory Data Analysis
+
+## Coupon Type vs Acceptance Rate (Core Business Insight) {#fig-coupon}
 
 ```{r}
-
-```
-
-# 2. Exploratory Data Analysis
-
-## Coupon Type vs Acceptance Rate {#fig-coupon}
-
-```{r}
-#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)
 df %>%
   group_by(coupon) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -240,8 +236,10 @@ df %>%
        x = "Coupon Type",
        y = "Acceptance Rate") +
   theme_minimal()
+```
 
-#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)
+## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}
+```{R}
 df %>%
   group_by(time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -252,8 +250,11 @@ df %>%
        x = "Time of Day",
        y = "Acceptance Rate") +
   theme_minimal()
+```
 
-#2.3 Income vs Acceptance (Customer Affordability Pattern)
+## Income vs Acceptance (Customer Affordability Pattern)
+
+```{R}
 df %>%
   group_by(income) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -264,8 +265,10 @@ df %>%
   labs(title = "Acceptance Rate by Income Level",
        x = "Income Level",
        y = "Acceptance Rate")
+```
 
-#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)
+## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)
+```{R}
 df %>%
   group_by(coffee_house) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -275,8 +278,9 @@ df %>%
        x = "Monthly Coffee Visits",
        y = "Acceptance Rate") +
   theme_minimal()
-
-#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)
+```
+## Heatmap – Coupon Type × Time (Segmentation Insight)
+```{R}
 df %>%
   group_by(coupon, time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -290,12 +294,7 @@ df %>%
   theme_minimal()
 ```
 
-##  {#fig-time}
-
-```         
-```
-
-# 4. Predictive Modeling
+# Predictive Modeling
 
 ## 4.1 Logistic Regression
 
