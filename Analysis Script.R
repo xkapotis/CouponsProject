@@ -1,7 +1,7 @@
 library(tidyverse)
 library(janitor)
 ### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")
-df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- read.csv("./dataset/coupons.csv")
 
 glimpse(df)
 summary(df)
@@ -253,13 +253,18 @@ df_clean <- df %>%
   select(-y, -y_numeric)
 
 # Remove rows with NA
-df_model <- na.omit(df_model)
+df_model <- na.omit(df_clean)
 
 
+df_pos = df_clean %>% filter(y_factor == 1)
+df_neg = df_clean %>% filter(y_factor == 0)
 # Train/Test Split (70% / 30%)
 set.seed(123)
 
-train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
+train_index_positive <- createDataPartition((df_clean$y_factor == 1), p = 0.7, list = FALSE)
+train_index_negative <- createDataPartition((df_clean$y_factor == 0), p = 0.7, list = FALSE)
+
+train_data_pos <- df_clean[train_index_positive, ]
 
 train_data <- df_clean[train_index, ]
 test_data  <- df_clean[-train_index, ]

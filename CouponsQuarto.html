@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -62,15 +62,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="CouponsQuarto_files/libs/clipboard/clipboard.min.js"></script>
 <script src="CouponsQuarto_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="CouponsQuarto_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="CouponsQuarto_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="CouponsQuarto_files/libs/quarto-html/popper.min.js"></script>
 <script src="CouponsQuarto_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="CouponsQuarto_files/libs/quarto-html/anchor.min.js"></script>
 <link href="CouponsQuarto_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="CouponsQuarto_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="CouponsQuarto_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="CouponsQuarto_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="CouponsQuarto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="CouponsQuarto_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="CouponsQuarto_files/libs/bootstrap/bootstrap-813c323200a87c37e262811031999de4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -154,12 +153,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -170,10 +169,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./dataset/coupons.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 12,684
@@ -207,7 +206,7 @@ $ Y                    &lt;int&gt; 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> destination         passanger           weather           temperature  
@@ -261,13 +260,14 @@ $ Y                    &lt;int&gt; 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 
  Max.   :1.0000   Max.   :1.0000  </code></pre>
 </div>
 </div>
+<p>Here, we load our <em>csv</em> dataset into a dataframe.</p>
 </section>
 <section id="process-data" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="process-data"><span class="header-section-number">2.3</span> 1.3 Process Data</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 1: Data Cleaning </span><span class="al">###</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 1: Data Cleaning </span><span class="al">###</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#names(df) to see if everything is lowecase after the clean_names command</span></span>
@@ -293,7 +293,7 @@ $ Y                    &lt;int&gt; 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df)</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           destination              passanger                weather 
@@ -317,7 +317,7 @@ restaurant_less_than20       restaurant20to50      to_coupon_geq5min
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -326,7 +326,7 @@ restaurant_less_than20       restaurant20to50      to_coupon_geq5min
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -335,12 +335,12 @@ restaurant_less_than20       restaurant20to50      to_coupon_geq5min
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#they return 0 1 and sum how many zeros and ones</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#they return 0 1 and sum how many zeros and ones</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#and the prop the same but perc in based total count results</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#check if the dataset is imbalanced.</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This is extremely important for modeling quality.</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -361,7 +361,7 @@ Car that is too old to install Onstar :D
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -407,7 +407,7 @@ Car that is too old to install Onstar :D
 <span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Check result</span></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      destination passanger weather temperature time                coupon
@@ -448,7 +448,7 @@ Car that is too old to install Onstar :D
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df_bckup</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the expiration values in hours #</span></span>
@@ -464,17 +464,17 @@ Car that is too old to install Onstar :D
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># transform time to time hour numeric from AM/PM #</span></span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># check if a column is factor or not #</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "factor"</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"below21"</span>,<span class="st">"21"</span>,<span class="st">"26"</span>,<span class="st">"31"</span>,<span class="st">"36"</span>,<span class="st">"41"</span>,<span class="st">"46"</span>,<span class="st">"50plus"</span>),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ordered =</span> <span class="cn">TRUE</span>) <span class="co">#Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>age, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>age, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -483,7 +483,7 @@ below21      21      26      31      36      41      46  50plus    &lt;NA&gt;
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># replace "" with NAs and remove them </span></span>
@@ -492,7 +492,7 @@ below21      21      26      31      36      41      46  50plus    &lt;NA&gt;
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>              <span class="st">"carry_away"</span>,</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant_less_than20"</span>,</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant20to50"</span>)],</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       bar coffee_house carry_away restaurant_less_than20 restaurant20to50
@@ -506,7 +506,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>,</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>,</span>
@@ -519,7 +519,7 @@ never 5178         2946        152                    219             2122
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], droplevels) <span class="co"># drop unused levels pair with the above one next command</span></span>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       bar coffee_house carry_away restaurant_less_than20 restaurant20to50
@@ -532,7 +532,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df)) <span class="co"># count NAs per column 100 - 200 per column so small percentage based ~5% so we can delete the rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df)) <span class="co"># count NAs per column 100 - 200 per column so small percentage based ~5% so we can delete the rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           destination              passanger                weather 
@@ -556,7 +556,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df) <span class="co">#delete rows "Observations with missing frequency values were removed due to their low proportion in the dataset (&lt;5%)."</span></span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df) <span class="co">#delete rows "Observations with missing frequency values were removed due to their low proportion in the dataset (&lt;5%)."</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We should convert frequency variables to ordered factors:</span></span>
@@ -566,14 +566,14 @@ never 5178         2946        152                    219             2122
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>coffee_house)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>coffee_house)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> Ord.factor w/ 5 levels "never"&lt;"less1"&lt;..: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>expiration_original <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time_original  <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -582,7 +582,7 @@ never 5178         2946        152                    219             2122
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(y)),</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_factor =</span> <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -597,7 +597,7 @@ never 5178         2946        152                    219             2122
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon) <span class="sc">%&gt;%</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
@@ -607,7 +607,7 @@ never 5178         2946        152                    219             2122
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Coupon Type"</span>,</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -618,7 +618,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)</span></span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
@@ -628,7 +628,7 @@ never 5178         2946        152                    219             2122
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -639,7 +639,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3 Income vs Acceptance (Customer Affordability Pattern)</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3 Income vs Acceptance (Customer Affordability Pattern)</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
@@ -649,7 +649,7 @@ never 5178         2946        152                    219             2122
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -660,7 +660,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
@@ -669,7 +669,7 @@ never 5178         2946        152                    219             2122
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -680,7 +680,7 @@ never 5178         2946        152                    219             2122
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
@@ -691,7 +691,7 @@ never 5178         2946        152                    219             2122
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
 <span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
 <span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -817,14 +817,13 @@ never 5178         2946        152                    219             2122
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1217,7 +1216,7 @@ never 5178         2946        152                    219             2122
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data-Driven Coupon Acceptance Analysis"</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Name"</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
@@ -1234,7 +1233,7 @@ never 5178         2946        152                    219             2122
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="fu">#  Introduction</span></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
 <span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="sc">\&lt;</span>---<span class="sc">\&gt;</span></span>
 <span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
@@ -1253,13 +1252,13 @@ never 5178         2946        152                    219             2122
 <span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.2 Load Data</span></span>
 <span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="do">### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")</span></span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv"</span>)</span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./dataset/coupons.csv"</span>)</span>
 <span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span>
 <span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
@@ -1268,316 +1267,318 @@ never 5178         2946        152                    219             2122
 <span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.3 Process Data</span></span>
+<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>Here, we load our *csv* dataset into a dataframe.</span>
 <span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 1: Data Cleaning </span><span class="al">###</span></span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a><span class="co">#names(df) to see if everything is lowecase after the clean_names command</span></span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "nan" with NA</span></span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>df[df <span class="sc">==</span> <span class="st">"nan"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert categorical variables to factor</span></span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a><span class="do">##Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors. ##</span></span>
-<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Target Variable to Factor</span></span>
-<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>y)</span>
-<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a><span class="co">#Why?</span></span>
-<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a><span class="co">#Because:</span></span>
-<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If y is numeric (0/1), some models treat it as regression.</span></span>
-<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If it is factor → classification.</span></span>
-<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates</span></span>
-<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df)</span>
-<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values</span></span>
-<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
-<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>y)</span>
-<span id="cb41-90"><a href="#cb41-90" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>y))</span>
-<span id="cb41-91"><a href="#cb41-91" aria-hidden="true" tabindex="-1"></a><span class="co">#they return 0 1 and sum how many zeros and ones</span></span>
-<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a><span class="co">#and the prop the same but perc in based total count results</span></span>
-<span id="cb41-93"><a href="#cb41-93" aria-hidden="true" tabindex="-1"></a><span class="co">#check if the dataset is imbalanced.</span></span>
-<span id="cb41-94"><a href="#cb41-94" aria-hidden="true" tabindex="-1"></a><span class="co">#This is extremely important for modeling quality.</span></span>
-<span id="cb41-95"><a href="#cb41-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-96"><a href="#cb41-96" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.3 Process Data</span></span>
+<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 1: Data Cleaning </span><span class="al">###</span></span>
+<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span>
+<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a><span class="co">#names(df) to see if everything is lowecase after the clean_names command</span></span>
+<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "nan" with NA</span></span>
+<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a>df[df <span class="sc">==</span> <span class="st">"nan"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert categorical variables to factor</span></span>
+<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a><span class="do">##Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors. ##</span></span>
+<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Target Variable to Factor</span></span>
+<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>y)</span>
+<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a><span class="co">#Why?</span></span>
+<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a><span class="co">#Because:</span></span>
+<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If y is numeric (0/1), some models treat it as regression.</span></span>
+<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If it is factor → classification.</span></span>
+<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates</span></span>
+<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df)</span>
+<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values</span></span>
+<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
+<span id="cb41-90"><a href="#cb41-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-91"><a href="#cb41-91" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>y)</span>
+<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>y))</span>
+<span id="cb41-93"><a href="#cb41-93" aria-hidden="true" tabindex="-1"></a><span class="co">#they return 0 1 and sum how many zeros and ones</span></span>
+<span id="cb41-94"><a href="#cb41-94" aria-hidden="true" tabindex="-1"></a><span class="co">#and the prop the same but perc in based total count results</span></span>
+<span id="cb41-95"><a href="#cb41-95" aria-hidden="true" tabindex="-1"></a><span class="co">#check if the dataset is imbalanced.</span></span>
+<span id="cb41-96"><a href="#cb41-96" aria-hidden="true" tabindex="-1"></a><span class="co">#This is extremely important for modeling quality.</span></span>
 <span id="cb41-97"><a href="#cb41-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
-<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>car)</span>
-<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
-<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the expiration values in hours #</span></span>
+<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
+<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>car)</span>
+<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a><span class="co"># remove car column #</span></span>
 <span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose your dataframe is called df and your column is 'expiration'</span></span>
+<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the expiration values in hours #</span></span>
+<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb41-112"><a href="#cb41-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-113"><a href="#cb41-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert any single value to hours</span></span>
-<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a>convert_to_hours <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract all number-unit pairs (works for compound like "1d 2h 30m")</span></span>
-<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a>  matches <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(x, <span class="st">"(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*([a-zA-Z]+)"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-118"><a href="#cb41-118" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(matches) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)  <span class="co"># fallback if no match</span></span>
+<span id="cb41-113"><a href="#cb41-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose your dataframe is called df and your column is 'expiration'</span></span>
+<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert any single value to hours</span></span>
+<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a>convert_to_hours <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract all number-unit pairs (works for compound like "1d 2h 30m")</span></span>
+<span id="cb41-118"><a href="#cb41-118" aria-hidden="true" tabindex="-1"></a>  matches <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(x, <span class="st">"(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*([a-zA-Z]+)"</span>)[[<span class="dv">1</span>]]</span>
 <span id="cb41-119"><a href="#cb41-119" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-120"><a href="#cb41-120" aria-hidden="true" tabindex="-1"></a>  total_hours <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb41-120"><a href="#cb41-120" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(matches) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)  <span class="co"># fallback if no match</span></span>
 <span id="cb41-121"><a href="#cb41-121" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-122"><a href="#cb41-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matches)) {</span>
-<span id="cb41-123"><a href="#cb41-123" aria-hidden="true" tabindex="-1"></a>    num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(matches[i,<span class="dv">2</span>])</span>
-<span id="cb41-124"><a href="#cb41-124" aria-hidden="true" tabindex="-1"></a>    unit <span class="ot">&lt;-</span> <span class="fu">tolower</span>(matches[i,<span class="dv">3</span>])</span>
-<span id="cb41-125"><a href="#cb41-125" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-126"><a href="#cb41-126" aria-hidden="true" tabindex="-1"></a>    total_hours <span class="ot">&lt;-</span> total_hours <span class="sc">+</span> <span class="cf">switch</span>(unit,</span>
-<span id="cb41-127"><a href="#cb41-127" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"m"</span> <span class="ot">=</span> num <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb41-128"><a href="#cb41-128" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"h"</span> <span class="ot">=</span> num,</span>
-<span id="cb41-129"><a href="#cb41-129" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"d"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span>,</span>
-<span id="cb41-130"><a href="#cb41-130" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"w"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span> <span class="sc">*</span> <span class="dv">7</span>,</span>
-<span id="cb41-131"><a href="#cb41-131" aria-hidden="true" tabindex="-1"></a>                                        <span class="cn">NA_real_</span>)</span>
-<span id="cb41-132"><a href="#cb41-132" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb41-133"><a href="#cb41-133" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-134"><a href="#cb41-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total_hours)</span>
-<span id="cb41-135"><a href="#cb41-135" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-136"><a href="#cb41-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-137"><a href="#cb41-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply function to your whole column dynamically</span></span>
-<span id="cb41-138"><a href="#cb41-138" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb41-139"><a href="#cb41-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb41-140"><a href="#cb41-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration_original =</span> expiration,   <span class="co"># backup column</span></span>
-<span id="cb41-141"><a href="#cb41-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration =</span> <span class="fu">vapply</span>(expiration, convert_to_hours, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
-<span id="cb41-142"><a href="#cb41-142" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-143"><a href="#cb41-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-144"><a href="#cb41-144" aria-hidden="true" tabindex="-1"></a><span class="co"># Check result</span></span>
-<span id="cb41-145"><a href="#cb41-145" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
-<span id="cb41-146"><a href="#cb41-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-147"><a href="#cb41-147" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
-<span id="cb41-148"><a href="#cb41-148" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df_bckup</span></span>
-<span id="cb41-149"><a href="#cb41-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the expiration values in hours #</span></span>
+<span id="cb41-122"><a href="#cb41-122" aria-hidden="true" tabindex="-1"></a>  total_hours <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb41-123"><a href="#cb41-123" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb41-124"><a href="#cb41-124" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matches)) {</span>
+<span id="cb41-125"><a href="#cb41-125" aria-hidden="true" tabindex="-1"></a>    num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(matches[i,<span class="dv">2</span>])</span>
+<span id="cb41-126"><a href="#cb41-126" aria-hidden="true" tabindex="-1"></a>    unit <span class="ot">&lt;-</span> <span class="fu">tolower</span>(matches[i,<span class="dv">3</span>])</span>
+<span id="cb41-127"><a href="#cb41-127" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-128"><a href="#cb41-128" aria-hidden="true" tabindex="-1"></a>    total_hours <span class="ot">&lt;-</span> total_hours <span class="sc">+</span> <span class="cf">switch</span>(unit,</span>
+<span id="cb41-129"><a href="#cb41-129" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"m"</span> <span class="ot">=</span> num <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb41-130"><a href="#cb41-130" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"h"</span> <span class="ot">=</span> num,</span>
+<span id="cb41-131"><a href="#cb41-131" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"d"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span>,</span>
+<span id="cb41-132"><a href="#cb41-132" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"w"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span> <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb41-133"><a href="#cb41-133" aria-hidden="true" tabindex="-1"></a>                                        <span class="cn">NA_real_</span>)</span>
+<span id="cb41-134"><a href="#cb41-134" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb41-135"><a href="#cb41-135" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb41-136"><a href="#cb41-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total_hours)</span>
+<span id="cb41-137"><a href="#cb41-137" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-138"><a href="#cb41-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-139"><a href="#cb41-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply function to your whole column dynamically</span></span>
+<span id="cb41-140"><a href="#cb41-140" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb41-141"><a href="#cb41-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-142"><a href="#cb41-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration_original =</span> expiration,   <span class="co"># backup column</span></span>
+<span id="cb41-143"><a href="#cb41-143" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration =</span> <span class="fu">vapply</span>(expiration, convert_to_hours, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb41-144"><a href="#cb41-144" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-145"><a href="#cb41-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-146"><a href="#cb41-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Check result</span></span>
+<span id="cb41-147"><a href="#cb41-147" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
+<span id="cb41-148"><a href="#cb41-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-149"><a href="#cb41-149" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
+<span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df_bckup</span></span>
 <span id="cb41-151"><a href="#cb41-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a><span class="co"># transform time to time hour numeric from AM/PM #</span></span>
+<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the expiration values in hours #</span></span>
 <span id="cb41-153"><a href="#cb41-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb41-156"><a href="#cb41-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-157"><a href="#cb41-157" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb41-158"><a href="#cb41-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_original =</span> time,</span>
-<span id="cb41-159"><a href="#cb41-159" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">hour</span>(<span class="fu">parse_date_time</span>(time, <span class="at">orders =</span> <span class="st">"I!p"</span>)))</span>
-<span id="cb41-160"><a href="#cb41-160" aria-hidden="true" tabindex="-1"></a><span class="co"># transform time to time hour numeric from AM/PM #</span></span>
-<span id="cb41-161"><a href="#cb41-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-162"><a href="#cb41-162" aria-hidden="true" tabindex="-1"></a><span class="co"># check if a column is factor or not #</span></span>
-<span id="cb41-163"><a href="#cb41-163" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>age)</span>
-<span id="cb41-164"><a href="#cb41-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-165"><a href="#cb41-165" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
-<span id="cb41-166"><a href="#cb41-166" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"below21"</span>,<span class="st">"21"</span>,<span class="st">"26"</span>,<span class="st">"31"</span>,<span class="st">"36"</span>,<span class="st">"41"</span>,<span class="st">"46"</span>,<span class="st">"50plus"</span>),</span>
-<span id="cb41-167"><a href="#cb41-167" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ordered =</span> <span class="cn">TRUE</span>) <span class="co">#Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.</span></span>
-<span id="cb41-168"><a href="#cb41-168" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>age, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
-<span id="cb41-169"><a href="#cb41-169" aria-hidden="true" tabindex="-1"></a><span class="co">#Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.</span></span>
-<span id="cb41-170"><a href="#cb41-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-171"><a href="#cb41-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-172"><a href="#cb41-172" aria-hidden="true" tabindex="-1"></a><span class="co"># replace "" with NAs and remove them </span></span>
-<span id="cb41-173"><a href="#cb41-173" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[, <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
-<span id="cb41-174"><a href="#cb41-174" aria-hidden="true" tabindex="-1"></a>              <span class="st">"coffee_house"</span>,</span>
-<span id="cb41-175"><a href="#cb41-175" aria-hidden="true" tabindex="-1"></a>              <span class="st">"carry_away"</span>,</span>
-<span id="cb41-176"><a href="#cb41-176" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant_less_than20"</span>,</span>
-<span id="cb41-177"><a href="#cb41-177" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant20to50"</span>)],</span>
-<span id="cb41-178"><a href="#cb41-178" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
-<span id="cb41-179"><a href="#cb41-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-180"><a href="#cb41-180" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
-<span id="cb41-181"><a href="#cb41-181" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>,</span>
-<span id="cb41-182"><a href="#cb41-182" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>,</span>
-<span id="cb41-183"><a href="#cb41-183" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>,</span>
-<span id="cb41-184"><a href="#cb41-184" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
-<span id="cb41-185"><a href="#cb41-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-186"><a href="#cb41-186" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
-<span id="cb41-187"><a href="#cb41-187" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="st">""</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb41-188"><a href="#cb41-188" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb41-189"><a href="#cb41-189" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb41-190"><a href="#cb41-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-191"><a href="#cb41-191" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], droplevels) <span class="co"># drop unused levels pair with the above one next command</span></span>
+<span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="co"># transform time to time hour numeric from AM/PM #</span></span>
+<span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-156"><a href="#cb41-156" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-157"><a href="#cb41-157" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb41-158"><a href="#cb41-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-159"><a href="#cb41-159" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb41-160"><a href="#cb41-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_original =</span> time,</span>
+<span id="cb41-161"><a href="#cb41-161" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">hour</span>(<span class="fu">parse_date_time</span>(time, <span class="at">orders =</span> <span class="st">"I!p"</span>)))</span>
+<span id="cb41-162"><a href="#cb41-162" aria-hidden="true" tabindex="-1"></a><span class="co"># transform time to time hour numeric from AM/PM #</span></span>
+<span id="cb41-163"><a href="#cb41-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-164"><a href="#cb41-164" aria-hidden="true" tabindex="-1"></a><span class="co"># check if a column is factor or not #</span></span>
+<span id="cb41-165"><a href="#cb41-165" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>age)</span>
+<span id="cb41-166"><a href="#cb41-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-167"><a href="#cb41-167" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
+<span id="cb41-168"><a href="#cb41-168" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"below21"</span>,<span class="st">"21"</span>,<span class="st">"26"</span>,<span class="st">"31"</span>,<span class="st">"36"</span>,<span class="st">"41"</span>,<span class="st">"46"</span>,<span class="st">"50plus"</span>),</span>
+<span id="cb41-169"><a href="#cb41-169" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ordered =</span> <span class="cn">TRUE</span>) <span class="co">#Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.</span></span>
+<span id="cb41-170"><a href="#cb41-170" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>age, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb41-171"><a href="#cb41-171" aria-hidden="true" tabindex="-1"></a><span class="co">#Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.</span></span>
+<span id="cb41-172"><a href="#cb41-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-173"><a href="#cb41-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-174"><a href="#cb41-174" aria-hidden="true" tabindex="-1"></a><span class="co"># replace "" with NAs and remove them </span></span>
+<span id="cb41-175"><a href="#cb41-175" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[, <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
+<span id="cb41-176"><a href="#cb41-176" aria-hidden="true" tabindex="-1"></a>              <span class="st">"coffee_house"</span>,</span>
+<span id="cb41-177"><a href="#cb41-177" aria-hidden="true" tabindex="-1"></a>              <span class="st">"carry_away"</span>,</span>
+<span id="cb41-178"><a href="#cb41-178" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant_less_than20"</span>,</span>
+<span id="cb41-179"><a href="#cb41-179" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant20to50"</span>)],</span>
+<span id="cb41-180"><a href="#cb41-180" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
+<span id="cb41-181"><a href="#cb41-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-182"><a href="#cb41-182" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
+<span id="cb41-183"><a href="#cb41-183" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>,</span>
+<span id="cb41-184"><a href="#cb41-184" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>,</span>
+<span id="cb41-185"><a href="#cb41-185" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>,</span>
+<span id="cb41-186"><a href="#cb41-186" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
+<span id="cb41-187"><a href="#cb41-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-188"><a href="#cb41-188" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
+<span id="cb41-189"><a href="#cb41-189" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="st">""</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb41-190"><a href="#cb41-190" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb41-191"><a href="#cb41-191" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb41-192"><a href="#cb41-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-193"><a href="#cb41-193" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
+<span id="cb41-193"><a href="#cb41-193" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], droplevels) <span class="co"># drop unused levels pair with the above one next command</span></span>
 <span id="cb41-194"><a href="#cb41-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-195"><a href="#cb41-195" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df)) <span class="co"># count NAs per column 100 - 200 per column so small percentage based ~5% so we can delete the rows</span></span>
+<span id="cb41-195"><a href="#cb41-195" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
 <span id="cb41-196"><a href="#cb41-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-197"><a href="#cb41-197" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df) <span class="co">#delete rows "Observations with missing frequency values were removed due to their low proportion in the dataset (&lt;5%)."</span></span>
+<span id="cb41-197"><a href="#cb41-197" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df)) <span class="co"># count NAs per column 100 - 200 per column so small percentage based ~5% so we can delete the rows</span></span>
 <span id="cb41-198"><a href="#cb41-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-199"><a href="#cb41-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-200"><a href="#cb41-200" aria-hidden="true" tabindex="-1"></a><span class="co"># We should convert frequency variables to ordered factors:</span></span>
-<span id="cb41-201"><a href="#cb41-201" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
-<span id="cb41-202"><a href="#cb41-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(x,</span>
-<span id="cb41-203"><a href="#cb41-203" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"never"</span>,<span class="st">"less1"</span>,<span class="st">"1~3"</span>,<span class="st">"4~8"</span>,<span class="st">"gt8"</span>),</span>
-<span id="cb41-204"><a href="#cb41-204" aria-hidden="true" tabindex="-1"></a>         <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-205"><a href="#cb41-205" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb41-206"><a href="#cb41-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-207"><a href="#cb41-207" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>coffee_house)</span>
+<span id="cb41-199"><a href="#cb41-199" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df) <span class="co">#delete rows "Observations with missing frequency values were removed due to their low proportion in the dataset (&lt;5%)."</span></span>
+<span id="cb41-200"><a href="#cb41-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-201"><a href="#cb41-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-202"><a href="#cb41-202" aria-hidden="true" tabindex="-1"></a><span class="co"># We should convert frequency variables to ordered factors:</span></span>
+<span id="cb41-203"><a href="#cb41-203" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
+<span id="cb41-204"><a href="#cb41-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(x,</span>
+<span id="cb41-205"><a href="#cb41-205" aria-hidden="true" tabindex="-1"></a>         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"never"</span>,<span class="st">"less1"</span>,<span class="st">"1~3"</span>,<span class="st">"4~8"</span>,<span class="st">"gt8"</span>),</span>
+<span id="cb41-206"><a href="#cb41-206" aria-hidden="true" tabindex="-1"></a>         <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-207"><a href="#cb41-207" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb41-208"><a href="#cb41-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-209"><a href="#cb41-209" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
-<span id="cb41-210"><a href="#cb41-210" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>expiration_original <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb41-211"><a href="#cb41-211" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time_original  <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb41-212"><a href="#cb41-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-213"><a href="#cb41-213" aria-hidden="true" tabindex="-1"></a><span class="co"># i will create two y y_numeric and y_factor the numeric will be for  plotting and trends and y_factor will be the target variable for modeling (classification).</span></span>
-<span id="cb41-214"><a href="#cb41-214" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb41-215"><a href="#cb41-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb41-216"><a href="#cb41-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(y)),</span>
-<span id="cb41-217"><a href="#cb41-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_factor =</span> <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb41-218"><a href="#cb41-218" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-219"><a href="#cb41-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-220"><a href="#cb41-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-221"><a href="#cb41-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
+<span id="cb41-209"><a href="#cb41-209" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df<span class="sc">$</span>coffee_house)</span>
+<span id="cb41-210"><a href="#cb41-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-211"><a href="#cb41-211" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
+<span id="cb41-212"><a href="#cb41-212" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>expiration_original <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb41-213"><a href="#cb41-213" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time_original  <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb41-214"><a href="#cb41-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-215"><a href="#cb41-215" aria-hidden="true" tabindex="-1"></a><span class="co"># i will create two y y_numeric and y_factor the numeric will be for  plotting and trends and y_factor will be the target variable for modeling (classification).</span></span>
+<span id="cb41-216"><a href="#cb41-216" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb41-217"><a href="#cb41-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-218"><a href="#cb41-218" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(y)),</span>
+<span id="cb41-219"><a href="#cb41-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_factor =</span> <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb41-220"><a href="#cb41-220" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-221"><a href="#cb41-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-222"><a href="#cb41-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-225"><a href="#cb41-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-226"><a href="#cb41-226" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-227"><a href="#cb41-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-228"><a href="#cb41-228" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Exploratory Data Analysis</span></span>
+<span id="cb41-223"><a href="#cb41-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
+<span id="cb41-224"><a href="#cb41-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-227"><a href="#cb41-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-228"><a href="#cb41-228" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-229"><a href="#cb41-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-230"><a href="#cb41-230" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coupon Type vs Acceptance Rate {#fig-coupon}</span></span>
+<span id="cb41-230"><a href="#cb41-230" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Exploratory Data Analysis</span></span>
 <span id="cb41-231"><a href="#cb41-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-234"><a href="#cb41-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-235"><a href="#cb41-235" aria-hidden="true" tabindex="-1"></a><span class="co">#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)</span></span>
-<span id="cb41-236"><a href="#cb41-236" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb41-237"><a href="#cb41-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon) <span class="sc">%&gt;%</span></span>
-<span id="cb41-238"><a href="#cb41-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-239"><a href="#cb41-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(coupon, accept_rate), <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb41-240"><a href="#cb41-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
-<span id="cb41-241"><a href="#cb41-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb41-242"><a href="#cb41-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Coupon Type"</span>,</span>
-<span id="cb41-243"><a href="#cb41-243" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
-<span id="cb41-244"><a href="#cb41-244" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb41-245"><a href="#cb41-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb41-246"><a href="#cb41-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-247"><a href="#cb41-247" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)</span></span>
-<span id="cb41-248"><a href="#cb41-248" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb41-249"><a href="#cb41-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
-<span id="cb41-250"><a href="#cb41-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-251"><a href="#cb41-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb41-252"><a href="#cb41-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb41-253"><a href="#cb41-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
-<span id="cb41-254"><a href="#cb41-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
-<span id="cb41-255"><a href="#cb41-255" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb41-256"><a href="#cb41-256" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb41-257"><a href="#cb41-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb41-258"><a href="#cb41-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-259"><a href="#cb41-259" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3 Income vs Acceptance (Customer Affordability Pattern)</span></span>
-<span id="cb41-260"><a href="#cb41-260" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb41-261"><a href="#cb41-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
-<span id="cb41-262"><a href="#cb41-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-263"><a href="#cb41-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb41-264"><a href="#cb41-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
-<span id="cb41-265"><a href="#cb41-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb41-266"><a href="#cb41-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb41-267"><a href="#cb41-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
-<span id="cb41-268"><a href="#cb41-268" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
-<span id="cb41-269"><a href="#cb41-269" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
-<span id="cb41-270"><a href="#cb41-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-271"><a href="#cb41-271" aria-hidden="true" tabindex="-1"></a><span class="co">#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
-<span id="cb41-272"><a href="#cb41-272" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb41-273"><a href="#cb41-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
-<span id="cb41-274"><a href="#cb41-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-275"><a href="#cb41-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb41-276"><a href="#cb41-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
-<span id="cb41-277"><a href="#cb41-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
-<span id="cb41-278"><a href="#cb41-278" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
-<span id="cb41-279"><a href="#cb41-279" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb41-280"><a href="#cb41-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb41-281"><a href="#cb41-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-282"><a href="#cb41-282" aria-hidden="true" tabindex="-1"></a><span class="co">#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
-<span id="cb41-283"><a href="#cb41-283" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb41-284"><a href="#cb41-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
-<span id="cb41-285"><a href="#cb41-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-286"><a href="#cb41-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb41-287"><a href="#cb41-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb41-288"><a href="#cb41-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb41-289"><a href="#cb41-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
-<span id="cb41-290"><a href="#cb41-290" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
-<span id="cb41-291"><a href="#cb41-291" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb41-292"><a href="#cb41-292" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb41-293"><a href="#cb41-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb41-294"><a href="#cb41-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-295"><a href="#cb41-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-296"><a href="#cb41-296" aria-hidden="true" tabindex="-1"></a><span class="fu">##  {#fig-time}</span></span>
+<span id="cb41-232"><a href="#cb41-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coupon Type vs Acceptance Rate {#fig-coupon}</span></span>
+<span id="cb41-233"><a href="#cb41-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-236"><a href="#cb41-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-237"><a href="#cb41-237" aria-hidden="true" tabindex="-1"></a><span class="co">#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)</span></span>
+<span id="cb41-238"><a href="#cb41-238" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-239"><a href="#cb41-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon) <span class="sc">%&gt;%</span></span>
+<span id="cb41-240"><a href="#cb41-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-241"><a href="#cb41-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(coupon, accept_rate), <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb41-242"><a href="#cb41-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
+<span id="cb41-243"><a href="#cb41-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb41-244"><a href="#cb41-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Coupon Type"</span>,</span>
+<span id="cb41-245"><a href="#cb41-245" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
+<span id="cb41-246"><a href="#cb41-246" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb41-247"><a href="#cb41-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb41-248"><a href="#cb41-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-249"><a href="#cb41-249" aria-hidden="true" tabindex="-1"></a><span class="co">#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)</span></span>
+<span id="cb41-250"><a href="#cb41-250" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-251"><a href="#cb41-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
+<span id="cb41-252"><a href="#cb41-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-253"><a href="#cb41-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb41-254"><a href="#cb41-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb41-255"><a href="#cb41-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
+<span id="cb41-256"><a href="#cb41-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
+<span id="cb41-257"><a href="#cb41-257" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb41-258"><a href="#cb41-258" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb41-259"><a href="#cb41-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb41-260"><a href="#cb41-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-261"><a href="#cb41-261" aria-hidden="true" tabindex="-1"></a><span class="co">#2.3 Income vs Acceptance (Customer Affordability Pattern)</span></span>
+<span id="cb41-262"><a href="#cb41-262" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-263"><a href="#cb41-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
+<span id="cb41-264"><a href="#cb41-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-265"><a href="#cb41-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb41-266"><a href="#cb41-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
+<span id="cb41-267"><a href="#cb41-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb41-268"><a href="#cb41-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb41-269"><a href="#cb41-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
+<span id="cb41-270"><a href="#cb41-270" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
+<span id="cb41-271"><a href="#cb41-271" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
+<span id="cb41-272"><a href="#cb41-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-273"><a href="#cb41-273" aria-hidden="true" tabindex="-1"></a><span class="co">#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
+<span id="cb41-274"><a href="#cb41-274" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-275"><a href="#cb41-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
+<span id="cb41-276"><a href="#cb41-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-277"><a href="#cb41-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb41-278"><a href="#cb41-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
+<span id="cb41-279"><a href="#cb41-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
+<span id="cb41-280"><a href="#cb41-280" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
+<span id="cb41-281"><a href="#cb41-281" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb41-282"><a href="#cb41-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb41-283"><a href="#cb41-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-284"><a href="#cb41-284" aria-hidden="true" tabindex="-1"></a><span class="co">#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
+<span id="cb41-285"><a href="#cb41-285" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb41-286"><a href="#cb41-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
+<span id="cb41-287"><a href="#cb41-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-288"><a href="#cb41-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb41-289"><a href="#cb41-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb41-290"><a href="#cb41-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb41-291"><a href="#cb41-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
+<span id="cb41-292"><a href="#cb41-292" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
+<span id="cb41-293"><a href="#cb41-293" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb41-294"><a href="#cb41-294" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb41-295"><a href="#cb41-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb41-296"><a href="#cb41-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-297"><a href="#cb41-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-298"><a href="#cb41-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-299"><a href="#cb41-299" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-300"><a href="#cb41-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-301"><a href="#cb41-301" aria-hidden="true" tabindex="-1"></a><span class="fu"># 4. Predictive Modeling</span></span>
+<span id="cb41-298"><a href="#cb41-298" aria-hidden="true" tabindex="-1"></a><span class="fu">##  {#fig-time}</span></span>
+<span id="cb41-299"><a href="#cb41-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-300"><a href="#cb41-300" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-301"><a href="#cb41-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-302"><a href="#cb41-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-303"><a href="#cb41-303" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.1 Logistic Regression</span></span>
+<span id="cb41-303"><a href="#cb41-303" aria-hidden="true" tabindex="-1"></a><span class="fu"># 4. Predictive Modeling</span></span>
 <span id="cb41-304"><a href="#cb41-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-305"><a href="#cb41-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-306"><a href="#cb41-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-307"><a href="#cb41-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-308"><a href="#cb41-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.2 Decision Tree</span></span>
+<span id="cb41-305"><a href="#cb41-305" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.1 Logistic Regression</span></span>
+<span id="cb41-306"><a href="#cb41-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-307"><a href="#cb41-307" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-308"><a href="#cb41-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-309"><a href="#cb41-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-310"><a href="#cb41-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-311"><a href="#cb41-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-312"><a href="#cb41-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-313"><a href="#cb41-313" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.3 Random Forest</span></span>
+<span id="cb41-310"><a href="#cb41-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.2 Decision Tree</span></span>
+<span id="cb41-311"><a href="#cb41-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-312"><a href="#cb41-312" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-313"><a href="#cb41-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-314"><a href="#cb41-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-315"><a href="#cb41-315" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-316"><a href="#cb41-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-317"><a href="#cb41-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-318"><a href="#cb41-318" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5. Model Evaluation</span></span>
+<span id="cb41-315"><a href="#cb41-315" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.3 Random Forest</span></span>
+<span id="cb41-316"><a href="#cb41-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-317"><a href="#cb41-317" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-318"><a href="#cb41-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-319"><a href="#cb41-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-320"><a href="#cb41-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 ROC Curves with Confidence Intervals {#fig-roc}</span></span>
+<span id="cb41-320"><a href="#cb41-320" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5. Model Evaluation</span></span>
 <span id="cb41-321"><a href="#cb41-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-324"><a href="#cb41-324" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-325"><a href="#cb41-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-326"><a href="#cb41-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-327"><a href="#cb41-327" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.2 AUC Confidence Intervals</span></span>
+<span id="cb41-322"><a href="#cb41-322" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 ROC Curves with Confidence Intervals {#fig-roc}</span></span>
+<span id="cb41-323"><a href="#cb41-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-326"><a href="#cb41-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-327"><a href="#cb41-327" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-328"><a href="#cb41-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-329"><a href="#cb41-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-330"><a href="#cb41-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-331"><a href="#cb41-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-332"><a href="#cb41-332" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6. Marketing Campaign Strategy</span></span>
+<span id="cb41-329"><a href="#cb41-329" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.2 AUC Confidence Intervals</span></span>
+<span id="cb41-330"><a href="#cb41-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-331"><a href="#cb41-331" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-332"><a href="#cb41-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-333"><a href="#cb41-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-334"><a href="#cb41-334" aria-hidden="true" tabindex="-1"></a>Based on the modeling results:</span>
+<span id="cb41-334"><a href="#cb41-334" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6. Marketing Campaign Strategy</span></span>
 <span id="cb41-335"><a href="#cb41-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-336"><a href="#cb41-336" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Random Forest achieved the highest AUC and strongest predictive power.</span>
-<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-frequency coffee visitors show highest responsiveness.</span>
-<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Time-of-day effects suggest targeted push timing.</span>
-<span id="cb41-339"><a href="#cb41-339" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Coupon type performance varies significantly.</span>
-<span id="cb41-340"><a href="#cb41-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-341"><a href="#cb41-341" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Campaign:</span></span>
+<span id="cb41-336"><a href="#cb41-336" aria-hidden="true" tabindex="-1"></a>Based on the modeling results:</span>
+<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Random Forest achieved the highest AUC and strongest predictive power.</span>
+<span id="cb41-339"><a href="#cb41-339" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-frequency coffee visitors show highest responsiveness.</span>
+<span id="cb41-340"><a href="#cb41-340" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Time-of-day effects suggest targeted push timing.</span>
+<span id="cb41-341"><a href="#cb41-341" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Coupon type performance varies significantly.</span>
 <span id="cb41-342"><a href="#cb41-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Target high-frequency coffee consumers.</span>
-<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Schedule promotions during high-acceptance time windows.</span>
-<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Allocate more budget to top-performing coupon categories.</span>
-<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Use predictive scores to send personalized offers.</span>
-<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Campaign:</span></span>
+<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Target high-frequency coffee consumers.</span>
+<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Schedule promotions during high-acceptance time windows.</span>
+<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Allocate more budget to top-performing coupon categories.</span>
+<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Use predictive scores to send personalized offers.</span>
 <span id="cb41-349"><a href="#cb41-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb41-351"><a href="#cb41-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-354"><a href="#cb41-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-357"><a href="#cb41-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-358"><a href="#cb41-358" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-360"><a href="#cb41-360" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
+<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-354"><a href="#cb41-354" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-355"><a href="#cb41-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-356"><a href="#cb41-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-360"><a href="#cb41-360" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb41-361"><a href="#cb41-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-364"><a href="#cb41-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-365"><a href="#cb41-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-366"><a href="#cb41-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-369"><a href="#cb41-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-370"><a href="#cb41-370" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-374"><a href="#cb41-374" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-375"><a href="#cb41-375" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-376"><a href="#cb41-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb41-378"><a href="#cb41-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-380"><a href="#cb41-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb41-362"><a href="#cb41-362" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
+<span id="cb41-363"><a href="#cb41-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-366"><a href="#cb41-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-367"><a href="#cb41-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-368"><a href="#cb41-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-372"><a href="#cb41-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-373"><a href="#cb41-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-376"><a href="#cb41-376" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-378"><a href="#cb41-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-380"><a href="#cb41-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-381"><a href="#cb41-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-382"><a href="#cb41-382" aria-hidden="true" tabindex="-1"></a><span class="fu">## </span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

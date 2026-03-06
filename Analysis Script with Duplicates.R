@@ -1,7 +1,7 @@
 library(tidyverse)
 library(janitor)
 ### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")
-df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- read.csv("./dataset/coupons.csv")
 
 glimpse(df)
 summary(df)
