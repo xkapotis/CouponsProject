@@ -252,8 +252,10 @@ library(dplyr)
 df_clean <- df %>%
   select(-y, -y_numeric)
 
+
+
 # Remove rows with NA
-df_model <- na.omit(df_model)
+df_clean <- na.omit(df_clean)
 
 
 # Train/Test Split (70% / 30%)
@@ -264,12 +266,84 @@ train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
 train_data <- df_clean[train_index, ]
 test_data  <- df_clean[-train_index, ]
 
+
+
+str(train_data)
+summary(train_data)
+colnames(train_data)
+nzv[nzv$nzv == TRUE, ]
+
 #positice class -> 1 not 0
 train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
 test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
 
+#train_data$y_factor <- factor(train_data$y_factor, levels = c("0","1"))
+#test_data$y_factor  <- factor(test_data$y_factor,  levels = c("0","1"))
+
+# Check Variance
+library(caret)
+
+nzv <- nearZeroVar(train_data, saveMetrics = TRUE)
+
+#show what to remove
+nzv[nzv$zeroVar == TRUE, ]
+
+train_data <- train_data[, !nzv$zeroVar]
+test_data  <- test_data[, !nzv$zeroVar]
+
+# Remove collinearity variable
+train_data$direction_opp <- NULL
+test_data$direction_opp  <- NULL
+
+
+# Replace 'time' with categorical version directly
+train_data <- train_data %>%
+  mutate(time = case_when(
+    time < 12 ~ "morning",
+    time >= 12 & time < 18 ~ "afternoon",
+    TRUE ~ "evening"
+  )) %>%
+  mutate(time = factor(time, levels=c("morning","afternoon","evening")))
+
+test_data <- test_data %>%
+  mutate(time = case_when(
+    time < 12 ~ "morning",
+    time >= 12 & time < 18 ~ "afternoon",
+    TRUE ~ "evening"
+  )) %>%
+  mutate(time = factor(time, levels=c("morning","afternoon","evening")))
+
+train_data <- train_data %>%
+  mutate(age = case_when(
+    age %in% c("below21","21","26","31","36") ~ "middle",
+    age %in% c("41","46","50plus") ~ "senior",
+    TRUE ~ NA_character_  # just in case
+  )) %>%
+  mutate(age = factor(age, levels=c("middle","senior")))
+
+test_data <- test_data %>%
+  mutate(age = case_when(
+    age %in% c("below21","21","26","31","36") ~ "middle",
+    age %in% c("41","46","50plus") ~ "senior",
+    TRUE ~ NA_character_
+  )) %>%
+  mutate(age = factor(age, levels=c("middle","senior")))
+
+train_data$coffee_bar <- as.numeric(train_data$coffee_house) * as.numeric(train_data$bar)
+test_data$coffee_bar <- as.numeric(test_data$coffee_house) * as.numeric(test_data$bar)
+
+library(caret)
+
+
+
 ### Model 1 – Logistic Regression ###
 
+#check
+#library(car)
+#log_temp <- glm(y_factor ~ ., data = train_data, family = binomial)
+#vif(log_temp)
+
+#levels(test_data$y_factor)
 
 model_log <- glm(y_factor ~ ., 
                  data = train_data,
@@ -283,6 +357,11 @@ pred_log <- ifelse(prob_log > 0.5, 0, 1)
 pred_log <- factor(pred_log, levels = c(0,1))
 
 confusionMatrix(pred_log, test_data$y_factor)
+
+library(pROC)
+
+roc_log <- roc(test_data$y_factor, prob_log)
+auc(roc_log)
 
 ### Model 1 – Logistic Regression ###
 
@@ -305,13 +384,11 @@ confusionMatrix(pred_tree, test_data$y_factor)
 
 ### Model 3 – Random Forest ###
 
-varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
-
 library(randomForest)
 
 model_rf <- randomForest(y_factor ~ ., 
                          data = train_data,
-                         ntree = 200)
+                         ntree = 300)
 
 pred_rf <- predict(model_rf, test_data)
 
@@ -386,6 +463,8 @@ legend("bottomright",
 ###################################
 ### Step 3: Predictive Modeling ###
 ###################################
+
+head(train_data)
 
 
 
