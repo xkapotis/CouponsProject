@@ -1,6 +1,6 @@
 ---
 title: "Data-Driven Coupon Acceptance Analysis"
-author: "Your Name"
+author: "Group 2:"
 format:
   html:
     theme: cosmo
@@ -17,11 +17,11 @@ execute:
 
 # Introduction
 
-\<---\>
+\<Introduction goes here \>
 
-# 1. Data & Preprocessing
+# Data Loading & Preprocessing
 
-## 1.1 Load Libraries
+## Load Libraries
 
 ```{r}
 library(tidyverse)
@@ -30,31 +30,29 @@ library(randomForest)
 library(pROC)
 library(ggplot2)
 library(janitor)
+library(rpart)
+library(rpart.plot)
 ```
 
-## 1.2 Load Data
+## Load Data
 
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
+Here, we load our *csv* dataset into a dataframe.
 
 ```{r}
-
-
 ### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")
-df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- read.csv("./dataset/coupons.csv")
 
 glimpse(df)
 summary(df)
-
-
-
 ```
 
-## 1.3 Process Data
+## Process Data
+
+### Data Cleaning and Categorization of Features
+
+Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors.
 
 ```{r}
-### Step 1: Data Cleaning ###
 
 df <- clean_names(df)
 #names(df) to see if everything is lowecase after the clean_names command
@@ -65,20 +63,21 @@ df[df == "nan"] <- NA
 # Convert categorical variables to factor
 df <- df %>%
   mutate(across(where(is.character), as.factor))
-##Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors. ##
+```
 
-# Convert Target Variable to Factor
+Convert Target Variable to Factor
+
+Why?
+
+Because:
+
+* If y is numeric (0/1), some models treat it as regression.
+* If it is factor → classification.
+
+```{R}
 df$y <- as.factor(df$y)
-
-
-#Why?
-#Because:
-  # If y is numeric (0/1), some models treat it as regression.
-  # If it is factor → classification.
-
 # Remove duplicates
 df <- distinct(df)
-
 # Check missing values
 colSums(is.na(df))
 
@@ -90,29 +89,24 @@ prop.table(table(df$y))
 #This is extremely important for modeling quality.
 
 table(df$car, useNA = "always")
-
-
-# remove car column #
-library(tidyverse)
-
+```
+Remove car column.
+```{R}
 df <- df %>%
   select(-car)
-# remove car column #
+```
 
-# Transform the expiration values in hours #
+### Transform the expiration values in hours
 
-library(dplyr)
-library(stringr)
+Suppose your dataframe is called df and your column is 'expiration'
+Function to convert any single value to hours
 
-# Suppose your dataframe is called df and your column is 'expiration'
-
-# Function to convert any single value to hours
+```{R}
 convert_to_hours <- function(x) {
   # Extract all number-unit pairs (works for compound like "1d 2h 30m")
   matches <- str_match_all(x, "(\\d+\\.?\\d*)\\s*([a-zA-Z]+)")[[1]]
   
   if(nrow(matches) == 0) return(NA_real_)  # fallback if no match
-  
   total_hours <- 0
   
   for(i in 1:nrow(matches)) {
@@ -129,32 +123,41 @@ convert_to_hours <- function(x) {
   
   return(total_hours)
 }
+```
 
-# Apply function to your whole column dynamically
+Apply function to your whole column dynamically
+
+Check result
+
+```{R}
+
 df <- df %>%
   mutate(
     expiration_original = expiration,   # backup column
     expiration = vapply(expiration, convert_to_hours, numeric(1))
   )
 
-# Check result
+
 head(df)
 
 df_bckup <- df
-#df <- df_bckup
+```
 
-# Transform the expiration values in hours #
+### Transform the expiration values in hours
 
-# transform time to time hour numeric from AM/PM #
+transform time to time hour numeric from AM/PM
 
-library(dplyr)
-library(lubridate)
-
+```{R}
 df <- df %>%
   mutate(time_original = time,
          time = hour(parse_date_time(time, orders = "I!p")))
-# transform time to time hour numeric from AM/PM #
+```
 
+### Age
+
+Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.
+
+```{R}
 # check if a column is factor or not #
 class(df$age)
 
@@ -162,10 +165,13 @@ df$age <- factor(df$age,
                  levels = c("below21","21","26","31","36","41","46","50plus"),
                  ordered = TRUE) #Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.
 table(df$age, useNA = "always")
-#Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.
+
+```
 
 
-# replace "" with NAs and remove them 
+### replace "" with NAs and remove them 
+
+```{R}
 sapply(df[, c("bar",
               "coffee_house",
               "carry_away",
@@ -206,7 +212,7 @@ str(df$coffee_house)
 df$expiration_original <- NULL
 df$time_original  <- NULL
 
-# i will create two y y_numeric and y_factor the numeric will be for  plotting and trends and y_factor will be the target variable for modeling (classification).
+# i will create two y y_numeric and y_factor the numeric will be for plotting and trends and y_factor will be the target variable for modeling (classification).
 df <- df %>%
   mutate(
     y_numeric = as.numeric(as.character(y)),
@@ -214,18 +220,14 @@ df <- df %>%
   )
 ```
 
-## 
+-------------------------------------------------
+
+
+# Exploratory Data Analysis
+
+## Coupon Type vs Acceptance Rate (Core Business Insight) {#fig-coupon}
 
 ```{r}
-
-```
-
-# 2. Exploratory Data Analysis
-
-## Coupon Type vs Acceptance Rate {#fig-coupon}
-
-```{r}
-#2.1 Coupon Type vs Acceptance Rate (Core Business Insight)
 df %>%
   group_by(coupon) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -236,8 +238,10 @@ df %>%
        x = "Coupon Type",
        y = "Acceptance Rate") +
   theme_minimal()
+```
 
-#2.2 Acceptance Rate by Time of Day (Behavioral Timing Insight)
+## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}
+```{R}
 df %>%
   group_by(time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -248,8 +252,11 @@ df %>%
        x = "Time of Day",
        y = "Acceptance Rate") +
   theme_minimal()
+```
 
-#2.3 Income vs Acceptance (Customer Affordability Pattern)
+## Income vs Acceptance (Customer Affordability Pattern)
+
+```{R}
 df %>%
   group_by(income) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -260,8 +267,10 @@ df %>%
   labs(title = "Acceptance Rate by Income Level",
        x = "Income Level",
        y = "Acceptance Rate")
+```
 
-#2.4 Coffee House Visits vs Acceptance (Behavioral Engagement Signal)
+## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)
+```{R}
 df %>%
   group_by(coffee_house) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -271,8 +280,9 @@ df %>%
        x = "Monthly Coffee Visits",
        y = "Acceptance Rate") +
   theme_minimal()
-
-#2.5 Heatmap – Coupon Type × Time (Segmentation Insight)
+```
+## Heatmap – Coupon Type × Time (Segmentation Insight)
+```{R}
 df %>%
   group_by(coupon, time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -286,42 +296,147 @@ df %>%
   theme_minimal()
 ```
 
-##  {#fig-time}
+# Predictive Modeling
 
-```         
+We will use 3 models:  Logistic Regression, Decision Tree, Random Forest
+Remove y_numeric
+Keep y_factor as target
+Remove irrelevant columns (IDs etc.)
+
+## Create Test and Training dataset
+
+Remove rows with NA
+
+Train/Test Split (70% / 30%)
+
+positive class -> 1 not 0
+```{R}
+df_clean <- df %>%
+  select(-y, -y_numeric)
+
+df_model <- na.omit(df_clean)
+
+
+df_pos = df_clean %>% filter(y_factor == 1)
+df_neg = df_clean %>% filter(y_factor == 0)
+set.seed(123)
+
+train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
+
+train_data <- df_clean[train_index, ]
+test_data  <- df_clean[-train_index, ]
+
+train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
+test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
+
 ```
 
-# 4. Predictive Modeling
+## Logistic Regression
 
-## 4.1 Logistic Regression
+```{R}
+model_log <- glm(y_factor ~ ., 
+                 data = train_data,
+                 family = binomial)
 
-```         
+prob_log <- predict(model_log, test_data, type = "response")
+
+# Reverse threshold
+pred_log <- ifelse(prob_log > 0.5, 0, 1)
+
+pred_log <- factor(pred_log, levels = c(0,1))
+
+confusionMatrix(pred_log, test_data$y_factor)
 ```
 
-## 4.2 Decision Tree
+## Decision Tree
 
-```         
+```{R}
+model_tree <- rpart(y_factor ~ ., 
+                    data = train_data,
+                    method = "class")
+
+rpart.plot(model_tree)
+
+pred_tree <- predict(model_tree, test_data, type = "class")
+
+confusionMatrix(pred_tree, test_data$y_factor)
 ```
 
-## 4.3 Random Forest
+## Random Forest
 
-```         
+```{R}
+# I'm not sure where this came from, but it seems to not work
+#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
+
+model_rf <- randomForest(y_factor ~ ., 
+                         data = train_data,
+                         ntree = 200)
+pred_rf <- predict(model_rf, test_data)
+
+confusionMatrix(pred_rf, test_data$y_factor)
+
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+roc_rf <- roc(test_data$y_factor, rf_probs)
+
+auc(roc_rf)
+plot(roc_rf)
 ```
 
-# 5. Model Evaluation
+# Model Evaluation
 
-## 5.1 ROC Curves with Confidence Intervals {#fig-roc}
+## Calculate Logistic Regression probabilities (probability of class 1)
 
-```{r}
+```{R}
+log_probs <- predict(model_log, test_data, type = "response")
+roc_log  <- roc(test_data$y_factor, log_probs)
+```
+
+## Decision Tree probabilities
+
+```{R}
+tree_probs <- predict(model_tree, test_data, type = "prob")[,2]
+roc_tree <- roc(test_data$y_factor, tree_probs)
 
 ```
 
-## 5.2 AUC Confidence Intervals
+## Random Forest probabilities
 
-```         
+```{R}
+rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+roc_rf   <- roc(test_data$y_factor, rf_probs)
 ```
 
-# 6. Marketing Campaign Strategy
+
+## Plot All ROC Curves on One Graph
+
+```{R}
+plot(roc_log, 
+     col = "blue", 
+     lwd = 2,
+     main = "ROC Curve Comparison")
+
+plot(roc_tree, 
+     col = "green", 
+     lwd = 2,
+     add = TRUE)
+
+plot(roc_rf, 
+     col = "red", 
+     lwd = 2,
+     add = TRUE)
+
+legend("bottomright",
+       legend = c(
+         paste("Logistic Regression (AUC =", round(auc(roc_log),3),")"),
+         paste("Decision Tree (AUC =", round(auc(roc_tree),3),")"),
+         paste("Random Forest (AUC =", round(auc(roc_rf),3),")")
+       ),
+       col = c("blue", "green", "red"),
+       lwd = 2)
+```
+
+
+# Marketing Campaign Strategy
 
 Based on the modeling results:
 
@@ -340,29 +455,3 @@ Based on the modeling results:
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
-
-```         
-```
-
-```{r}
-
-```
-
-## 
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```         
-```
-
-## 

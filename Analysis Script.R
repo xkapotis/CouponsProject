@@ -1,7 +1,7 @@
 library(tidyverse)
 library(janitor)
 ### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")
-df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- read.csv("./dataset/coupons.csv")
 
 glimpse(df)
 summary(df)
@@ -26,8 +26,8 @@ df$y <- as.factor(df$y)
 
 #Why?
 #Because:
-  # If y is numeric (0/1), some models treat it as regression.
-  # If it is factor → classification.
+# If y is numeric (0/1), some models treat it as regression.
+# If it is factor → classification.
 
 # Remove duplicates
 df <- distinct(df)
@@ -384,6 +384,11 @@ confusionMatrix(pred_tree, test_data$y_factor)
 
 ### Model 3 – Random Forest ###
 
+<<<<<<< HEAD
+=======
+#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
+
+>>>>>>> e20c88dd6a453433deb5aced4f256c7883fc4e4a
 library(randomForest)
 
 model_rf <- randomForest(y_factor ~ ., 
@@ -465,7 +470,6 @@ legend("bottomright",
 ###################################
 
 head(train_data)
-
 
 
 
