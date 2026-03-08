@@ -28,7 +28,7 @@ You can add options to executable code like this
 library(tidyverse)
 library(janitor)
 
-df <- read.csv("C:/Users/ckapotis/Desktop/MSc Digital Transformation/Customer Analytics/Assignment/coupons.csv")
+df <- read.csv("./dataset/coupons.csv")
 df <- clean_names(df)
 #names(df) to see if everything is lowecase after the clean_names command
 
@@ -73,4 +73,3 @@ ggplot(df, aes(x = coffee_house, fill = y)) +
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
-
