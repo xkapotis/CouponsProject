@@ -46,7 +46,7 @@ inspection:
 df <- read.csv("./dataset/coupons.csv")
 
 glimpse(df)
-summary(df)
+# summary(df)
 ```
 
 ## Process Data
@@ -80,9 +80,9 @@ naive_target <- mean(df$y)
 ```{R}
 empty_car <- sum(df$car == "")
 empty_car_per <- empty_car / nrow(df)
-print(sprintf("Empty car values: %d Percentage from total: %f",
-              empty_car,
-              empty_car_per))
+sprintf("Empty car values: %d Percentage from total: %f",
+        empty_car,
+        empty_car_per)
 print("Summary of to_coupon_geq5min")
 print(summary(df$to_coupon_geq5min))
 rm(empty_car, empty_car_per)
@@ -90,25 +90,65 @@ rm(empty_car, empty_car_per)
 From the initial summary we can make two observations. The column `car` has a 
 total of `12576` empty entries, which is about **99%** of our dataset. Another 
 outlier is the `to_coupon_geq5min` column, which only has values of `1`. 
-Therefore we will opt to drop those two column, as they don't constitute any
+Therefore we will opt to drop the `car` column, as it doesn't constitute any
 meaningful information and we will note that in a future survey it could be
 tested to hand out the coupons in a distance below 15 minutes from the venue.
 ```{R}
-df <- df %>% select(-car, -to_coupon_geq5min)
+df <- df %>% select(-car)
 ```
-We will quickly validate the 15 min and 25 min distance columns, it should 
-follow, that `geq15min` is a proper subset of `geq25min`
+We will investigate and validate the 15 min and 25 min distance columns, it 
+should follow, that `geq15min` is a proper subset of `geq25min`. We already know
+that both are a proper subset of `geq5min`, as each value is marked as `1`.
 ```{R}
 sum(df$to_coupon_geq25min == 1 & df$to_coupon_geq15min == 0)
 ```
-That seems to indeed be the case, therefore we will not take any further 
-actions.
+That seems to indeed be the case, therefore we can conclude that the data about
+the distance is valid. However, it contains in itself a large amount of 
+redundant information, since it follows an ascending inequality. Since all three
+columns are a Yes/No categorical value, and since all elements that fit the
+category of `geq25` naturally fit into both `geq15` and `geq5` we will fold 
+those three columns into one categorical value, called `distance_toCoupon`, as
+an ordered factor as distance increases:
+```{R}
+df$distance_toCoupon <- case_when(
+    df$to_coupon_geq25min == 1 ~ "geq25",
+    df$to_coupon_geq15min == 1 ~ "geq15",
+    df$to_coupon_geq5min == 1 ~ "geq5",
+    TRUE ~ NA) # Should not occur in the current dataset.
 
+df$distance_toCoupon <- factor(df$distance_toCoupon,
+                               levels = c("geq5", "geq15", "geq25"),
+                               ordered = TRUE)
+df <- df %>% select(-to_coupon_geq5min, -to_coupon_geq15min, -to_coupon_geq25min)
+```
 
-**CHECK ME**
-Although here we drop it, it might be better to consider if we should pivot those
-three columns into one about distance.
-**CHECK ME**
+We can investigate and verify similar information duplication in the columns
+`direction_same` and `direction_opp`, given that there are two different 
+possibilities for a direction. We will first verify the consistency of the
+data. From the initial summary, it seems that the two columns are a compliment
+from each other:
+```{R}
+sprintf("Opposite direction : %d", sum(df$direction_opp))
+sprintf("Same direction: %d", sum(df$direction_same))
+sprintf("Total rows in any directions: %d", 
+        sum(df$direction_opp) + sum(df$direction_same))
+sprintf("Total rows: %d", nrow(df))
+both_1 <- nrow(df[df$direction_opp == 1 & df$direction_same == 1, ])
+both_0 <- nrow(df[df$direction_opp == 0 & df$direction_same == 0, ])
+sprintf("Both in same and opposite distance: %d", both_1)
+sprintf("Neither in the same and opposite distance: %d", both_0)
+rm(both_0, both_1)
+```
+Since those columns are a perfect compliment of each other, we will drop the
+column and only use `direction_op`, since it is the more common occurrence and
+we will use it as a reference value.
+```{R}
+df <- df %>% select(-direction_same)
+df$direction_opp <- factor(df$direction_opp,
+                           levels = c(0, 1),
+                           labels = c("No", "Yes"))
+df$direction_opp <- relevel(df$direction_opp, ref="Yes")
+```
 
 ### Categorization
 
@@ -133,17 +173,19 @@ binary_to_factor <- function(x, lbls = t_NY) {
 }
 
 df$y <- binary_to_factor(df$y, lbls = c("Rejected", "Accepted")) # Target
+df$y <- relevel(df$y, ref = "Rejected")
 
 df$has_children <- binary_to_factor(df$has_children, 
                                       lbls = c("No children", "Has children"))
-cols_yn = c("direction_opp",
-            "direction_same",
-#            "to_coupon_geq5min",
-            "to_coupon_geq15min",
-            "to_coupon_geq25min")
-
-df <- df %>%
-  mutate(across(all_of(cols_yn), binary_to_factor))
+cols_yn <- c()
+#cols_yn <- c("direction_opp",
+#            "direction_same",
+##            "to_coupon_geq5min",
+#            "to_coupon_geq15min",
+#            "to_coupon_geq25min")
+#
+#df <- df %>%
+#  mutate(across(all_of(cols_yn), binary_to_factor))
 
 rm(t_01, t_NY, cols_yn, binary_to_factor)
 #df <- distinct(df)
@@ -197,13 +239,15 @@ df$income <- factor(df$income,
                                "$87500 - $99999",
                                "$100000 or More"),
                     ordered = TRUE)
+
+df$temperature <- factor(df$temperature, ordered = TRUE)
 df <- df %>%
   mutate(
-    destination = relevel(destination, ref = "Home"),
+    destination = relevel(destination, ref = "No Urgent Place"),
     passanger = relevel(passanger, ref = "Alone"),
     weather = relevel(weather, ref = "Sunny"),
     time = relevel(time, ref = "10AM"),
-    coupon = relevel(coupon, ref = "Bar"),
+    coupon = relevel(coupon, ref = "Coffee House"),
     marital_status = relevel(marital_status, ref = "Single"),
     occupation = relevel(occupation, ref = "Unemployed"),
   )
