@@ -71,6 +71,38 @@ will perform on this data set.
 naive_target <- mean(df$y)
 ```
 
+```{R}
+empty_car <- sum(df$car == "")
+empty_car_per <- empty_car / nrow(df)
+print(sprintf("Empty car values: %d Percentage from total: %f",
+              empty_car,
+              empty_car_per))
+print("Summary of to_coupon_geq5min")
+print(summary(df$to_coupon_geq5min))
+rm(empty_car, empty_car_per)
+```
+From the initial summary we can make two observations. The column `car` has a 
+total of `12576` empty entries, which is about **99%** of our dataset. Another 
+outlier is the `to_coupon_geq5min` column, which only has values of `1`. 
+Therefore we will opt to drop those two column, as they don't constitute any
+meaningful information and we will note that in a future survey it could be
+tested to hand out the coupons in a distance below 15 minutes from the venue.
+```{R}
+df <- df %>% select(-car, -to_coupon_geq5min)
+```
+We will quickly validate the 15 min and 25 min distance columns, it should 
+follow, that `geq15min` is a proper subset of `geq25min`
+```{R}
+sum(df$to_coupon_geq25min == 1 & df$to_coupon_geq15min == 0)
+```
+That seems to indeed be the case, therefore we will not take any further 
+actions.
+
+
+**CHECK ME**
+Although here we drop it, it might be better to consider if we should pivot those
+three columns into one about distance.
+  
 We will convert our variable encoded as numerical 1/0 into a factor, since it
 also represents a categorical value and it will make it easier to analyze 
 further. We will also set the reference for all categorical variables.
@@ -85,32 +117,37 @@ use "Rejected" as a reference.
 t_01 <- c(0, 1)
 t_NY <- c("No", "Yes")
 
-df$y <- factor(df$y,
-                levels = t_01,
-                labels = c("Rejected", "Accepted")) # Target
+# Shorthand for relabeling 0/1 data to a set of labels
+binary_to_factor <- function(x, lbls = t_NY) {
+  x <- factor(x, levels = c(0,1), labels = lbls)
+  relevel(x, lbls[1]) # redundant
+}
 
-df$has_children <- factor(df$has_children,
-                            levels = t_01,
-                            labels = c("No children", "Has children"))
+df$y <- binary_to_factor(df$y, lbls = c("Rejected", "Accepted")) # Target
 
-df$to_coupon_geq5min  <- factor(df$to_coupon_geq5min,
-                                  levels = t_01,
-                                  labels = t_NY)
-df$to_coupon_geq15min <- factor(df$to_coupon_geq15min,
-                                  levels = t_01,
-                                  labels = t_NY)
-df$to_coupon_geq25min <- factor(df$to_coupon_geq25min,
-                                  levels = t_01,
-                                  labels = t_NY)
+df$has_children <- binary_to_factor(df$has_children, 
+                                      lbls = c("No children", "Has children"))
+df$to_coupon_geq5min  <- binary_to_factor(df$to_coupon_geq5min)
+df$to_coupon_geq15min <- binary_to_factor(df$to_coupon_geq15min)
+df$to_coupon_geq25min <- binary_to_factor(df$to_coupon_geq25min)
 
-df$direction_same <- as.factor(df$direction_same)
-df$direction_opp  <- as.factor(df$direction_opp)
+df$direction_opp  <- binary_to_factor(df$direction_opp)
+df$direction_same <- binary_to_factor(df$direction_same)
 
 rm(t_01)
 rm(t_NY)
+rm(binary_to_factor)
 #df <- distinct(df)
-summary(df)
+#summary(df)
 ```
+For the categories that represent ordered data, we will relevel them, as to 
+indicate the ordering, from lowest to highest. For the unordered type of
+categories, we will use the most common value as a reference. 
+```{R}
+  
+```
+
+```{R}
 # Check missing values
 colSums(is.na(df))
 
@@ -122,11 +159,6 @@ prop.table(table(df$y))
 #This is extremely important for modeling quality.
 
 table(df$car, useNA = "always")
-```
-Remove car column.
-```{R}
-df <- df %>%
-  select(-car)
 ```
 
 ### Transform the expiration values in hours
