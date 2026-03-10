@@ -162,11 +162,52 @@ cols_0to8 <- c("bar",
                "carry_away", 
                "restaurant_less_than20", 
                "restaurant20to50")
-
 df <- df %>%
   mutate(across(all_of(cols_0to8), factor_0to8))
-
 rm(cols_0to8, factor_0to8)
+
+df$education <- factor(
+                  df$education,
+                  levels = c("Some High School",
+                             "High School Graduate",
+                             "Some college - no degree",
+                             "Associates degree",
+                             "Bachelors degree",
+                             "Graduate degree (Masters or Doctorate)"),
+                  ordered = TRUE)
+
+df$age <- factor(df$age,
+                 levels = c("below21", 
+                            "21",
+                            "26",
+                            "31",
+                            "36",
+                            "41",
+                            "46",
+                            "50plus"),
+                 ordered = TRUE)
+df$income <- factor(df$income,                 
+                    levels = c("Less than $12500",
+                               "$12500 - $24999",
+                               "$25000 - $37499",
+                               "$37500 - $49999",
+                               "$50000 - $62499",
+                               "$62500 - $74999",
+                               "$75000 - $87499",
+                               "$87500 - $99999",
+                               "$100000 or More"),
+                    ordered = TRUE)
+df <- df %>%
+  mutate(
+    destination = relevel(destination, ref = "Home"),
+    passanger = relevel(passanger, ref = "Alone"),
+    weather = relevel(weather, ref = "Sunny"),
+    time = relevel(time, ref = "10AM"),
+    coupon = relevel(coupon, ref = "Bar"),
+    marital_status = relevel(marital_status, ref = "Single"),
+    occupation = relevel(occupation, ref = "Unemployed"),
+  )
+summary(df)
 ```
 
 ```{R}
