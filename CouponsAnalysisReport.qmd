@@ -53,16 +53,22 @@ summary(df)
 
 ### Data Cleaning and Categorization of Features
 
+### Initial cleaning
 We will use `clean_names` in order to avoid any inconsistencies in the string
 values. Afterwards we will automatically convert all character features into
 factors, because all of them describe a category. This will allow us to
-reason easier when performing data cleaning and exploratory analysis.
+reason easier when performing data cleaning and exploratory analysis. We will
+also set any empty string as NA, as that's how it's represented in the data set.
 
 ```{r}
 df <- clean_names(df)
+
+df <- df %>% mutate_if(is.character, list(~na_if(.,""))) 
+
 df <- df %>%
   mutate(across(where(is.character), as.factor))
 summary(df)
+
 ```
 From this, we can observe that in our data the average acceptance rate is 
 `0.5684`. Therefore we will accept this as a benchmark of how a naive model
@@ -102,7 +108,10 @@ actions.
 **CHECK ME**
 Although here we drop it, it might be better to consider if we should pivot those
 three columns into one about distance.
-  
+**CHECK ME**
+
+### Categorization
+
 We will convert our variable encoded as numerical 1/0 into a factor, since it
 also represents a categorical value and it will make it easier to analyze 
 further. We will also set the reference for all categorical variables.
@@ -127,24 +136,37 @@ df$y <- binary_to_factor(df$y, lbls = c("Rejected", "Accepted")) # Target
 
 df$has_children <- binary_to_factor(df$has_children, 
                                       lbls = c("No children", "Has children"))
-df$to_coupon_geq5min  <- binary_to_factor(df$to_coupon_geq5min)
-df$to_coupon_geq15min <- binary_to_factor(df$to_coupon_geq15min)
-df$to_coupon_geq25min <- binary_to_factor(df$to_coupon_geq25min)
+cols_yn = c("direction_opp",
+            "direction_same",
+#            "to_coupon_geq5min",
+            "to_coupon_geq15min",
+            "to_coupon_geq25min")
 
-df$direction_opp  <- binary_to_factor(df$direction_opp)
-df$direction_same <- binary_to_factor(df$direction_same)
+df <- df %>%
+  mutate(across(all_of(cols_yn), binary_to_factor))
 
-rm(t_01)
-rm(t_NY)
-rm(binary_to_factor)
+rm(t_01, t_NY, cols_yn, binary_to_factor)
 #df <- distinct(df)
 #summary(df)
 ```
 For the categories that represent ordered data, we will relevel them, as to 
 indicate the ordering, from lowest to highest. For the unordered type of
 categories, we will use the most common value as a reference. 
+
 ```{R}
-  
+factor_0to8 <- function(x) {
+  factor(x, levels = c("never", "less1", "1~3", "4~8", "gt8"), ordered = TRUE)
+}
+cols_0to8 <- c("bar", 
+               "coffee_house", 
+               "carry_away", 
+               "restaurant_less_than20", 
+               "restaurant20to50")
+
+df <- df %>%
+  mutate(across(all_of(cols_0to8), factor_0to8))
+
+rm(cols_0to8, factor_0to8)
 ```
 
 ```{R}
