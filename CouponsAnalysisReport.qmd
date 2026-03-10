@@ -23,6 +23,8 @@ execute:
 
 ## Load Libraries
 
+Command to load the R libraries we will use for the analysis:
+
 ```{r}
 library(tidyverse)
 library(caret)
@@ -36,7 +38,8 @@ library(rpart.plot)
 
 ## Load Data
 
-Here, we load our *csv* dataset into a dataframe.
+Here, we load our csv data set into an dataframe and perform an initial 
+inspection:
 
 ```{r}
 ### for installing packages also needed ("  ,dependencies = TRUE, method = "wininet" ")
@@ -50,34 +53,64 @@ summary(df)
 
 ### Data Cleaning and Categorization of Features
 
-Need categorical variables to be stored as factors, not character strings. So we transformed all categorical text variables into categorical factors.
+We will use `clean_names` in order to avoid any inconsistencies in the string
+values. Afterwards we will automatically convert all character features into
+factors, because all of them describe a category. This will allow us to
+reason easier when performing data cleaning and exploratory analysis.
 
 ```{r}
-
 df <- clean_names(df)
-#names(df) to see if everything is lowecase after the clean_names command
-
-# Replace "nan" with NA
-df[df == "nan"] <- NA
-
-# Convert categorical variables to factor
 df <- df %>%
   mutate(across(where(is.character), as.factor))
+summary(df)
+```
+From this, we can observe that in our data the average acceptance rate is 
+`0.5684`. Therefore we will accept this as a benchmark of how a naive model
+will perform on this data set.
+```{R}
+naive_target <- mean(df$y)
 ```
 
-Convert Target Variable to Factor
-
-Why?
-
-Because:
-
-* If y is numeric (0/1), some models treat it as regression.
-* If it is factor → classification.
+We will convert our variable encoded as numerical 1/0 into a factor, since it
+also represents a categorical value and it will make it easier to analyze 
+further. We will also set the reference for all categorical variables.
+For Yes/No type features or classification, we will use 'No' or 'never' neutral 
+state as a reference. This applies to the columns `has_children`, `Bar`, 
+`CoffeeHouse`, `CarryAway`, `RestaurantLessThen20`, `Restaurant20To50`, 
+`toCoupon_*`, `direction_*`. Additionally for our target variable, `Y`, we will
+use "Rejected" as a reference.
 
 ```{R}
-df$y <- as.factor(df$y)
-# Remove duplicates
-df <- distinct(df)
+#Shorthand
+t_01 <- c(0, 1)
+t_NY <- c("No", "Yes")
+
+df$y <- factor(df$y,
+                levels = t_01,
+                labels = c("Rejected", "Accepted")) # Target
+
+df$has_children <- factor(df$has_children,
+                            levels = t_01,
+                            labels = c("No children", "Has children"))
+
+df$to_coupon_geq5min  <- factor(df$to_coupon_geq5min,
+                                  levels = t_01,
+                                  labels = t_NY)
+df$to_coupon_geq15min <- factor(df$to_coupon_geq15min,
+                                  levels = t_01,
+                                  labels = t_NY)
+df$to_coupon_geq25min <- factor(df$to_coupon_geq25min,
+                                  levels = t_01,
+                                  labels = t_NY)
+
+df$direction_same <- as.factor(df$direction_same)
+df$direction_opp  <- as.factor(df$direction_opp)
+
+rm(t_01)
+rm(t_NY)
+#df <- distinct(df)
+summary(df)
+```
 # Check missing values
 colSums(is.na(df))
 
@@ -311,23 +344,20 @@ Train/Test Split (70% / 30%)
 
 positive class -> 1 not 0
 ```{R}
-df_clean <- df %>%
-  select(-y, -y_numeric)
+#df_clean <- df %>%
+#  select(-y, -y_numeric)
 
-df_model <- na.omit(df_clean)
+#df_model <- na.omit(df_clean)
 
-
-df_pos = df_clean %>% filter(y_factor == 1)
-df_neg = df_clean %>% filter(y_factor == 0)
 set.seed(123)
 
-train_index <- createDataPartition(df_clean$y_factor, p = 0.7, list = FALSE)
+train_index <- createDataPartition(df_nonnull$y, p = 0.7, list = FALSE)
 
-train_data <- df_clean[train_index, ]
-test_data  <- df_clean[-train_index, ]
+# train_data <- df_nonnull[train_index, ]
+test_data  <- df_nonnull[-train_index, ]
 
-train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
-test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
+#train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
+#test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
 
 ```
 
@@ -455,3 +485,79 @@ Based on the modeling results:
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
+
+
+```{r}
+library(randomForest)
+library(caret)
+
+# Create interactions manually
+train_data$coffee_coupon <- ifelse(train_data$coupon=="Coffee House", train_data$coffee_house, 0)
+train_data$restaurant20_coupon <- ifelse(train_data$coupon=="Restaurant(20-50)", train_data$restaurant20to50, 0)
+train_data$restaurant_lt20_coupon <- ifelse(train_data$coupon=="Restaurant(<20)", train_data$restaurant_less_than20, 0)
+train_data$bar_coupon <- ifelse(train_data$coupon=="Bar", train_data$bar, 0)
+
+train_data$time_coupon <- interaction(train_data$time, train_data$coupon)
+train_data$weather_coupon <- interaction(train_data$weather, train_data$coupon)
+train_data$passanger_coupon <- interaction(train_data$passanger, train_data$coupon)
+
+# Create interactions manually
+test_data$coffee_coupon <- ifelse(test_data$coupon=="Coffee House", test_data$coffee_house, 0)
+test_data$restaurant20_coupon <- ifelse(test_data$coupon=="Restaurant(20-50)", test_data$restaurant20to50, 0)
+test_data$restaurant_lt20_coupon <- ifelse(test_data$coupon=="Restaurant(<20)", test_data$restaurant_less_than20, 0)
+test_data$bar_coupon <- ifelse(test_data$coupon=="Bar", test_data$bar, 0)
+
+
+test_data$time_coupon <- interaction(test_data$time, test_data$coupon)
+test_data$weather_coupon <- interaction(test_data$weather, test_data$coupon)
+test_data$passanger_coupon <- interaction(test_data$passanger, test_data$coupon)
+```
+
+```{r}
+set.seed(123) # for reproducibility
+
+rf_model <- randomForest(
+  y ~ destination + passanger + weather + time + coupon +
+      expiration + gender + age + marital_status + income +
+      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
+      direction_same,
+  data = train_data,
+  ntree = 1000,
+  mtry = floor(sqrt(ncol(train_data)-1)), # typical heuristic
+  importance = TRUE
+)
+```
+
+```{R}
+# Probabilities
+p_rf <- predict(rf_model, test_data, type="prob")[,2]
+
+# Tune threshold if needed
+threshold <- 0.5
+pred_rf <- factor(ifelse(p_rf > threshold, 1, 0), levels = levels(test_data$y))
+
+# Confusion matrix
+confusionMatrix(pred_rf, test_data$y)
+```
+GLM "Improved"
+```{R}
+model_glm_improved <- glm(
+  y ~ destination + passanger + weather + time + coupon +
+      expiration + gender + marital_status + education + occupation + income +
+      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
+      time_coupon + weather_coupon + passanger_coupon +
+      direction_same,
+  data = train_data,
+  family = binomial
+)
+```
+```{R}
+p <- predict(model_glm_maxed, test_data, type="response")
+
+# Threshold tuning
+threshold <- 0.48  # tweak slightly for best balanced accuracy
+pred <- factor(ifelse(p > threshold, 1, 0), levels = levels(test_data$y))
+
+library(caret)
+confusionMatrix(pred, test_data$y)
+```
