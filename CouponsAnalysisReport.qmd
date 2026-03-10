@@ -53,7 +53,7 @@ glimpse(df)
 
 ### Data Cleaning and Categorization of Features
 
-### Initial cleaning
+#### Initial cleaning
 We will use `clean_names` in order to avoid any inconsistencies in the string
 values. Afterwards we will automatically convert all character features into
 factors, because all of them describe a category. This will allow us to
@@ -78,7 +78,7 @@ naive_target <- mean(df$y)
 ```
 
 ```{R}
-empty_car <- sum(df$car == "")
+empty_car <- sum(is.na(df$car))
 empty_car_per <- empty_car / nrow(df)
 sprintf("Empty car values: %d Percentage from total: %f",
         empty_car,
@@ -150,7 +150,7 @@ df$direction_opp <- factor(df$direction_opp,
 df$direction_opp <- relevel(df$direction_opp, ref="Yes")
 ```
 
-### Categorization
+#### Categorization
 
 We will convert our variable encoded as numerical 1/0 into a factor, since it
 also represents a categorical value and it will make it easier to analyze 
@@ -253,6 +253,21 @@ df <- df %>%
   )
 summary(df)
 ```
+## Split and treatment of NA
+Since our objective is to determine if a customer will accept or reject a coupon
+for a specific venue, we will investigate several cases: First for a general
+acceptance, using the entire dataset and second, that investigates the factors
+for each specific coupon type. Therefore we will split the dataset several ways.
+
+### Overall model data preparation
+We will investigate and prepare the entire dataset for analysis and modelling.
+While most of the rows are complete, there are several that have NA values.
+```{R}
+sprintf("Noncomplete records in dataset: %f", sum(!complete.cases(df)) / nrow(df))
+df_full_complete <- na.omit(df)
+```
+Sine the number of noncomplete records is less then 5%, we will drop those rows.
+
 
 ```{R}
 # Check missing values
@@ -330,14 +345,14 @@ df <- df %>%
 Age was treated as an ordinal variable since the dataset provides age groups rather than continuous values.
 
 ```{R}
-# check if a column is factor or not #
-class(df$age)
-
-df$age <- factor(df$age,
-                 levels = c("below21","21","26","31","36","41","46","50plus"),
-                 ordered = TRUE) #Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.
-table(df$age, useNA = "always")
-
+## check if a column is factor or not #
+#class(df$age)
+#
+#df$age <- factor(df$age,
+#                 levels = c("below21","21","26","31","36","41","46","50plus"),
+#                 ordered = TRUE) #Age is numeric — not categorical. Otherwise the model treats age as categories instead of a continuous variable.
+#table(df$age, useNA = "always")
+#
 ```
 
 
@@ -387,7 +402,7 @@ df$time_original  <- NULL
 # i will create two y y_numeric and y_factor the numeric will be for plotting and trends and y_factor will be the target variable for modeling (classification).
 df <- df %>%
   mutate(
-    y_numeric = as.numeric(as.character(y)),
+    y_numeric = (as.numeric(y) - 1),
     y_factor = factor(y, levels = c(0,1))
   )
 ```
@@ -483,16 +498,16 @@ Train/Test Split (70% / 30%)
 
 positive class -> 1 not 0
 ```{R}
-#df_clean <- df %>%
-#  select(-y, -y_numeric)
+df_clean <- df %>%
+  select(-y_numeric, -y_factor)
 
-#df_model <- na.omit(df_clean)
+df_nonnull <- na.omit(df_clean)
 
 set.seed(123)
 
 train_index <- createDataPartition(df_nonnull$y, p = 0.7, list = FALSE)
 
-# train_data <- df_nonnull[train_index, ]
+train_data <- df_nonnull[train_index, ]
 test_data  <- df_nonnull[-train_index, ]
 
 #train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
@@ -503,24 +518,24 @@ test_data  <- df_nonnull[-train_index, ]
 ## Logistic Regression
 
 ```{R}
-model_log <- glm(y_factor ~ ., 
+model_log <- glm(y ~ ., 
                  data = train_data,
                  family = binomial)
 
 prob_log <- predict(model_log, test_data, type = "response")
 
 # Reverse threshold
-pred_log <- ifelse(prob_log > 0.5, 0, 1)
+pred_log <- ifelse(prob_log > 0.5, 1, 0)
 
-pred_log <- factor(pred_log, levels = c(0,1))
+pred_log <- factor(pred_log, levels = c(0,1), labels=c("Rejected", "Accepted"))
 
-confusionMatrix(pred_log, test_data$y_factor)
+confusionMatrix(pred_log, test_data$y)
 ```
 
 ## Decision Tree
 
 ```{R}
-model_tree <- rpart(y_factor ~ ., 
+model_tree <- rpart(y ~ ., 
                     data = train_data,
                     method = "class")
 
@@ -528,7 +543,7 @@ rpart.plot(model_tree)
 
 pred_tree <- predict(model_tree, test_data, type = "class")
 
-confusionMatrix(pred_tree, test_data$y_factor)
+confusionMatrix(pred_tree, test_data$y)
 ```
 
 ## Random Forest
@@ -537,15 +552,15 @@ confusionMatrix(pred_tree, test_data$y_factor)
 # I'm not sure where this came from, but it seems to not work
 #varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model
 
-model_rf <- randomForest(y_factor ~ ., 
+model_rf <- randomForest(y ~ ., 
                          data = train_data,
                          ntree = 200)
 pred_rf <- predict(model_rf, test_data)
 
-confusionMatrix(pred_rf, test_data$y_factor)
+confusionMatrix(pred_rf, test_data$y)
 
 rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
-roc_rf <- roc(test_data$y_factor, rf_probs)
+roc_rf <- roc(test_data$y, rf_probs)
 
 auc(roc_rf)
 plot(roc_rf)
@@ -557,14 +572,14 @@ plot(roc_rf)
 
 ```{R}
 log_probs <- predict(model_log, test_data, type = "response")
-roc_log  <- roc(test_data$y_factor, log_probs)
+roc_log  <- roc(test_data$y, log_probs)
 ```
 
 ## Decision Tree probabilities
 
 ```{R}
 tree_probs <- predict(model_tree, test_data, type = "prob")[,2]
-roc_tree <- roc(test_data$y_factor, tree_probs)
+roc_tree <- roc(test_data$y, tree_probs)
 
 ```
 
@@ -572,7 +587,7 @@ roc_tree <- roc(test_data$y_factor, tree_probs)
 
 ```{R}
 rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
-roc_rf   <- roc(test_data$y_factor, rf_probs)
+roc_rf   <- roc(test_data$y, rf_probs)
 ```
 
 
@@ -624,79 +639,80 @@ Based on the modeling results:
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
-
-
-```{r}
-library(randomForest)
-library(caret)
-
-# Create interactions manually
-train_data$coffee_coupon <- ifelse(train_data$coupon=="Coffee House", train_data$coffee_house, 0)
-train_data$restaurant20_coupon <- ifelse(train_data$coupon=="Restaurant(20-50)", train_data$restaurant20to50, 0)
-train_data$restaurant_lt20_coupon <- ifelse(train_data$coupon=="Restaurant(<20)", train_data$restaurant_less_than20, 0)
-train_data$bar_coupon <- ifelse(train_data$coupon=="Bar", train_data$bar, 0)
-
-train_data$time_coupon <- interaction(train_data$time, train_data$coupon)
-train_data$weather_coupon <- interaction(train_data$weather, train_data$coupon)
-train_data$passanger_coupon <- interaction(train_data$passanger, train_data$coupon)
-
-# Create interactions manually
-test_data$coffee_coupon <- ifelse(test_data$coupon=="Coffee House", test_data$coffee_house, 0)
-test_data$restaurant20_coupon <- ifelse(test_data$coupon=="Restaurant(20-50)", test_data$restaurant20to50, 0)
-test_data$restaurant_lt20_coupon <- ifelse(test_data$coupon=="Restaurant(<20)", test_data$restaurant_less_than20, 0)
-test_data$bar_coupon <- ifelse(test_data$coupon=="Bar", test_data$bar, 0)
-
-
-test_data$time_coupon <- interaction(test_data$time, test_data$coupon)
-test_data$weather_coupon <- interaction(test_data$weather, test_data$coupon)
-test_data$passanger_coupon <- interaction(test_data$passanger, test_data$coupon)
-```
+**IGNRE ME**
+-------------------------------------------------
 
 ```{r}
-set.seed(123) # for reproducibility
-
-rf_model <- randomForest(
-  y ~ destination + passanger + weather + time + coupon +
-      expiration + gender + age + marital_status + income +
-      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
-      direction_same,
-  data = train_data,
-  ntree = 1000,
-  mtry = floor(sqrt(ncol(train_data)-1)), # typical heuristic
-  importance = TRUE
-)
-```
-
-```{R}
-# Probabilities
-p_rf <- predict(rf_model, test_data, type="prob")[,2]
-
-# Tune threshold if needed
-threshold <- 0.5
-pred_rf <- factor(ifelse(p_rf > threshold, 1, 0), levels = levels(test_data$y))
-
-# Confusion matrix
-confusionMatrix(pred_rf, test_data$y)
-```
-GLM "Improved"
-```{R}
-model_glm_improved <- glm(
-  y ~ destination + passanger + weather + time + coupon +
-      expiration + gender + marital_status + education + occupation + income +
-      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
-      time_coupon + weather_coupon + passanger_coupon +
-      direction_same,
-  data = train_data,
-  family = binomial
-)
-```
-```{R}
-p <- predict(model_glm_maxed, test_data, type="response")
-
-# Threshold tuning
-threshold <- 0.48  # tweak slightly for best balanced accuracy
-pred <- factor(ifelse(p > threshold, 1, 0), levels = levels(test_data$y))
-
-library(caret)
-confusionMatrix(pred, test_data$y)
-```
+#library(randomForest)
+#library(caret)
+#
+## Create interactions manually
+#train_data$coffee_coupon <- ifelse(train_data$coupon=="Coffee House", train_data$coffee_house, 0)
+#train_data$restaurant20_coupon <- ifelse(train_data$coupon=="Restaurant(20-50)", train_data$restaurant20to50, 0)
+#train_data$restaurant_lt20_coupon <- ifelse(train_data$coupon=="Restaurant(<20)", train_data$restaurant_less_than20, 0)
+#train_data$bar_coupon <- ifelse(train_data$coupon=="Bar", train_data$bar, 0)
+#
+#train_data$time_coupon <- interaction(train_data$time, train_data$coupon)
+#train_data$weather_coupon <- interaction(train_data$weather, train_data$coupon)
+#train_data$passanger_coupon <- interaction(train_data$passanger, train_data$coupon)
+#
+## Create interactions manually
+#test_data$coffee_coupon <- ifelse(test_data$coupon=="Coffee House", test_data$coffee_house, 0)
+#test_data$restaurant20_coupon <- ifelse(test_data$coupon=="Restaurant(20-50)", test_data$restaurant20to50, 0)
+#test_data$restaurant_lt20_coupon <- ifelse(test_data$coupon=="Restaurant(<20)", test_data$restaurant_less_than20, 0)
+#test_data$bar_coupon <- ifelse(test_data$coupon=="Bar", test_data$bar, 0)
+#
+#
+#test_data$time_coupon <- interaction(test_data$time, test_data$coupon)
+#test_data$weather_coupon <- interaction(test_data$weather, test_data$coupon)
+#test_data$passanger_coupon <- interaction(test_data$passanger, test_data$coupon)
+#```
+#
+#```{r}
+#set.seed(123) # for reproducibility
+#
+#rf_model <- randomForest(
+#  y ~ destination + passanger + weather + time + coupon +
+#      expiration + gender + age + marital_status + income +
+#      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
+#      direction_opp,
+#  data = train_data,
+#  ntree = 1000,
+#  mtry = floor(sqrt(ncol(train_data)-1)), # typical heuristic
+#  importance = TRUE
+#)
+#```
+#
+#```{R}
+## Probabilities
+#p_rf <- predict(rf_model, test_data, type="prob")[,2]
+#
+## Tune threshold if needed
+#threshold <- 0.5
+#pred_rf <- factor(ifelse(p_rf > threshold, 1, 0), levels = levels(test_data$y))
+#
+## Confusion matrix
+#confusionMatrix(pred_rf, test_data$y)
+#```
+#GLM "Improved"
+#```{R}
+#model_glm_improved <- glm(
+#  y ~ destination + passanger + weather + time + coupon +
+#      expiration + gender + marital_status + education + occupation + income +
+#      coffee_coupon + restaurant_lt20_coupon + restaurant20_coupon + bar_coupon +
+#      time_coupon + weather_coupon + passanger_coupon +
+#      direction_opp,
+#  data = train_data,
+#  family = binomial
+#)
+#```
+#```{R}
+#p <- predict(model_glm_maxed, test_data, type="response")
+#
+## Threshold tuning
+#threshold <- 0.48  # tweak slightly for best balanced accuracy
+#pred <- factor(ifelse(p > threshold, 1, 0), levels = levels(test_data$y))
+#
+#library(caret)
+#confusionMatrix(pred, test_data$y)
+#```
