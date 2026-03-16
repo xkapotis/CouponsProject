@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Group 2:">
+<meta name="author" content="Group 2: Ayse Ciftci (fXXX), Christos Kapotis (fXXX), Ioannis Koutsogiannis (fXXX), Lazar Nenovski (fXXX), Dallandyshe Shabani (fXXX)">
 <meta name="dcterms.date" content="2026-03-16">
 
 <title>Data-Driven Coupon Acceptance Analysis</title>
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Group 2: </p>
+             <p>Group 2: Ayse Ciftci (fXXX), Christos Kapotis (fXXX), Ioannis Koutsogiannis (fXXX), Lazar Nenovski (fXXX), Dallandyshe Shabani (fXXX) </p>
           </div>
   </div>
     
@@ -1948,654 +1948,660 @@ Prediction Rejected Accepted
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data-Driven Coupon Acceptance Analysis"</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Group 2:"</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
-<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: scrartcl</span></span>
-<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf-engine: xelatex</span></span>
-<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a><span class="co">    mainfont: Source Sans Pro</span></span>
-<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a><span class="co">    monofont: Fira Code</span></span>
-<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a><span class="co">    fontsize: 11pt</span></span>
-<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry:</span></span>
-<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a><span class="co">      - top=2.2cm</span></span>
-<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a><span class="co">      - bottom=2.2cm</span></span>
-<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a><span class="co">      - left=2.2cm</span></span>
-<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a><span class="co">      - right=2.2cm</span></span>
-<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a><span class="co">    colorlinks: true</span></span>
-<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 6.5</span></span>
-<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 4</span></span>
-<span id="cb75-28"><a href="#cb75-28" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-align: center</span></span>
-<span id="cb75-29"><a href="#cb75-29" aria-hidden="true" tabindex="-1"></a><span class="co"> </span></span>
-<span id="cb75-30"><a href="#cb75-30" aria-hidden="true" tabindex="-1"></a><span class="co">    # Stylistic options for the LaTeX render</span></span>
-<span id="cb75-31"><a href="#cb75-31" aria-hidden="true" tabindex="-1"></a><span class="co">    header-includes:</span></span>
-<span id="cb75-32"><a href="#cb75-32" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{fontspec}</span></span>
-<span id="cb75-33"><a href="#cb75-33" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{microtype}</span></span>
-<span id="cb75-34"><a href="#cb75-34" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{booktabs}</span></span>
-<span id="cb75-35"><a href="#cb75-35" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{siunitx}</span></span>
-<span id="cb75-36"><a href="#cb75-36" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{caption}</span></span>
-<span id="cb75-37"><a href="#cb75-37" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setlength{\parindent}{0pt}</span></span>
-<span id="cb75-38"><a href="#cb75-38" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setlength{\parskip}{6pt}</span></span>
-<span id="cb75-39"><a href="#cb75-39" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setkomafont{section}{\normalfont\Large\bfseries}</span></span>
-<span id="cb75-40"><a href="#cb75-40" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setkomafont{subsection}{\normalfont\large\bfseries}</span></span>
-<span id="cb75-41"><a href="#cb75-41" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{xcolor}</span></span>
-<span id="cb75-42"><a href="#cb75-42" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{inlinecode}{HTML}{7d12ba}</span></span>
-<span id="cb75-43"><a href="#cb75-43" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{inlinebg}{HTML}{f8f9fa}</span></span>
-<span id="cb75-44"><a href="#cb75-44" aria-hidden="true" tabindex="-1"></a><span class="co">      - \let\oldtexttt\texttt</span></span>
-<span id="cb75-45"><a href="#cb75-45" aria-hidden="true" tabindex="-1"></a><span class="co">      - \renewcommand{\texttt}[1]{\colorbox{</span></span>
-<span id="cb75-46"><a href="#cb75-46" aria-hidden="true" tabindex="-1"></a><span class="co">            inlinebg}{\oldtexttt{\textcolor{inlinecode}{#1}}}}</span></span>
-<span id="cb75-47"><a href="#cb75-47" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{codebg}{HTML}{F5F5F5}</span></span>
-<span id="cb75-48"><a href="#cb75-48" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{outbg}{HTML}{E8E8E8}</span></span>
-<span id="cb75-49"><a href="#cb75-49" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-colwidths: auto</span></span>
-<span id="cb75-50"><a href="#cb75-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-51"><a href="#cb75-51" aria-hidden="true" tabindex="-1"></a><span class="an">highlight-style:</span><span class="co"> github</span></span>
-<span id="cb75-52"><a href="#cb75-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-53"><a href="#cb75-53" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb75-54"><a href="#cb75-54" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb75-55"><a href="#cb75-55" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
-<span id="cb75-56"><a href="#cb75-56" aria-hidden="true" tabindex="-1"></a><span class="co">  # echo: true</span></span>
-<span id="cb75-57"><a href="#cb75-57" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Group 2: </span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co">Ayse Ciftci (fXXX),</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co">Christos Kapotis (fXXX),</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co">Ioannis Koutsogiannis (fXXX),</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="co">Lazar Nenovski (fXXX),</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="co">Dallandyshe Shabani (fXXX)</span></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a><span class="co">"</span></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: scrartcl</span></span>
+<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf-engine: xelatex</span></span>
+<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a><span class="co">    mainfont: Source Sans Pro</span></span>
+<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a><span class="co">    monofont: Fira Code</span></span>
+<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a><span class="co">    fontsize: 11pt</span></span>
+<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry:</span></span>
+<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a><span class="co">      - top=2.2cm</span></span>
+<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a><span class="co">      - bottom=2.2cm</span></span>
+<span id="cb75-28"><a href="#cb75-28" aria-hidden="true" tabindex="-1"></a><span class="co">      - left=2.2cm</span></span>
+<span id="cb75-29"><a href="#cb75-29" aria-hidden="true" tabindex="-1"></a><span class="co">      - right=2.2cm</span></span>
+<span id="cb75-30"><a href="#cb75-30" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb75-31"><a href="#cb75-31" aria-hidden="true" tabindex="-1"></a><span class="co">    colorlinks: true</span></span>
+<span id="cb75-32"><a href="#cb75-32" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 6.5</span></span>
+<span id="cb75-33"><a href="#cb75-33" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 4</span></span>
+<span id="cb75-34"><a href="#cb75-34" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-align: center</span></span>
+<span id="cb75-35"><a href="#cb75-35" aria-hidden="true" tabindex="-1"></a><span class="co"> </span></span>
+<span id="cb75-36"><a href="#cb75-36" aria-hidden="true" tabindex="-1"></a><span class="co">    # Stylistic options for the LaTeX render</span></span>
+<span id="cb75-37"><a href="#cb75-37" aria-hidden="true" tabindex="-1"></a><span class="co">    header-includes:</span></span>
+<span id="cb75-38"><a href="#cb75-38" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{fontspec}</span></span>
+<span id="cb75-39"><a href="#cb75-39" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{microtype}</span></span>
+<span id="cb75-40"><a href="#cb75-40" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{booktabs}</span></span>
+<span id="cb75-41"><a href="#cb75-41" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{siunitx}</span></span>
+<span id="cb75-42"><a href="#cb75-42" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{caption}</span></span>
+<span id="cb75-43"><a href="#cb75-43" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setlength{\parindent}{0pt}</span></span>
+<span id="cb75-44"><a href="#cb75-44" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setlength{\parskip}{6pt}</span></span>
+<span id="cb75-45"><a href="#cb75-45" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setkomafont{section}{\normalfont\Large\bfseries}</span></span>
+<span id="cb75-46"><a href="#cb75-46" aria-hidden="true" tabindex="-1"></a><span class="co">      - \setkomafont{subsection}{\normalfont\large\bfseries}</span></span>
+<span id="cb75-47"><a href="#cb75-47" aria-hidden="true" tabindex="-1"></a><span class="co">      - \usepackage{xcolor}</span></span>
+<span id="cb75-48"><a href="#cb75-48" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{inlinecode}{HTML}{7d12ba}</span></span>
+<span id="cb75-49"><a href="#cb75-49" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{inlinebg}{HTML}{f8f9fa}</span></span>
+<span id="cb75-50"><a href="#cb75-50" aria-hidden="true" tabindex="-1"></a><span class="co">      - \let\oldtexttt\texttt</span></span>
+<span id="cb75-51"><a href="#cb75-51" aria-hidden="true" tabindex="-1"></a><span class="co">      - \renewcommand{\texttt}[1]{\colorbox{</span></span>
+<span id="cb75-52"><a href="#cb75-52" aria-hidden="true" tabindex="-1"></a><span class="co">            inlinebg}{\oldtexttt{\textcolor{inlinecode}{#1}}}}</span></span>
+<span id="cb75-53"><a href="#cb75-53" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{codebg}{HTML}{F5F5F5}</span></span>
+<span id="cb75-54"><a href="#cb75-54" aria-hidden="true" tabindex="-1"></a><span class="co">      - \definecolor{outbg}{HTML}{E8E8E8}</span></span>
+<span id="cb75-55"><a href="#cb75-55" aria-hidden="true" tabindex="-1"></a><span class="co">    tbl-colwidths: auto</span></span>
+<span id="cb75-56"><a href="#cb75-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-57"><a href="#cb75-57" aria-hidden="true" tabindex="-1"></a><span class="an">highlight-style:</span><span class="co"> github</span></span>
 <span id="cb75-58"><a href="#cb75-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-59"><a href="#cb75-59" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb75-60"><a href="#cb75-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-61"><a href="#cb75-61" aria-hidden="true" tabindex="-1"></a><span class="sc">\&lt;</span>Introduction goes here <span class="sc">\&gt;</span></span>
-<span id="cb75-62"><a href="#cb75-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-63"><a href="#cb75-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Loading &amp; Preprocessing</span></span>
+<span id="cb75-59"><a href="#cb75-59" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb75-60"><a href="#cb75-60" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb75-61"><a href="#cb75-61" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb75-62"><a href="#cb75-62" aria-hidden="true" tabindex="-1"></a><span class="co">  # echo: true</span></span>
+<span id="cb75-63"><a href="#cb75-63" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb75-64"><a href="#cb75-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-65"><a href="#cb75-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Libraries</span></span>
+<span id="cb75-65"><a href="#cb75-65" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
 <span id="cb75-66"><a href="#cb75-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-67"><a href="#cb75-67" aria-hidden="true" tabindex="-1"></a>Command to load the R libraries we will use for the analysis:</span>
+<span id="cb75-67"><a href="#cb75-67" aria-hidden="true" tabindex="-1"></a><span class="sc">\&lt;</span>Introduction goes here <span class="sc">\&gt;</span></span>
 <span id="cb75-68"><a href="#cb75-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-69"><a href="#cb75-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, library-setup}</span></span>
-<span id="cb75-70"><a href="#cb75-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb75-71"><a href="#cb75-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb75-72"><a href="#cb75-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
-<span id="cb75-73"><a href="#cb75-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb75-74"><a href="#cb75-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb75-75"><a href="#cb75-75" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb75-76"><a href="#cb75-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
-<span id="cb75-77"><a href="#cb75-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb75-78"><a href="#cb75-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-79"><a href="#cb75-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-80"><a href="#cb75-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Data</span></span>
-<span id="cb75-81"><a href="#cb75-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-82"><a href="#cb75-82" aria-hidden="true" tabindex="-1"></a>Here, we load our csv data set into an dataframe and perform an initial </span>
-<span id="cb75-83"><a href="#cb75-83" aria-hidden="true" tabindex="-1"></a>inspection:</span>
-<span id="cb75-84"><a href="#cb75-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-85"><a href="#cb75-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, load-csv}</span></span>
-<span id="cb75-86"><a href="#cb75-86" aria-hidden="true" tabindex="-1"></a><span class="co"># for installing packages also needed </span></span>
-<span id="cb75-87"><a href="#cb75-87" aria-hidden="true" tabindex="-1"></a><span class="co"># ("  ,dependencies = TRUE, method = "wininet" ")</span></span>
-<span id="cb75-88"><a href="#cb75-88" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./dataset/coupons.csv"</span>)</span>
-<span id="cb75-89"><a href="#cb75-89" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span>
-<span id="cb75-90"><a href="#cb75-90" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(df)</span></span>
-<span id="cb75-91"><a href="#cb75-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-92"><a href="#cb75-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-93"><a href="#cb75-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Process Data</span></span>
-<span id="cb75-94"><a href="#cb75-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-95"><a href="#cb75-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Cleaning and Categorization of Features</span></span>
-<span id="cb75-96"><a href="#cb75-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-97"><a href="#cb75-97" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Initial cleaning</span></span>
-<span id="cb75-98"><a href="#cb75-98" aria-hidden="true" tabindex="-1"></a>We will use <span class="in">`clean_names`</span> in order to avoid any inconsistencies in the string</span>
-<span id="cb75-99"><a href="#cb75-99" aria-hidden="true" tabindex="-1"></a>values. Afterwards we will automatically convert all character features into</span>
-<span id="cb75-100"><a href="#cb75-100" aria-hidden="true" tabindex="-1"></a>factors, because all of them describe a category. This will allow us to</span>
-<span id="cb75-101"><a href="#cb75-101" aria-hidden="true" tabindex="-1"></a>reason easier when performing data cleaning and exploratory analysis. We will</span>
-<span id="cb75-102"><a href="#cb75-102" aria-hidden="true" tabindex="-1"></a>also set any empty string as NA, as that's how it's represented in the data set.</span>
-<span id="cb75-103"><a href="#cb75-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-104"><a href="#cb75-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, autoset-chr-fact}</span></span>
-<span id="cb75-105"><a href="#cb75-105" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span>
-<span id="cb75-106"><a href="#cb75-106" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.character, <span class="fu">list</span>(<span class="sc">~</span><span class="fu">na_if</span>(.,<span class="st">""</span>)))</span>
-<span id="cb75-107"><a href="#cb75-107" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-108"><a href="#cb75-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
-<span id="cb75-109"><a href="#cb75-109" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
-<span id="cb75-110"><a href="#cb75-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-111"><a href="#cb75-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-112"><a href="#cb75-112" aria-hidden="true" tabindex="-1"></a>From this, we can observe that in our data the average acceptance rate is </span>
-<span id="cb75-113"><a href="#cb75-113" aria-hidden="true" tabindex="-1"></a><span class="in">`0.5684`</span>. Therefore we will accept this as a benchmark of how a naive model</span>
-<span id="cb75-114"><a href="#cb75-114" aria-hidden="true" tabindex="-1"></a>will perform on this data set.</span>
-<span id="cb75-115"><a href="#cb75-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, find-target-mean}</span></span>
-<span id="cb75-116"><a href="#cb75-116" aria-hidden="true" tabindex="-1"></a>naive_target <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y)</span>
+<span id="cb75-69"><a href="#cb75-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Loading &amp; Preprocessing</span></span>
+<span id="cb75-70"><a href="#cb75-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-71"><a href="#cb75-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Libraries</span></span>
+<span id="cb75-72"><a href="#cb75-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-73"><a href="#cb75-73" aria-hidden="true" tabindex="-1"></a>Command to load the R libraries we will use for the analysis:</span>
+<span id="cb75-74"><a href="#cb75-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-75"><a href="#cb75-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, library-setup}</span></span>
+<span id="cb75-76"><a href="#cb75-76" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb75-77"><a href="#cb75-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb75-78"><a href="#cb75-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
+<span id="cb75-79"><a href="#cb75-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb75-80"><a href="#cb75-80" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb75-81"><a href="#cb75-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb75-82"><a href="#cb75-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb75-83"><a href="#cb75-83" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
+<span id="cb75-84"><a href="#cb75-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-85"><a href="#cb75-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-86"><a href="#cb75-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Data</span></span>
+<span id="cb75-87"><a href="#cb75-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-88"><a href="#cb75-88" aria-hidden="true" tabindex="-1"></a>Here, we load our csv data set into an dataframe and perform an initial </span>
+<span id="cb75-89"><a href="#cb75-89" aria-hidden="true" tabindex="-1"></a>inspection:</span>
+<span id="cb75-90"><a href="#cb75-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-91"><a href="#cb75-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, load-csv}</span></span>
+<span id="cb75-92"><a href="#cb75-92" aria-hidden="true" tabindex="-1"></a><span class="co"># for installing packages also needed </span></span>
+<span id="cb75-93"><a href="#cb75-93" aria-hidden="true" tabindex="-1"></a><span class="co"># ("  ,dependencies = TRUE, method = "wininet" ")</span></span>
+<span id="cb75-94"><a href="#cb75-94" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./dataset/coupons.csv"</span>)</span>
+<span id="cb75-95"><a href="#cb75-95" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span>
+<span id="cb75-96"><a href="#cb75-96" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(df)</span></span>
+<span id="cb75-97"><a href="#cb75-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-98"><a href="#cb75-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-99"><a href="#cb75-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Process Data</span></span>
+<span id="cb75-100"><a href="#cb75-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-101"><a href="#cb75-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Cleaning and Categorization of Features</span></span>
+<span id="cb75-102"><a href="#cb75-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-103"><a href="#cb75-103" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Initial cleaning</span></span>
+<span id="cb75-104"><a href="#cb75-104" aria-hidden="true" tabindex="-1"></a>We will use <span class="in">`clean_names`</span> in order to avoid any inconsistencies in the string</span>
+<span id="cb75-105"><a href="#cb75-105" aria-hidden="true" tabindex="-1"></a>values. Afterwards we will automatically convert all character features into</span>
+<span id="cb75-106"><a href="#cb75-106" aria-hidden="true" tabindex="-1"></a>factors, because all of them describe a category. This will allow us to</span>
+<span id="cb75-107"><a href="#cb75-107" aria-hidden="true" tabindex="-1"></a>reason easier when performing data cleaning and exploratory analysis. We will</span>
+<span id="cb75-108"><a href="#cb75-108" aria-hidden="true" tabindex="-1"></a>also set any empty string as NA, as that's how it's represented in the data set.</span>
+<span id="cb75-109"><a href="#cb75-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-110"><a href="#cb75-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, autoset-chr-fact}</span></span>
+<span id="cb75-111"><a href="#cb75-111" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span>
+<span id="cb75-112"><a href="#cb75-112" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.character, <span class="fu">list</span>(<span class="sc">~</span><span class="fu">na_if</span>(.,<span class="st">""</span>)))</span>
+<span id="cb75-113"><a href="#cb75-113" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-114"><a href="#cb75-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb75-115"><a href="#cb75-115" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb75-116"><a href="#cb75-116" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-117"><a href="#cb75-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-118"><a href="#cb75-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-119"><a href="#cb75-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, find-empty-car}</span></span>
-<span id="cb75-120"><a href="#cb75-120" aria-hidden="true" tabindex="-1"></a>empty_car <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>car))</span>
-<span id="cb75-121"><a href="#cb75-121" aria-hidden="true" tabindex="-1"></a>empty_car_per <span class="ot">&lt;-</span> empty_car <span class="sc">/</span> <span class="fu">nrow</span>(df)</span>
-<span id="cb75-122"><a href="#cb75-122" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Empty car values: %d Percentage from total: %f"</span>,</span>
-<span id="cb75-123"><a href="#cb75-123" aria-hidden="true" tabindex="-1"></a>        empty_car,</span>
-<span id="cb75-124"><a href="#cb75-124" aria-hidden="true" tabindex="-1"></a>        empty_car_per)</span>
-<span id="cb75-125"><a href="#cb75-125" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Summary of to_coupon_geq5min"</span>)</span>
-<span id="cb75-126"><a href="#cb75-126" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(df<span class="sc">$</span>to_coupon_geq5min))</span>
-<span id="cb75-127"><a href="#cb75-127" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(empty_car, empty_car_per)</span>
-<span id="cb75-128"><a href="#cb75-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-129"><a href="#cb75-129" aria-hidden="true" tabindex="-1"></a>From the initial summary we can make two observations. The column <span class="in">`car`</span> has a </span>
-<span id="cb75-130"><a href="#cb75-130" aria-hidden="true" tabindex="-1"></a>total of <span class="in">`12576`</span> empty entries, which is about **99%** of our dataset. Another </span>
-<span id="cb75-131"><a href="#cb75-131" aria-hidden="true" tabindex="-1"></a>outlier is the <span class="in">`to_coupon_geq5min`</span> column, which only has values of <span class="in">`1`</span>. </span>
-<span id="cb75-132"><a href="#cb75-132" aria-hidden="true" tabindex="-1"></a>Therefore we will opt to drop the <span class="in">`car`</span> column, as it doesn't constitute any</span>
-<span id="cb75-133"><a href="#cb75-133" aria-hidden="true" tabindex="-1"></a>meaningful information and we will note that in a future survey it could be</span>
-<span id="cb75-134"><a href="#cb75-134" aria-hidden="true" tabindex="-1"></a>tested to hand out the coupons in a distance below 15 minutes from the venue.</span>
-<span id="cb75-135"><a href="#cb75-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, remove-car}</span></span>
-<span id="cb75-136"><a href="#cb75-136" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>car)</span>
-<span id="cb75-137"><a href="#cb75-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-138"><a href="#cb75-138" aria-hidden="true" tabindex="-1"></a>We will investigate and validate the 15 min and 25 min distance columns, it </span>
-<span id="cb75-139"><a href="#cb75-139" aria-hidden="true" tabindex="-1"></a>should follow, that <span class="in">`geq15min`</span> is a proper subset of <span class="in">`geq25min`</span>. We already know</span>
-<span id="cb75-140"><a href="#cb75-140" aria-hidden="true" tabindex="-1"></a>that both are a proper subset of <span class="in">`geq5min`</span>, as each value is marked as <span class="in">`1`</span>.</span>
-<span id="cb75-141"><a href="#cb75-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-to_coupon}</span></span>
-<span id="cb75-142"><a href="#cb75-142" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>to_coupon_geq25min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>to_coupon_geq15min <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb75-118"><a href="#cb75-118" aria-hidden="true" tabindex="-1"></a>From this, we can observe that in our data the average acceptance rate is </span>
+<span id="cb75-119"><a href="#cb75-119" aria-hidden="true" tabindex="-1"></a><span class="in">`0.5684`</span>. Therefore we will accept this as a benchmark of how a naive model</span>
+<span id="cb75-120"><a href="#cb75-120" aria-hidden="true" tabindex="-1"></a>will perform on this data set.</span>
+<span id="cb75-121"><a href="#cb75-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, find-target-mean}</span></span>
+<span id="cb75-122"><a href="#cb75-122" aria-hidden="true" tabindex="-1"></a>naive_target <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>y)</span>
+<span id="cb75-123"><a href="#cb75-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-124"><a href="#cb75-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-125"><a href="#cb75-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, find-empty-car}</span></span>
+<span id="cb75-126"><a href="#cb75-126" aria-hidden="true" tabindex="-1"></a>empty_car <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>car))</span>
+<span id="cb75-127"><a href="#cb75-127" aria-hidden="true" tabindex="-1"></a>empty_car_per <span class="ot">&lt;-</span> empty_car <span class="sc">/</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb75-128"><a href="#cb75-128" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Empty car values: %d Percentage from total: %f"</span>,</span>
+<span id="cb75-129"><a href="#cb75-129" aria-hidden="true" tabindex="-1"></a>        empty_car,</span>
+<span id="cb75-130"><a href="#cb75-130" aria-hidden="true" tabindex="-1"></a>        empty_car_per)</span>
+<span id="cb75-131"><a href="#cb75-131" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Summary of to_coupon_geq5min"</span>)</span>
+<span id="cb75-132"><a href="#cb75-132" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(df<span class="sc">$</span>to_coupon_geq5min))</span>
+<span id="cb75-133"><a href="#cb75-133" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(empty_car, empty_car_per)</span>
+<span id="cb75-134"><a href="#cb75-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-135"><a href="#cb75-135" aria-hidden="true" tabindex="-1"></a>From the initial summary we can make two observations. The column <span class="in">`car`</span> has a </span>
+<span id="cb75-136"><a href="#cb75-136" aria-hidden="true" tabindex="-1"></a>total of <span class="in">`12576`</span> empty entries, which is about **99%** of our dataset. Another </span>
+<span id="cb75-137"><a href="#cb75-137" aria-hidden="true" tabindex="-1"></a>outlier is the <span class="in">`to_coupon_geq5min`</span> column, which only has values of <span class="in">`1`</span>. </span>
+<span id="cb75-138"><a href="#cb75-138" aria-hidden="true" tabindex="-1"></a>Therefore we will opt to drop the <span class="in">`car`</span> column, as it doesn't constitute any</span>
+<span id="cb75-139"><a href="#cb75-139" aria-hidden="true" tabindex="-1"></a>meaningful information and we will note that in a future survey it could be</span>
+<span id="cb75-140"><a href="#cb75-140" aria-hidden="true" tabindex="-1"></a>tested to hand out the coupons in a distance below 15 minutes from the venue.</span>
+<span id="cb75-141"><a href="#cb75-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, remove-car}</span></span>
+<span id="cb75-142"><a href="#cb75-142" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>car)</span>
 <span id="cb75-143"><a href="#cb75-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-144"><a href="#cb75-144" aria-hidden="true" tabindex="-1"></a>That seems to indeed be the case, therefore we can conclude that the data about</span>
-<span id="cb75-145"><a href="#cb75-145" aria-hidden="true" tabindex="-1"></a>the distance is valid. However, it contains in itself a large amount of </span>
-<span id="cb75-146"><a href="#cb75-146" aria-hidden="true" tabindex="-1"></a>redundant information, since it follows an ascending inequality. Since all three</span>
-<span id="cb75-147"><a href="#cb75-147" aria-hidden="true" tabindex="-1"></a>columns are a Yes/No categorical value, and since all elements that fit the</span>
-<span id="cb75-148"><a href="#cb75-148" aria-hidden="true" tabindex="-1"></a>category of <span class="in">`geq25`</span> naturally fit into both <span class="in">`geq15`</span> and <span class="in">`geq5`</span> we will fold </span>
-<span id="cb75-149"><a href="#cb75-149" aria-hidden="true" tabindex="-1"></a>those three columns into one categorical value, called <span class="in">`distance_toCoupon`</span>, as</span>
-<span id="cb75-150"><a href="#cb75-150" aria-hidden="true" tabindex="-1"></a>an ordered factor as distance increases:</span>
-<span id="cb75-151"><a href="#cb75-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, fold-to_coupon}</span></span>
-<span id="cb75-152"><a href="#cb75-152" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>distance_toCoupon <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
-<span id="cb75-153"><a href="#cb75-153" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq25min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq25"</span>,</span>
-<span id="cb75-154"><a href="#cb75-154" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq15min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq15"</span>,</span>
-<span id="cb75-155"><a href="#cb75-155" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq5min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq5"</span>,</span>
-<span id="cb75-156"><a href="#cb75-156" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># Should not occur in the current dataset.</span></span>
-<span id="cb75-157"><a href="#cb75-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-158"><a href="#cb75-158" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>distance_toCoupon <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>distance_toCoupon,</span>
-<span id="cb75-159"><a href="#cb75-159" aria-hidden="true" tabindex="-1"></a>                               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"geq5"</span>, <span class="st">"geq15"</span>, <span class="st">"geq25"</span>),</span>
-<span id="cb75-160"><a href="#cb75-160" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-161"><a href="#cb75-161" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>to_coupon_geq5min, <span class="sc">-</span>to_coupon_geq15min, <span class="sc">-</span>to_coupon_geq25min)</span>
-<span id="cb75-162"><a href="#cb75-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-144"><a href="#cb75-144" aria-hidden="true" tabindex="-1"></a>We will investigate and validate the 15 min and 25 min distance columns, it </span>
+<span id="cb75-145"><a href="#cb75-145" aria-hidden="true" tabindex="-1"></a>should follow, that <span class="in">`geq15min`</span> is a proper subset of <span class="in">`geq25min`</span>. We already know</span>
+<span id="cb75-146"><a href="#cb75-146" aria-hidden="true" tabindex="-1"></a>that both are a proper subset of <span class="in">`geq5min`</span>, as each value is marked as <span class="in">`1`</span>.</span>
+<span id="cb75-147"><a href="#cb75-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-to_coupon}</span></span>
+<span id="cb75-148"><a href="#cb75-148" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>to_coupon_geq25min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>to_coupon_geq15min <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb75-149"><a href="#cb75-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-150"><a href="#cb75-150" aria-hidden="true" tabindex="-1"></a>That seems to indeed be the case, therefore we can conclude that the data about</span>
+<span id="cb75-151"><a href="#cb75-151" aria-hidden="true" tabindex="-1"></a>the distance is valid. However, it contains in itself a large amount of </span>
+<span id="cb75-152"><a href="#cb75-152" aria-hidden="true" tabindex="-1"></a>redundant information, since it follows an ascending inequality. Since all three</span>
+<span id="cb75-153"><a href="#cb75-153" aria-hidden="true" tabindex="-1"></a>columns are a Yes/No categorical value, and since all elements that fit the</span>
+<span id="cb75-154"><a href="#cb75-154" aria-hidden="true" tabindex="-1"></a>category of <span class="in">`geq25`</span> naturally fit into both <span class="in">`geq15`</span> and <span class="in">`geq5`</span> we will fold </span>
+<span id="cb75-155"><a href="#cb75-155" aria-hidden="true" tabindex="-1"></a>those three columns into one categorical value, called <span class="in">`distance_toCoupon`</span>, as</span>
+<span id="cb75-156"><a href="#cb75-156" aria-hidden="true" tabindex="-1"></a>an ordered factor as distance increases:</span>
+<span id="cb75-157"><a href="#cb75-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, fold-to_coupon}</span></span>
+<span id="cb75-158"><a href="#cb75-158" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>distance_toCoupon <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
+<span id="cb75-159"><a href="#cb75-159" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq25min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq25"</span>,</span>
+<span id="cb75-160"><a href="#cb75-160" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq15min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq15"</span>,</span>
+<span id="cb75-161"><a href="#cb75-161" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>to_coupon_geq5min <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"geq5"</span>,</span>
+<span id="cb75-162"><a href="#cb75-162" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># Should not occur in the current dataset.</span></span>
 <span id="cb75-163"><a href="#cb75-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-164"><a href="#cb75-164" aria-hidden="true" tabindex="-1"></a>We can investigate and verify similar information duplication in the columns</span>
-<span id="cb75-165"><a href="#cb75-165" aria-hidden="true" tabindex="-1"></a><span class="in">`direction_same`</span> and <span class="in">`direction_opp`</span>, given that there are two different </span>
-<span id="cb75-166"><a href="#cb75-166" aria-hidden="true" tabindex="-1"></a>possibilities for a direction. We will first verify the consistency of the</span>
-<span id="cb75-167"><a href="#cb75-167" aria-hidden="true" tabindex="-1"></a>data. From the initial summary, it seems that the two columns are a compliment</span>
-<span id="cb75-168"><a href="#cb75-168" aria-hidden="true" tabindex="-1"></a>from each other:</span>
-<span id="cb75-169"><a href="#cb75-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-direction}</span></span>
-<span id="cb75-170"><a href="#cb75-170" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Opposite direction : %d"</span>, <span class="fu">sum</span>(df<span class="sc">$</span>direction_opp))</span>
-<span id="cb75-171"><a href="#cb75-171" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Same direction: %d"</span>, <span class="fu">sum</span>(df<span class="sc">$</span>direction_same))</span>
-<span id="cb75-172"><a href="#cb75-172" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Total rows in any directions: %d"</span>, </span>
-<span id="cb75-173"><a href="#cb75-173" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sum</span>(df<span class="sc">$</span>direction_opp) <span class="sc">+</span> <span class="fu">sum</span>(df<span class="sc">$</span>direction_same))</span>
-<span id="cb75-174"><a href="#cb75-174" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Total rows: %d"</span>, <span class="fu">nrow</span>(df))</span>
-<span id="cb75-175"><a href="#cb75-175" aria-hidden="true" tabindex="-1"></a>both_1 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[df<span class="sc">$</span>direction_opp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>direction_same <span class="sc">==</span> <span class="dv">1</span>, ])</span>
-<span id="cb75-176"><a href="#cb75-176" aria-hidden="true" tabindex="-1"></a>both_0 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[df<span class="sc">$</span>direction_opp <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> df<span class="sc">$</span>direction_same <span class="sc">==</span> <span class="dv">0</span>, ])</span>
-<span id="cb75-177"><a href="#cb75-177" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Both in same and opposite distance: %d"</span>, both_1)</span>
-<span id="cb75-178"><a href="#cb75-178" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Neither in the same and opposite distance: %d"</span>, both_0)</span>
-<span id="cb75-179"><a href="#cb75-179" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(both_0, both_1)</span>
-<span id="cb75-180"><a href="#cb75-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-181"><a href="#cb75-181" aria-hidden="true" tabindex="-1"></a>Since those columns are a perfect compliment of each other, we will drop the</span>
-<span id="cb75-182"><a href="#cb75-182" aria-hidden="true" tabindex="-1"></a>column and only use <span class="in">`direction_op`</span>, since it is the more common occurrence and</span>
-<span id="cb75-183"><a href="#cb75-183" aria-hidden="true" tabindex="-1"></a>we will use it as a reference value.</span>
-<span id="cb75-184"><a href="#cb75-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, clean-direction}</span></span>
-<span id="cb75-185"><a href="#cb75-185" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>direction_same)</span>
-<span id="cb75-186"><a href="#cb75-186" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>direction_opp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>direction_opp,</span>
-<span id="cb75-187"><a href="#cb75-187" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb75-188"><a href="#cb75-188" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>))</span>
-<span id="cb75-189"><a href="#cb75-189" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>direction_opp <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df<span class="sc">$</span>direction_opp, <span class="at">ref=</span><span class="st">"Yes"</span>)</span>
-<span id="cb75-190"><a href="#cb75-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-191"><a href="#cb75-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-192"><a href="#cb75-192" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Categorization</span></span>
-<span id="cb75-193"><a href="#cb75-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-194"><a href="#cb75-194" aria-hidden="true" tabindex="-1"></a>We will convert our variable encoded as numerical 1/0 into a factor, since it</span>
-<span id="cb75-195"><a href="#cb75-195" aria-hidden="true" tabindex="-1"></a>also represents a categorical value and it will make it easier to analyze </span>
-<span id="cb75-196"><a href="#cb75-196" aria-hidden="true" tabindex="-1"></a>further. We will also set the reference for all categorical variables.</span>
-<span id="cb75-197"><a href="#cb75-197" aria-hidden="true" tabindex="-1"></a>For Yes/No type features or classification, we will use 'No' or 'never' neutral </span>
-<span id="cb75-198"><a href="#cb75-198" aria-hidden="true" tabindex="-1"></a>state as a reference. This applies to the columns <span class="in">`has_children`</span>, <span class="in">`Bar`</span>, </span>
-<span id="cb75-199"><a href="#cb75-199" aria-hidden="true" tabindex="-1"></a><span class="in">`CoffeeHouse`</span>, <span class="in">`CarryAway`</span>, <span class="in">`RestaurantLessThen20`</span>, <span class="in">`Restaurant20To50`</span>, </span>
-<span id="cb75-200"><a href="#cb75-200" aria-hidden="true" tabindex="-1"></a><span class="in">`toCoupon_*`</span>, <span class="in">`direction_*`</span>. Additionally for our target variable, <span class="in">`Y`</span>, we will</span>
-<span id="cb75-201"><a href="#cb75-201" aria-hidden="true" tabindex="-1"></a>use "Rejected" as a reference.</span>
-<span id="cb75-202"><a href="#cb75-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-203"><a href="#cb75-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, categorize-binary}</span></span>
-<span id="cb75-204"><a href="#cb75-204" aria-hidden="true" tabindex="-1"></a><span class="co">#Shorthand</span></span>
-<span id="cb75-205"><a href="#cb75-205" aria-hidden="true" tabindex="-1"></a>t_01 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb75-206"><a href="#cb75-206" aria-hidden="true" tabindex="-1"></a>t_NY <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>)</span>
-<span id="cb75-207"><a href="#cb75-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-208"><a href="#cb75-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Shorthand for relabeling 0/1 data to a set of labels</span></span>
-<span id="cb75-209"><a href="#cb75-209" aria-hidden="true" tabindex="-1"></a>binary_to_factor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lbls =</span> t_NY) {</span>
-<span id="cb75-210"><a href="#cb75-210" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> lbls)</span>
-<span id="cb75-211"><a href="#cb75-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relevel</span>(x, lbls[<span class="dv">1</span>]) <span class="co"># redundant</span></span>
-<span id="cb75-212"><a href="#cb75-212" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-164"><a href="#cb75-164" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>distance_toCoupon <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>distance_toCoupon,</span>
+<span id="cb75-165"><a href="#cb75-165" aria-hidden="true" tabindex="-1"></a>                               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"geq5"</span>, <span class="st">"geq15"</span>, <span class="st">"geq25"</span>),</span>
+<span id="cb75-166"><a href="#cb75-166" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-167"><a href="#cb75-167" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>to_coupon_geq5min, <span class="sc">-</span>to_coupon_geq15min, <span class="sc">-</span>to_coupon_geq25min)</span>
+<span id="cb75-168"><a href="#cb75-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-169"><a href="#cb75-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-170"><a href="#cb75-170" aria-hidden="true" tabindex="-1"></a>We can investigate and verify similar information duplication in the columns</span>
+<span id="cb75-171"><a href="#cb75-171" aria-hidden="true" tabindex="-1"></a><span class="in">`direction_same`</span> and <span class="in">`direction_opp`</span>, given that there are two different </span>
+<span id="cb75-172"><a href="#cb75-172" aria-hidden="true" tabindex="-1"></a>possibilities for a direction. We will first verify the consistency of the</span>
+<span id="cb75-173"><a href="#cb75-173" aria-hidden="true" tabindex="-1"></a>data. From the initial summary, it seems that the two columns are a compliment</span>
+<span id="cb75-174"><a href="#cb75-174" aria-hidden="true" tabindex="-1"></a>from each other:</span>
+<span id="cb75-175"><a href="#cb75-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-direction}</span></span>
+<span id="cb75-176"><a href="#cb75-176" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Opposite direction : %d"</span>, <span class="fu">sum</span>(df<span class="sc">$</span>direction_opp))</span>
+<span id="cb75-177"><a href="#cb75-177" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Same direction: %d"</span>, <span class="fu">sum</span>(df<span class="sc">$</span>direction_same))</span>
+<span id="cb75-178"><a href="#cb75-178" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Total rows in any directions: %d"</span>, </span>
+<span id="cb75-179"><a href="#cb75-179" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sum</span>(df<span class="sc">$</span>direction_opp) <span class="sc">+</span> <span class="fu">sum</span>(df<span class="sc">$</span>direction_same))</span>
+<span id="cb75-180"><a href="#cb75-180" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Total rows: %d"</span>, <span class="fu">nrow</span>(df))</span>
+<span id="cb75-181"><a href="#cb75-181" aria-hidden="true" tabindex="-1"></a>both_1 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[df<span class="sc">$</span>direction_opp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>direction_same <span class="sc">==</span> <span class="dv">1</span>, ])</span>
+<span id="cb75-182"><a href="#cb75-182" aria-hidden="true" tabindex="-1"></a>both_0 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[df<span class="sc">$</span>direction_opp <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> df<span class="sc">$</span>direction_same <span class="sc">==</span> <span class="dv">0</span>, ])</span>
+<span id="cb75-183"><a href="#cb75-183" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Both in same and opposite distance: %d"</span>, both_1)</span>
+<span id="cb75-184"><a href="#cb75-184" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Neither in the same and opposite distance: %d"</span>, both_0)</span>
+<span id="cb75-185"><a href="#cb75-185" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(both_0, both_1)</span>
+<span id="cb75-186"><a href="#cb75-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-187"><a href="#cb75-187" aria-hidden="true" tabindex="-1"></a>Since those columns are a perfect compliment of each other, we will drop the</span>
+<span id="cb75-188"><a href="#cb75-188" aria-hidden="true" tabindex="-1"></a>column and only use <span class="in">`direction_op`</span>, since it is the more common occurrence and</span>
+<span id="cb75-189"><a href="#cb75-189" aria-hidden="true" tabindex="-1"></a>we will use it as a reference value.</span>
+<span id="cb75-190"><a href="#cb75-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, clean-direction}</span></span>
+<span id="cb75-191"><a href="#cb75-191" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>direction_same)</span>
+<span id="cb75-192"><a href="#cb75-192" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>direction_opp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>direction_opp,</span>
+<span id="cb75-193"><a href="#cb75-193" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb75-194"><a href="#cb75-194" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>))</span>
+<span id="cb75-195"><a href="#cb75-195" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>direction_opp <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df<span class="sc">$</span>direction_opp, <span class="at">ref=</span><span class="st">"Yes"</span>)</span>
+<span id="cb75-196"><a href="#cb75-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-197"><a href="#cb75-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-198"><a href="#cb75-198" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Categorization</span></span>
+<span id="cb75-199"><a href="#cb75-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-200"><a href="#cb75-200" aria-hidden="true" tabindex="-1"></a>We will convert our variable encoded as numerical 1/0 into a factor, since it</span>
+<span id="cb75-201"><a href="#cb75-201" aria-hidden="true" tabindex="-1"></a>also represents a categorical value and it will make it easier to analyze </span>
+<span id="cb75-202"><a href="#cb75-202" aria-hidden="true" tabindex="-1"></a>further. We will also set the reference for all categorical variables.</span>
+<span id="cb75-203"><a href="#cb75-203" aria-hidden="true" tabindex="-1"></a>For Yes/No type features or classification, we will use 'No' or 'never' neutral </span>
+<span id="cb75-204"><a href="#cb75-204" aria-hidden="true" tabindex="-1"></a>state as a reference. This applies to the columns <span class="in">`has_children`</span>, <span class="in">`Bar`</span>, </span>
+<span id="cb75-205"><a href="#cb75-205" aria-hidden="true" tabindex="-1"></a><span class="in">`CoffeeHouse`</span>, <span class="in">`CarryAway`</span>, <span class="in">`RestaurantLessThen20`</span>, <span class="in">`Restaurant20To50`</span>, </span>
+<span id="cb75-206"><a href="#cb75-206" aria-hidden="true" tabindex="-1"></a><span class="in">`toCoupon_*`</span>, <span class="in">`direction_*`</span>. Additionally for our target variable, <span class="in">`Y`</span>, we will</span>
+<span id="cb75-207"><a href="#cb75-207" aria-hidden="true" tabindex="-1"></a>use "Rejected" as a reference.</span>
+<span id="cb75-208"><a href="#cb75-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-209"><a href="#cb75-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, categorize-binary}</span></span>
+<span id="cb75-210"><a href="#cb75-210" aria-hidden="true" tabindex="-1"></a><span class="co">#Shorthand</span></span>
+<span id="cb75-211"><a href="#cb75-211" aria-hidden="true" tabindex="-1"></a>t_01 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb75-212"><a href="#cb75-212" aria-hidden="true" tabindex="-1"></a>t_NY <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>)</span>
 <span id="cb75-213"><a href="#cb75-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-214"><a href="#cb75-214" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">binary_to_factor</span>(df<span class="sc">$</span>y, <span class="at">lbls =</span> <span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>)) <span class="co"># Target</span></span>
-<span id="cb75-215"><a href="#cb75-215" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df<span class="sc">$</span>y, <span class="at">ref =</span> <span class="st">"Rejected"</span>)</span>
-<span id="cb75-216"><a href="#cb75-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-217"><a href="#cb75-217" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>has_children <span class="ot">&lt;-</span> <span class="fu">binary_to_factor</span>(df<span class="sc">$</span>has_children, </span>
-<span id="cb75-218"><a href="#cb75-218" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">lbls =</span> <span class="fu">c</span>(<span class="st">"No children"</span>, <span class="st">"Has children"</span>))</span>
-<span id="cb75-219"><a href="#cb75-219" aria-hidden="true" tabindex="-1"></a>cols_yn <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb75-220"><a href="#cb75-220" aria-hidden="true" tabindex="-1"></a><span class="co">#cols_yn &lt;- c("direction_opp",</span></span>
-<span id="cb75-221"><a href="#cb75-221" aria-hidden="true" tabindex="-1"></a><span class="co">#            "direction_same",</span></span>
-<span id="cb75-222"><a href="#cb75-222" aria-hidden="true" tabindex="-1"></a><span class="do">##            "to_coupon_geq5min",</span></span>
-<span id="cb75-223"><a href="#cb75-223" aria-hidden="true" tabindex="-1"></a><span class="co">#            "to_coupon_geq15min",</span></span>
-<span id="cb75-224"><a href="#cb75-224" aria-hidden="true" tabindex="-1"></a><span class="co">#            "to_coupon_geq25min")</span></span>
-<span id="cb75-225"><a href="#cb75-225" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb75-226"><a href="#cb75-226" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;%</span></span>
-<span id="cb75-227"><a href="#cb75-227" aria-hidden="true" tabindex="-1"></a><span class="co">#  mutate(across(all_of(cols_yn), binary_to_factor))</span></span>
-<span id="cb75-228"><a href="#cb75-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-229"><a href="#cb75-229" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(t_01, t_NY, cols_yn, binary_to_factor)</span>
-<span id="cb75-230"><a href="#cb75-230" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- distinct(df)</span></span>
-<span id="cb75-231"><a href="#cb75-231" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(df)</span></span>
-<span id="cb75-232"><a href="#cb75-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-233"><a href="#cb75-233" aria-hidden="true" tabindex="-1"></a>For the categories that represent ordered data, we will relevel them, as to </span>
-<span id="cb75-234"><a href="#cb75-234" aria-hidden="true" tabindex="-1"></a>indicate the ordering, from lowest to highest. For the unordered type of</span>
-<span id="cb75-235"><a href="#cb75-235" aria-hidden="true" tabindex="-1"></a>categories, we will use the most common value as a reference. </span>
-<span id="cb75-236"><a href="#cb75-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-237"><a href="#cb75-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, categorize-1-8}</span></span>
-<span id="cb75-238"><a href="#cb75-238" aria-hidden="true" tabindex="-1"></a>factor_0to8 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb75-239"><a href="#cb75-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"never"</span>, <span class="st">"less1"</span>, <span class="st">"1~3"</span>, <span class="st">"4~8"</span>, <span class="st">"gt8"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-240"><a href="#cb75-240" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb75-241"><a href="#cb75-241" aria-hidden="true" tabindex="-1"></a>cols_0to8 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>, </span>
-<span id="cb75-242"><a href="#cb75-242" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>, </span>
-<span id="cb75-243"><a href="#cb75-243" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>, </span>
-<span id="cb75-244"><a href="#cb75-244" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>, </span>
-<span id="cb75-245"><a href="#cb75-245" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
-<span id="cb75-246"><a href="#cb75-246" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-247"><a href="#cb75-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(cols_0to8), factor_0to8))</span>
-<span id="cb75-248"><a href="#cb75-248" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(cols_0to8, factor_0to8)</span>
-<span id="cb75-249"><a href="#cb75-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-250"><a href="#cb75-250" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb75-251"><a href="#cb75-251" aria-hidden="true" tabindex="-1"></a>                  df<span class="sc">$</span>education,</span>
-<span id="cb75-252"><a href="#cb75-252" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Some High School"</span>,</span>
-<span id="cb75-253"><a href="#cb75-253" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"High School Graduate"</span>,</span>
-<span id="cb75-254"><a href="#cb75-254" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Some college - no degree"</span>,</span>
-<span id="cb75-255"><a href="#cb75-255" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Associates degree"</span>,</span>
-<span id="cb75-256"><a href="#cb75-256" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Bachelors degree"</span>,</span>
-<span id="cb75-257"><a href="#cb75-257" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Graduate degree (Masters or Doctorate)"</span>),</span>
-<span id="cb75-258"><a href="#cb75-258" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-259"><a href="#cb75-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-260"><a href="#cb75-260" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
-<span id="cb75-261"><a href="#cb75-261" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"below21"</span>, </span>
-<span id="cb75-262"><a href="#cb75-262" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"21"</span>,</span>
-<span id="cb75-263"><a href="#cb75-263" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"26"</span>,</span>
-<span id="cb75-264"><a href="#cb75-264" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"31"</span>,</span>
-<span id="cb75-265"><a href="#cb75-265" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"36"</span>,</span>
-<span id="cb75-266"><a href="#cb75-266" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"41"</span>,</span>
-<span id="cb75-267"><a href="#cb75-267" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"46"</span>,</span>
-<span id="cb75-268"><a href="#cb75-268" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"50plus"</span>),</span>
-<span id="cb75-269"><a href="#cb75-269" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-270"><a href="#cb75-270" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>income,                 </span>
-<span id="cb75-271"><a href="#cb75-271" aria-hidden="true" tabindex="-1"></a>                    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Less than $12500"</span>,</span>
-<span id="cb75-272"><a href="#cb75-272" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$12500 - $24999"</span>,</span>
-<span id="cb75-273"><a href="#cb75-273" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$25000 - $37499"</span>,</span>
-<span id="cb75-274"><a href="#cb75-274" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$37500 - $49999"</span>,</span>
-<span id="cb75-275"><a href="#cb75-275" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$50000 - $62499"</span>,</span>
-<span id="cb75-276"><a href="#cb75-276" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$62500 - $74999"</span>,</span>
-<span id="cb75-277"><a href="#cb75-277" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$75000 - $87499"</span>,</span>
-<span id="cb75-278"><a href="#cb75-278" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$87500 - $99999"</span>,</span>
-<span id="cb75-279"><a href="#cb75-279" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$100000 or More"</span>),</span>
-<span id="cb75-280"><a href="#cb75-280" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-281"><a href="#cb75-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-282"><a href="#cb75-282" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>temperature <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>temperature, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-283"><a href="#cb75-283" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-284"><a href="#cb75-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb75-285"><a href="#cb75-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">destination =</span> <span class="fu">relevel</span>(destination, <span class="at">ref =</span> <span class="st">"No Urgent Place"</span>),</span>
-<span id="cb75-286"><a href="#cb75-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">passanger =</span> <span class="fu">relevel</span>(passanger, <span class="at">ref =</span> <span class="st">"Alone"</span>),</span>
-<span id="cb75-287"><a href="#cb75-287" aria-hidden="true" tabindex="-1"></a>    <span class="at">weather =</span> <span class="fu">relevel</span>(weather, <span class="at">ref =</span> <span class="st">"Sunny"</span>),</span>
-<span id="cb75-288"><a href="#cb75-288" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">relevel</span>(time, <span class="at">ref =</span> <span class="st">"10AM"</span>),</span>
-<span id="cb75-289"><a href="#cb75-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">coupon =</span> <span class="fu">relevel</span>(coupon, <span class="at">ref =</span> <span class="st">"Coffee House"</span>),</span>
-<span id="cb75-290"><a href="#cb75-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">marital_status =</span> <span class="fu">relevel</span>(marital_status, <span class="at">ref =</span> <span class="st">"Single"</span>),</span>
-<span id="cb75-291"><a href="#cb75-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">occupation =</span> <span class="fu">relevel</span>(occupation, <span class="at">ref =</span> <span class="st">"Unemployed"</span>),</span>
-<span id="cb75-292"><a href="#cb75-292" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb75-293"><a href="#cb75-293" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
-<span id="cb75-294"><a href="#cb75-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-295"><a href="#cb75-295" aria-hidden="true" tabindex="-1"></a><span class="fu">## Split and treatment of NA</span></span>
-<span id="cb75-296"><a href="#cb75-296" aria-hidden="true" tabindex="-1"></a>Since our objective is to determine if a customer will accept or reject a coupon</span>
-<span id="cb75-297"><a href="#cb75-297" aria-hidden="true" tabindex="-1"></a>for a specific venue, we will investigate several cases: First for a general</span>
-<span id="cb75-298"><a href="#cb75-298" aria-hidden="true" tabindex="-1"></a>acceptance, using the entire dataset and second, that investigates the factors</span>
-<span id="cb75-299"><a href="#cb75-299" aria-hidden="true" tabindex="-1"></a>for each specific coupon type. Therefore we will split the dataset several ways.</span>
-<span id="cb75-300"><a href="#cb75-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-301"><a href="#cb75-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### Overall model data preparation</span></span>
-<span id="cb75-302"><a href="#cb75-302" aria-hidden="true" tabindex="-1"></a>We will investigate and prepare the entire dataset for analysis and modelling.</span>
-<span id="cb75-303"><a href="#cb75-303" aria-hidden="true" tabindex="-1"></a>While most of the rows are complete, there are several that have NA values.</span>
-<span id="cb75-304"><a href="#cb75-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-noncomplete}</span></span>
-<span id="cb75-305"><a href="#cb75-305" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Noncomplete records in dataset: %f"</span>, <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">complete.cases</span>(df)) <span class="sc">/</span> <span class="fu">nrow</span>(df))</span>
-<span id="cb75-306"><a href="#cb75-306" aria-hidden="true" tabindex="-1"></a>df_full_complete <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
-<span id="cb75-307"><a href="#cb75-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-308"><a href="#cb75-308" aria-hidden="true" tabindex="-1"></a>Sine the number of noncomplete records is less then 5%, we will drop those rows.</span>
-<span id="cb75-309"><a href="#cb75-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-310"><a href="#cb75-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-311"><a href="#cb75-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-missing}</span></span>
-<span id="cb75-312"><a href="#cb75-312" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values</span></span>
-<span id="cb75-313"><a href="#cb75-313" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
-<span id="cb75-314"><a href="#cb75-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-315"><a href="#cb75-315" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
-<span id="cb75-316"><a href="#cb75-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-317"><a href="#cb75-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-318"><a href="#cb75-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transform the expiration values in hours</span></span>
-<span id="cb75-319"><a href="#cb75-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-320"><a href="#cb75-320" aria-hidden="true" tabindex="-1"></a>Suppose your dataframe is called df and your column is 'expiration'</span>
-<span id="cb75-321"><a href="#cb75-321" aria-hidden="true" tabindex="-1"></a>Function to convert any single value to hours</span>
-<span id="cb75-322"><a href="#cb75-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-323"><a href="#cb75-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, convert_hours}</span></span>
-<span id="cb75-324"><a href="#cb75-324" aria-hidden="true" tabindex="-1"></a>convert_to_hours <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb75-325"><a href="#cb75-325" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract all number-unit pairs (works for compound like "1d 2h 30m")</span></span>
-<span id="cb75-326"><a href="#cb75-326" aria-hidden="true" tabindex="-1"></a>  matches <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(x, <span class="st">"(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*([a-zA-Z]+)"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb75-327"><a href="#cb75-327" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb75-328"><a href="#cb75-328" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(matches) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)  <span class="co"># fallback if no match</span></span>
-<span id="cb75-329"><a href="#cb75-329" aria-hidden="true" tabindex="-1"></a>  total_hours <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb75-330"><a href="#cb75-330" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb75-331"><a href="#cb75-331" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matches)) {</span>
-<span id="cb75-332"><a href="#cb75-332" aria-hidden="true" tabindex="-1"></a>    num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(matches[i,<span class="dv">2</span>])</span>
-<span id="cb75-333"><a href="#cb75-333" aria-hidden="true" tabindex="-1"></a>    unit <span class="ot">&lt;-</span> <span class="fu">tolower</span>(matches[i,<span class="dv">3</span>])</span>
-<span id="cb75-334"><a href="#cb75-334" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb75-335"><a href="#cb75-335" aria-hidden="true" tabindex="-1"></a>    total_hours <span class="ot">&lt;-</span> total_hours <span class="sc">+</span> <span class="cf">switch</span>(unit,</span>
-<span id="cb75-336"><a href="#cb75-336" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"m"</span> <span class="ot">=</span> num <span class="sc">/</span> <span class="dv">60</span>,</span>
-<span id="cb75-337"><a href="#cb75-337" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"h"</span> <span class="ot">=</span> num,</span>
-<span id="cb75-338"><a href="#cb75-338" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"d"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span>,</span>
-<span id="cb75-339"><a href="#cb75-339" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"w"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span> <span class="sc">*</span> <span class="dv">7</span>,</span>
-<span id="cb75-340"><a href="#cb75-340" aria-hidden="true" tabindex="-1"></a>                                        <span class="cn">NA_real_</span>)</span>
-<span id="cb75-341"><a href="#cb75-341" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb75-342"><a href="#cb75-342" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb75-343"><a href="#cb75-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total_hours)</span>
-<span id="cb75-344"><a href="#cb75-344" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb75-345"><a href="#cb75-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-346"><a href="#cb75-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-347"><a href="#cb75-347" aria-hidden="true" tabindex="-1"></a>Apply function to your whole column dynamically</span>
-<span id="cb75-348"><a href="#cb75-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-349"><a href="#cb75-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, apply-hoursconvert}</span></span>
-<span id="cb75-350"><a href="#cb75-350" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-351"><a href="#cb75-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb75-352"><a href="#cb75-352" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration_original =</span> expiration,   <span class="co"># backup column</span></span>
-<span id="cb75-353"><a href="#cb75-353" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration =</span> <span class="fu">vapply</span>(expiration, convert_to_hours, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
-<span id="cb75-354"><a href="#cb75-354" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb75-355"><a href="#cb75-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-356"><a href="#cb75-356" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
-<span id="cb75-357"><a href="#cb75-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-358"><a href="#cb75-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-359"><a href="#cb75-359" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transform the expiration values in hours</span></span>
-<span id="cb75-360"><a href="#cb75-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-361"><a href="#cb75-361" aria-hidden="true" tabindex="-1"></a>transform time to time hour numeric from AM/PM</span>
-<span id="cb75-362"><a href="#cb75-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-363"><a href="#cb75-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, parse-datetime}</span></span>
-<span id="cb75-364"><a href="#cb75-364" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-365"><a href="#cb75-365" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_original =</span> time,</span>
-<span id="cb75-366"><a href="#cb75-366" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">hour</span>(<span class="fu">parse_date_time</span>(time, <span class="at">orders =</span> <span class="st">"I!p"</span>)))</span>
-<span id="cb75-367"><a href="#cb75-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-368"><a href="#cb75-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### replace "" with NAs and remove them </span></span>
-<span id="cb75-369"><a href="#cb75-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-370"><a href="#cb75-370" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, freq-clean}</span></span>
-<span id="cb75-371"><a href="#cb75-371" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[, <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
-<span id="cb75-372"><a href="#cb75-372" aria-hidden="true" tabindex="-1"></a>              <span class="st">"coffee_house"</span>,</span>
-<span id="cb75-373"><a href="#cb75-373" aria-hidden="true" tabindex="-1"></a>              <span class="st">"carry_away"</span>,</span>
-<span id="cb75-374"><a href="#cb75-374" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant_less_than20"</span>,</span>
-<span id="cb75-375"><a href="#cb75-375" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant20to50"</span>)],</span>
-<span id="cb75-376"><a href="#cb75-376" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
-<span id="cb75-377"><a href="#cb75-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-378"><a href="#cb75-378" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
-<span id="cb75-379"><a href="#cb75-379" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>,</span>
-<span id="cb75-380"><a href="#cb75-380" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>,</span>
-<span id="cb75-381"><a href="#cb75-381" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>,</span>
-<span id="cb75-382"><a href="#cb75-382" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
+<span id="cb75-214"><a href="#cb75-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Shorthand for relabeling 0/1 data to a set of labels</span></span>
+<span id="cb75-215"><a href="#cb75-215" aria-hidden="true" tabindex="-1"></a>binary_to_factor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lbls =</span> t_NY) {</span>
+<span id="cb75-216"><a href="#cb75-216" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels =</span> lbls)</span>
+<span id="cb75-217"><a href="#cb75-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relevel</span>(x, lbls[<span class="dv">1</span>]) <span class="co"># redundant</span></span>
+<span id="cb75-218"><a href="#cb75-218" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-219"><a href="#cb75-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-220"><a href="#cb75-220" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">binary_to_factor</span>(df<span class="sc">$</span>y, <span class="at">lbls =</span> <span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>)) <span class="co"># Target</span></span>
+<span id="cb75-221"><a href="#cb75-221" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">relevel</span>(df<span class="sc">$</span>y, <span class="at">ref =</span> <span class="st">"Rejected"</span>)</span>
+<span id="cb75-222"><a href="#cb75-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-223"><a href="#cb75-223" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>has_children <span class="ot">&lt;-</span> <span class="fu">binary_to_factor</span>(df<span class="sc">$</span>has_children, </span>
+<span id="cb75-224"><a href="#cb75-224" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">lbls =</span> <span class="fu">c</span>(<span class="st">"No children"</span>, <span class="st">"Has children"</span>))</span>
+<span id="cb75-225"><a href="#cb75-225" aria-hidden="true" tabindex="-1"></a>cols_yn <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb75-226"><a href="#cb75-226" aria-hidden="true" tabindex="-1"></a><span class="co">#cols_yn &lt;- c("direction_opp",</span></span>
+<span id="cb75-227"><a href="#cb75-227" aria-hidden="true" tabindex="-1"></a><span class="co">#            "direction_same",</span></span>
+<span id="cb75-228"><a href="#cb75-228" aria-hidden="true" tabindex="-1"></a><span class="do">##            "to_coupon_geq5min",</span></span>
+<span id="cb75-229"><a href="#cb75-229" aria-hidden="true" tabindex="-1"></a><span class="co">#            "to_coupon_geq15min",</span></span>
+<span id="cb75-230"><a href="#cb75-230" aria-hidden="true" tabindex="-1"></a><span class="co">#            "to_coupon_geq25min")</span></span>
+<span id="cb75-231"><a href="#cb75-231" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb75-232"><a href="#cb75-232" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;%</span></span>
+<span id="cb75-233"><a href="#cb75-233" aria-hidden="true" tabindex="-1"></a><span class="co">#  mutate(across(all_of(cols_yn), binary_to_factor))</span></span>
+<span id="cb75-234"><a href="#cb75-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-235"><a href="#cb75-235" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(t_01, t_NY, cols_yn, binary_to_factor)</span>
+<span id="cb75-236"><a href="#cb75-236" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- distinct(df)</span></span>
+<span id="cb75-237"><a href="#cb75-237" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(df)</span></span>
+<span id="cb75-238"><a href="#cb75-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-239"><a href="#cb75-239" aria-hidden="true" tabindex="-1"></a>For the categories that represent ordered data, we will relevel them, as to </span>
+<span id="cb75-240"><a href="#cb75-240" aria-hidden="true" tabindex="-1"></a>indicate the ordering, from lowest to highest. For the unordered type of</span>
+<span id="cb75-241"><a href="#cb75-241" aria-hidden="true" tabindex="-1"></a>categories, we will use the most common value as a reference. </span>
+<span id="cb75-242"><a href="#cb75-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-243"><a href="#cb75-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, categorize-1-8}</span></span>
+<span id="cb75-244"><a href="#cb75-244" aria-hidden="true" tabindex="-1"></a>factor_0to8 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb75-245"><a href="#cb75-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"never"</span>, <span class="st">"less1"</span>, <span class="st">"1~3"</span>, <span class="st">"4~8"</span>, <span class="st">"gt8"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-246"><a href="#cb75-246" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-247"><a href="#cb75-247" aria-hidden="true" tabindex="-1"></a>cols_0to8 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>, </span>
+<span id="cb75-248"><a href="#cb75-248" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>, </span>
+<span id="cb75-249"><a href="#cb75-249" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>, </span>
+<span id="cb75-250"><a href="#cb75-250" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>, </span>
+<span id="cb75-251"><a href="#cb75-251" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
+<span id="cb75-252"><a href="#cb75-252" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-253"><a href="#cb75-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(cols_0to8), factor_0to8))</span>
+<span id="cb75-254"><a href="#cb75-254" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(cols_0to8, factor_0to8)</span>
+<span id="cb75-255"><a href="#cb75-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-256"><a href="#cb75-256" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>education <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb75-257"><a href="#cb75-257" aria-hidden="true" tabindex="-1"></a>                  df<span class="sc">$</span>education,</span>
+<span id="cb75-258"><a href="#cb75-258" aria-hidden="true" tabindex="-1"></a>                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Some High School"</span>,</span>
+<span id="cb75-259"><a href="#cb75-259" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"High School Graduate"</span>,</span>
+<span id="cb75-260"><a href="#cb75-260" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Some college - no degree"</span>,</span>
+<span id="cb75-261"><a href="#cb75-261" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Associates degree"</span>,</span>
+<span id="cb75-262"><a href="#cb75-262" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Bachelors degree"</span>,</span>
+<span id="cb75-263"><a href="#cb75-263" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Graduate degree (Masters or Doctorate)"</span>),</span>
+<span id="cb75-264"><a href="#cb75-264" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-265"><a href="#cb75-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-266"><a href="#cb75-266" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>age,</span>
+<span id="cb75-267"><a href="#cb75-267" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"below21"</span>, </span>
+<span id="cb75-268"><a href="#cb75-268" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"21"</span>,</span>
+<span id="cb75-269"><a href="#cb75-269" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"26"</span>,</span>
+<span id="cb75-270"><a href="#cb75-270" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"31"</span>,</span>
+<span id="cb75-271"><a href="#cb75-271" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"36"</span>,</span>
+<span id="cb75-272"><a href="#cb75-272" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"41"</span>,</span>
+<span id="cb75-273"><a href="#cb75-273" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"46"</span>,</span>
+<span id="cb75-274"><a href="#cb75-274" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"50plus"</span>),</span>
+<span id="cb75-275"><a href="#cb75-275" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-276"><a href="#cb75-276" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>income,                 </span>
+<span id="cb75-277"><a href="#cb75-277" aria-hidden="true" tabindex="-1"></a>                    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Less than $12500"</span>,</span>
+<span id="cb75-278"><a href="#cb75-278" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$12500 - $24999"</span>,</span>
+<span id="cb75-279"><a href="#cb75-279" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$25000 - $37499"</span>,</span>
+<span id="cb75-280"><a href="#cb75-280" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$37500 - $49999"</span>,</span>
+<span id="cb75-281"><a href="#cb75-281" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$50000 - $62499"</span>,</span>
+<span id="cb75-282"><a href="#cb75-282" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$62500 - $74999"</span>,</span>
+<span id="cb75-283"><a href="#cb75-283" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$75000 - $87499"</span>,</span>
+<span id="cb75-284"><a href="#cb75-284" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$87500 - $99999"</span>,</span>
+<span id="cb75-285"><a href="#cb75-285" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"$100000 or More"</span>),</span>
+<span id="cb75-286"><a href="#cb75-286" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-287"><a href="#cb75-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-288"><a href="#cb75-288" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>temperature <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>temperature, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-289"><a href="#cb75-289" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-290"><a href="#cb75-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-291"><a href="#cb75-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">destination =</span> <span class="fu">relevel</span>(destination, <span class="at">ref =</span> <span class="st">"No Urgent Place"</span>),</span>
+<span id="cb75-292"><a href="#cb75-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">passanger =</span> <span class="fu">relevel</span>(passanger, <span class="at">ref =</span> <span class="st">"Alone"</span>),</span>
+<span id="cb75-293"><a href="#cb75-293" aria-hidden="true" tabindex="-1"></a>    <span class="at">weather =</span> <span class="fu">relevel</span>(weather, <span class="at">ref =</span> <span class="st">"Sunny"</span>),</span>
+<span id="cb75-294"><a href="#cb75-294" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">relevel</span>(time, <span class="at">ref =</span> <span class="st">"10AM"</span>),</span>
+<span id="cb75-295"><a href="#cb75-295" aria-hidden="true" tabindex="-1"></a>    <span class="at">coupon =</span> <span class="fu">relevel</span>(coupon, <span class="at">ref =</span> <span class="st">"Coffee House"</span>),</span>
+<span id="cb75-296"><a href="#cb75-296" aria-hidden="true" tabindex="-1"></a>    <span class="at">marital_status =</span> <span class="fu">relevel</span>(marital_status, <span class="at">ref =</span> <span class="st">"Single"</span>),</span>
+<span id="cb75-297"><a href="#cb75-297" aria-hidden="true" tabindex="-1"></a>    <span class="at">occupation =</span> <span class="fu">relevel</span>(occupation, <span class="at">ref =</span> <span class="st">"Unemployed"</span>),</span>
+<span id="cb75-298"><a href="#cb75-298" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb75-299"><a href="#cb75-299" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span>
+<span id="cb75-300"><a href="#cb75-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-301"><a href="#cb75-301" aria-hidden="true" tabindex="-1"></a><span class="fu">## Split and treatment of NA</span></span>
+<span id="cb75-302"><a href="#cb75-302" aria-hidden="true" tabindex="-1"></a>Since our objective is to determine if a customer will accept or reject a coupon</span>
+<span id="cb75-303"><a href="#cb75-303" aria-hidden="true" tabindex="-1"></a>for a specific venue, we will investigate several cases: First for a general</span>
+<span id="cb75-304"><a href="#cb75-304" aria-hidden="true" tabindex="-1"></a>acceptance, using the entire dataset and second, that investigates the factors</span>
+<span id="cb75-305"><a href="#cb75-305" aria-hidden="true" tabindex="-1"></a>for each specific coupon type. Therefore we will split the dataset several ways.</span>
+<span id="cb75-306"><a href="#cb75-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-307"><a href="#cb75-307" aria-hidden="true" tabindex="-1"></a><span class="fu">### Overall model data preparation</span></span>
+<span id="cb75-308"><a href="#cb75-308" aria-hidden="true" tabindex="-1"></a>We will investigate and prepare the entire dataset for analysis and modelling.</span>
+<span id="cb75-309"><a href="#cb75-309" aria-hidden="true" tabindex="-1"></a>While most of the rows are complete, there are several that have NA values.</span>
+<span id="cb75-310"><a href="#cb75-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-noncomplete}</span></span>
+<span id="cb75-311"><a href="#cb75-311" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">"Noncomplete records in dataset: %f"</span>, <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">complete.cases</span>(df)) <span class="sc">/</span> <span class="fu">nrow</span>(df))</span>
+<span id="cb75-312"><a href="#cb75-312" aria-hidden="true" tabindex="-1"></a>df_full_complete <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
+<span id="cb75-313"><a href="#cb75-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-314"><a href="#cb75-314" aria-hidden="true" tabindex="-1"></a>Sine the number of noncomplete records is less then 5%, we will drop those rows.</span>
+<span id="cb75-315"><a href="#cb75-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-316"><a href="#cb75-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-317"><a href="#cb75-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, check-missing}</span></span>
+<span id="cb75-318"><a href="#cb75-318" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing values</span></span>
+<span id="cb75-319"><a href="#cb75-319" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
+<span id="cb75-320"><a href="#cb75-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-321"><a href="#cb75-321" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>car, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb75-322"><a href="#cb75-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-323"><a href="#cb75-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-324"><a href="#cb75-324" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transform the expiration values in hours</span></span>
+<span id="cb75-325"><a href="#cb75-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-326"><a href="#cb75-326" aria-hidden="true" tabindex="-1"></a>Suppose your dataframe is called df and your column is 'expiration'</span>
+<span id="cb75-327"><a href="#cb75-327" aria-hidden="true" tabindex="-1"></a>Function to convert any single value to hours</span>
+<span id="cb75-328"><a href="#cb75-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-329"><a href="#cb75-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, convert_hours}</span></span>
+<span id="cb75-330"><a href="#cb75-330" aria-hidden="true" tabindex="-1"></a>convert_to_hours <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb75-331"><a href="#cb75-331" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract all number-unit pairs (works for compound like "1d 2h 30m")</span></span>
+<span id="cb75-332"><a href="#cb75-332" aria-hidden="true" tabindex="-1"></a>  matches <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(x, <span class="st">"(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.?</span><span class="sc">\\</span><span class="st">d*)</span><span class="sc">\\</span><span class="st">s*([a-zA-Z]+)"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb75-333"><a href="#cb75-333" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb75-334"><a href="#cb75-334" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nrow</span>(matches) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)  <span class="co"># fallback if no match</span></span>
+<span id="cb75-335"><a href="#cb75-335" aria-hidden="true" tabindex="-1"></a>  total_hours <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb75-336"><a href="#cb75-336" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb75-337"><a href="#cb75-337" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matches)) {</span>
+<span id="cb75-338"><a href="#cb75-338" aria-hidden="true" tabindex="-1"></a>    num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(matches[i,<span class="dv">2</span>])</span>
+<span id="cb75-339"><a href="#cb75-339" aria-hidden="true" tabindex="-1"></a>    unit <span class="ot">&lt;-</span> <span class="fu">tolower</span>(matches[i,<span class="dv">3</span>])</span>
+<span id="cb75-340"><a href="#cb75-340" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb75-341"><a href="#cb75-341" aria-hidden="true" tabindex="-1"></a>    total_hours <span class="ot">&lt;-</span> total_hours <span class="sc">+</span> <span class="cf">switch</span>(unit,</span>
+<span id="cb75-342"><a href="#cb75-342" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"m"</span> <span class="ot">=</span> num <span class="sc">/</span> <span class="dv">60</span>,</span>
+<span id="cb75-343"><a href="#cb75-343" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"h"</span> <span class="ot">=</span> num,</span>
+<span id="cb75-344"><a href="#cb75-344" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"d"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span>,</span>
+<span id="cb75-345"><a href="#cb75-345" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"w"</span> <span class="ot">=</span> num <span class="sc">*</span> <span class="dv">24</span> <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb75-346"><a href="#cb75-346" aria-hidden="true" tabindex="-1"></a>                                        <span class="cn">NA_real_</span>)</span>
+<span id="cb75-347"><a href="#cb75-347" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb75-348"><a href="#cb75-348" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb75-349"><a href="#cb75-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(total_hours)</span>
+<span id="cb75-350"><a href="#cb75-350" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-351"><a href="#cb75-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-352"><a href="#cb75-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-353"><a href="#cb75-353" aria-hidden="true" tabindex="-1"></a>Apply function to your whole column dynamically</span>
+<span id="cb75-354"><a href="#cb75-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-355"><a href="#cb75-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, apply-hoursconvert}</span></span>
+<span id="cb75-356"><a href="#cb75-356" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-357"><a href="#cb75-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-358"><a href="#cb75-358" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration_original =</span> expiration,   <span class="co"># backup column</span></span>
+<span id="cb75-359"><a href="#cb75-359" aria-hidden="true" tabindex="-1"></a>    <span class="at">expiration =</span> <span class="fu">vapply</span>(expiration, convert_to_hours, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb75-360"><a href="#cb75-360" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb75-361"><a href="#cb75-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-362"><a href="#cb75-362" aria-hidden="true" tabindex="-1"></a>df_bckup <span class="ot">&lt;-</span> df</span>
+<span id="cb75-363"><a href="#cb75-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-364"><a href="#cb75-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-365"><a href="#cb75-365" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transform the expiration values in hours</span></span>
+<span id="cb75-366"><a href="#cb75-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-367"><a href="#cb75-367" aria-hidden="true" tabindex="-1"></a>transform time to time hour numeric from AM/PM</span>
+<span id="cb75-368"><a href="#cb75-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-369"><a href="#cb75-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, parse-datetime}</span></span>
+<span id="cb75-370"><a href="#cb75-370" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-371"><a href="#cb75-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_original =</span> time,</span>
+<span id="cb75-372"><a href="#cb75-372" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">hour</span>(<span class="fu">parse_date_time</span>(time, <span class="at">orders =</span> <span class="st">"I!p"</span>)))</span>
+<span id="cb75-373"><a href="#cb75-373" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-374"><a href="#cb75-374" aria-hidden="true" tabindex="-1"></a><span class="fu">### replace "" with NAs and remove them </span></span>
+<span id="cb75-375"><a href="#cb75-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-376"><a href="#cb75-376" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, freq-clean}</span></span>
+<span id="cb75-377"><a href="#cb75-377" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[, <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
+<span id="cb75-378"><a href="#cb75-378" aria-hidden="true" tabindex="-1"></a>              <span class="st">"coffee_house"</span>,</span>
+<span id="cb75-379"><a href="#cb75-379" aria-hidden="true" tabindex="-1"></a>              <span class="st">"carry_away"</span>,</span>
+<span id="cb75-380"><a href="#cb75-380" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant_less_than20"</span>,</span>
+<span id="cb75-381"><a href="#cb75-381" aria-hidden="true" tabindex="-1"></a>              <span class="st">"restaurant20to50"</span>)],</span>
+<span id="cb75-382"><a href="#cb75-382" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
 <span id="cb75-383"><a href="#cb75-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-384"><a href="#cb75-384" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
-<span id="cb75-385"><a href="#cb75-385" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="st">""</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb75-386"><a href="#cb75-386" aria-hidden="true" tabindex="-1"></a>  x</span>
-<span id="cb75-387"><a href="#cb75-387" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb75-388"><a href="#cb75-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-389"><a href="#cb75-389" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], droplevels) <span class="co"># drop unused levels pair with the above one next command</span></span>
-<span id="cb75-390"><a href="#cb75-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-391"><a href="#cb75-391" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
-<span id="cb75-392"><a href="#cb75-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-393"><a href="#cb75-393" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
-<span id="cb75-394"><a href="#cb75-394" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>expiration_original <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb75-395"><a href="#cb75-395" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time_original  <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb75-384"><a href="#cb75-384" aria-hidden="true" tabindex="-1"></a>freq_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bar"</span>,</span>
+<span id="cb75-385"><a href="#cb75-385" aria-hidden="true" tabindex="-1"></a>               <span class="st">"coffee_house"</span>,</span>
+<span id="cb75-386"><a href="#cb75-386" aria-hidden="true" tabindex="-1"></a>               <span class="st">"carry_away"</span>,</span>
+<span id="cb75-387"><a href="#cb75-387" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant_less_than20"</span>,</span>
+<span id="cb75-388"><a href="#cb75-388" aria-hidden="true" tabindex="-1"></a>               <span class="st">"restaurant20to50"</span>)</span>
+<span id="cb75-389"><a href="#cb75-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-390"><a href="#cb75-390" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], <span class="cf">function</span>(x) {</span>
+<span id="cb75-391"><a href="#cb75-391" aria-hidden="true" tabindex="-1"></a>  x[x <span class="sc">==</span> <span class="st">""</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb75-392"><a href="#cb75-392" aria-hidden="true" tabindex="-1"></a>  x</span>
+<span id="cb75-393"><a href="#cb75-393" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb75-394"><a href="#cb75-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-395"><a href="#cb75-395" aria-hidden="true" tabindex="-1"></a>df[freq_cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[freq_cols], droplevels) <span class="co"># drop unused levels pair with the above one next command</span></span>
 <span id="cb75-396"><a href="#cb75-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-397"><a href="#cb75-397" aria-hidden="true" tabindex="-1"></a><span class="co"># i will create two y y_numeric and y_factor the numeric will be for plotting and trends and y_factor will be the target variable for modeling (classification).</span></span>
-<span id="cb75-398"><a href="#cb75-398" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-399"><a href="#cb75-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb75-400"><a href="#cb75-400" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_numeric =</span> (<span class="fu">as.numeric</span>(y) <span class="sc">-</span> <span class="dv">1</span>),</span>
-<span id="cb75-401"><a href="#cb75-401" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_factor =</span> <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb75-402"><a href="#cb75-402" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb75-403"><a href="#cb75-403" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-404"><a href="#cb75-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-405"><a href="#cb75-405" aria-hidden="true" tabindex="-1"></a>-------------------------------------------------</span>
-<span id="cb75-406"><a href="#cb75-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-407"><a href="#cb75-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-408"><a href="#cb75-408" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exploratory Data Analysis</span></span>
-<span id="cb75-409"><a href="#cb75-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-410"><a href="#cb75-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coupon Type vs Acceptance Rate (Core Business Insight) {#fig-coupon}</span></span>
-<span id="cb75-411"><a href="#cb75-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-412"><a href="#cb75-412" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupon-type-vs-acceptance-rate}</span></span>
-<span id="cb75-413"><a href="#cb75-413" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-414"><a href="#cb75-414" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon) <span class="sc">%&gt;%</span></span>
-<span id="cb75-415"><a href="#cb75-415" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-416"><a href="#cb75-416" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(coupon, accept_rate), <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-417"><a href="#cb75-417" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
-<span id="cb75-418"><a href="#cb75-418" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb75-419"><a href="#cb75-419" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Coupon Type"</span>,</span>
-<span id="cb75-420"><a href="#cb75-420" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
-<span id="cb75-421"><a href="#cb75-421" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-422"><a href="#cb75-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-423"><a href="#cb75-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-424"><a href="#cb75-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-425"><a href="#cb75-425" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}</span></span>
-<span id="cb75-426"><a href="#cb75-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, acceptance-rate-by-time-of-day}</span></span>
-<span id="cb75-427"><a href="#cb75-427" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-428"><a href="#cb75-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
-<span id="cb75-429"><a href="#cb75-429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-430"><a href="#cb75-430" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb75-431"><a href="#cb75-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb75-432"><a href="#cb75-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
-<span id="cb75-433"><a href="#cb75-433" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
-<span id="cb75-434"><a href="#cb75-434" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb75-435"><a href="#cb75-435" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-436"><a href="#cb75-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-437"><a href="#cb75-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-438"><a href="#cb75-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-439"><a href="#cb75-439" aria-hidden="true" tabindex="-1"></a><span class="fu">## Income vs Acceptance (Customer Affordability Pattern)</span></span>
-<span id="cb75-440"><a href="#cb75-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-441"><a href="#cb75-441" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, income-vs-acceptance}</span></span>
-<span id="cb75-442"><a href="#cb75-442" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-443"><a href="#cb75-443" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
-<span id="cb75-444"><a href="#cb75-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-445"><a href="#cb75-445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-446"><a href="#cb75-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
-<span id="cb75-447"><a href="#cb75-447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb75-448"><a href="#cb75-448" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb75-449"><a href="#cb75-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
-<span id="cb75-450"><a href="#cb75-450" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
-<span id="cb75-451"><a href="#cb75-451" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
-<span id="cb75-452"><a href="#cb75-452" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-453"><a href="#cb75-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-454"><a href="#cb75-454" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
-<span id="cb75-455"><a href="#cb75-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-456"><a href="#cb75-456" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coffe-vists-vs-acceptance}</span></span>
-<span id="cb75-457"><a href="#cb75-457" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-458"><a href="#cb75-458" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
-<span id="cb75-459"><a href="#cb75-459" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-460"><a href="#cb75-460" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-461"><a href="#cb75-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
-<span id="cb75-462"><a href="#cb75-462" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
-<span id="cb75-463"><a href="#cb75-463" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
-<span id="cb75-464"><a href="#cb75-464" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-465"><a href="#cb75-465" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-466"><a href="#cb75-466" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-467"><a href="#cb75-467" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
-<span id="cb75-468"><a href="#cb75-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-469"><a href="#cb75-469" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupontype-by-time}</span></span>
-<span id="cb75-470"><a href="#cb75-470" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-471"><a href="#cb75-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
-<span id="cb75-472"><a href="#cb75-472" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-473"><a href="#cb75-473" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-474"><a href="#cb75-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb75-475"><a href="#cb75-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb75-476"><a href="#cb75-476" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
-<span id="cb75-477"><a href="#cb75-477" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
-<span id="cb75-478"><a href="#cb75-478" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb75-479"><a href="#cb75-479" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-480"><a href="#cb75-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-481"><a href="#cb75-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-482"><a href="#cb75-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-483"><a href="#cb75-483" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression analysis</span></span>
-<span id="cb75-484"><a href="#cb75-484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-485"><a href="#cb75-485" aria-hidden="true" tabindex="-1"></a>We wil now run the entire dataset through a general linear regression </span>
-<span id="cb75-486"><a href="#cb75-486" aria-hidden="true" tabindex="-1"></a>model in order to gain some further insights from the data</span>
-<span id="cb75-487"><a href="#cb75-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-488"><a href="#cb75-488" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-before-reg}</span></span>
-<span id="cb75-489"><a href="#cb75-489" aria-hidden="true" tabindex="-1"></a>df_no_extra_col <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
-<span id="cb75-490"><a href="#cb75-490" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_no_extra_col)</span>
-<span id="cb75-491"><a href="#cb75-491" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-492"><a href="#cb75-492" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-reg}</span></span>
-<span id="cb75-493"><a href="#cb75-493" aria-hidden="true" tabindex="-1"></a>reg_analysis <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., <span class="at">data=</span>df_no_extra_col, <span class="at">family=</span>binomial)</span>
-<span id="cb75-494"><a href="#cb75-494" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_analysis)</span>
-<span id="cb75-495"><a href="#cb75-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-496"><a href="#cb75-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-497"><a href="#cb75-497" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictive Modeling</span></span>
-<span id="cb75-498"><a href="#cb75-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-499"><a href="#cb75-499" aria-hidden="true" tabindex="-1"></a>We will use 3 models:  Logistic Regression, Decision Tree, Random Forest</span>
-<span id="cb75-500"><a href="#cb75-500" aria-hidden="true" tabindex="-1"></a>Remove y_numeric</span>
-<span id="cb75-501"><a href="#cb75-501" aria-hidden="true" tabindex="-1"></a>Keep y_factor as target</span>
-<span id="cb75-502"><a href="#cb75-502" aria-hidden="true" tabindex="-1"></a>Remove irrelevant columns (IDs etc.)</span>
-<span id="cb75-503"><a href="#cb75-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-504"><a href="#cb75-504" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create Test and Training dataset</span></span>
-<span id="cb75-505"><a href="#cb75-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-506"><a href="#cb75-506" aria-hidden="true" tabindex="-1"></a>Remove rows with NA</span>
-<span id="cb75-507"><a href="#cb75-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-508"><a href="#cb75-508" aria-hidden="true" tabindex="-1"></a>Train/Test Split (70% / 30%)</span>
+<span id="cb75-397"><a href="#cb75-397" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(df[freq_cols], <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">"always"</span>))</span>
+<span id="cb75-398"><a href="#cb75-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-399"><a href="#cb75-399" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the cols we kept for backup</span></span>
+<span id="cb75-400"><a href="#cb75-400" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>expiration_original <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb75-401"><a href="#cb75-401" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>time_original  <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb75-402"><a href="#cb75-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-403"><a href="#cb75-403" aria-hidden="true" tabindex="-1"></a><span class="co"># i will create two y y_numeric and y_factor the numeric will be for plotting and trends and y_factor will be the target variable for modeling (classification).</span></span>
+<span id="cb75-404"><a href="#cb75-404" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-405"><a href="#cb75-405" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-406"><a href="#cb75-406" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_numeric =</span> (<span class="fu">as.numeric</span>(y) <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb75-407"><a href="#cb75-407" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_factor =</span> <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb75-408"><a href="#cb75-408" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb75-409"><a href="#cb75-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-410"><a href="#cb75-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-411"><a href="#cb75-411" aria-hidden="true" tabindex="-1"></a>-------------------------------------------------</span>
+<span id="cb75-412"><a href="#cb75-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-413"><a href="#cb75-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-414"><a href="#cb75-414" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exploratory Data Analysis</span></span>
+<span id="cb75-415"><a href="#cb75-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-416"><a href="#cb75-416" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coupon Type vs Acceptance Rate (Core Business Insight) {#fig-coupon}</span></span>
+<span id="cb75-417"><a href="#cb75-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-418"><a href="#cb75-418" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupon-type-vs-acceptance-rate}</span></span>
+<span id="cb75-419"><a href="#cb75-419" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-420"><a href="#cb75-420" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon) <span class="sc">%&gt;%</span></span>
+<span id="cb75-421"><a href="#cb75-421" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-422"><a href="#cb75-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(coupon, accept_rate), <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-423"><a href="#cb75-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
+<span id="cb75-424"><a href="#cb75-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb75-425"><a href="#cb75-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Coupon Type"</span>,</span>
+<span id="cb75-426"><a href="#cb75-426" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
+<span id="cb75-427"><a href="#cb75-427" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-428"><a href="#cb75-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-429"><a href="#cb75-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-430"><a href="#cb75-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-431"><a href="#cb75-431" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}</span></span>
+<span id="cb75-432"><a href="#cb75-432" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, acceptance-rate-by-time-of-day}</span></span>
+<span id="cb75-433"><a href="#cb75-433" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-434"><a href="#cb75-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
+<span id="cb75-435"><a href="#cb75-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-436"><a href="#cb75-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb75-437"><a href="#cb75-437" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb75-438"><a href="#cb75-438" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
+<span id="cb75-439"><a href="#cb75-439" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
+<span id="cb75-440"><a href="#cb75-440" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb75-441"><a href="#cb75-441" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-442"><a href="#cb75-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-443"><a href="#cb75-443" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-444"><a href="#cb75-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-445"><a href="#cb75-445" aria-hidden="true" tabindex="-1"></a><span class="fu">## Income vs Acceptance (Customer Affordability Pattern)</span></span>
+<span id="cb75-446"><a href="#cb75-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-447"><a href="#cb75-447" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, income-vs-acceptance}</span></span>
+<span id="cb75-448"><a href="#cb75-448" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-449"><a href="#cb75-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
+<span id="cb75-450"><a href="#cb75-450" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-451"><a href="#cb75-451" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-452"><a href="#cb75-452" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
+<span id="cb75-453"><a href="#cb75-453" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb75-454"><a href="#cb75-454" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb75-455"><a href="#cb75-455" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
+<span id="cb75-456"><a href="#cb75-456" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
+<span id="cb75-457"><a href="#cb75-457" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
+<span id="cb75-458"><a href="#cb75-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-459"><a href="#cb75-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-460"><a href="#cb75-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
+<span id="cb75-461"><a href="#cb75-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-462"><a href="#cb75-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coffe-vists-vs-acceptance}</span></span>
+<span id="cb75-463"><a href="#cb75-463" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-464"><a href="#cb75-464" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
+<span id="cb75-465"><a href="#cb75-465" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-466"><a href="#cb75-466" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-467"><a href="#cb75-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
+<span id="cb75-468"><a href="#cb75-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
+<span id="cb75-469"><a href="#cb75-469" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
+<span id="cb75-470"><a href="#cb75-470" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-471"><a href="#cb75-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-472"><a href="#cb75-472" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-473"><a href="#cb75-473" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
+<span id="cb75-474"><a href="#cb75-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-475"><a href="#cb75-475" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupontype-by-time}</span></span>
+<span id="cb75-476"><a href="#cb75-476" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-477"><a href="#cb75-477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
+<span id="cb75-478"><a href="#cb75-478" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-479"><a href="#cb75-479" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-480"><a href="#cb75-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb75-481"><a href="#cb75-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb75-482"><a href="#cb75-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
+<span id="cb75-483"><a href="#cb75-483" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
+<span id="cb75-484"><a href="#cb75-484" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb75-485"><a href="#cb75-485" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-486"><a href="#cb75-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-487"><a href="#cb75-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-488"><a href="#cb75-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-489"><a href="#cb75-489" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression analysis</span></span>
+<span id="cb75-490"><a href="#cb75-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-491"><a href="#cb75-491" aria-hidden="true" tabindex="-1"></a>We wil now run the entire dataset through a general linear regression </span>
+<span id="cb75-492"><a href="#cb75-492" aria-hidden="true" tabindex="-1"></a>model in order to gain some further insights from the data</span>
+<span id="cb75-493"><a href="#cb75-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-494"><a href="#cb75-494" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-before-reg}</span></span>
+<span id="cb75-495"><a href="#cb75-495" aria-hidden="true" tabindex="-1"></a>df_no_extra_col <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
+<span id="cb75-496"><a href="#cb75-496" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_no_extra_col)</span>
+<span id="cb75-497"><a href="#cb75-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-498"><a href="#cb75-498" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-reg}</span></span>
+<span id="cb75-499"><a href="#cb75-499" aria-hidden="true" tabindex="-1"></a>reg_analysis <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., <span class="at">data=</span>df_no_extra_col, <span class="at">family=</span>binomial)</span>
+<span id="cb75-500"><a href="#cb75-500" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_analysis)</span>
+<span id="cb75-501"><a href="#cb75-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-502"><a href="#cb75-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-503"><a href="#cb75-503" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictive Modeling</span></span>
+<span id="cb75-504"><a href="#cb75-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-505"><a href="#cb75-505" aria-hidden="true" tabindex="-1"></a>We will use 3 models:  Logistic Regression, Decision Tree, Random Forest</span>
+<span id="cb75-506"><a href="#cb75-506" aria-hidden="true" tabindex="-1"></a>Remove y_numeric</span>
+<span id="cb75-507"><a href="#cb75-507" aria-hidden="true" tabindex="-1"></a>Keep y_factor as target</span>
+<span id="cb75-508"><a href="#cb75-508" aria-hidden="true" tabindex="-1"></a>Remove irrelevant columns (IDs etc.)</span>
 <span id="cb75-509"><a href="#cb75-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-510"><a href="#cb75-510" aria-hidden="true" tabindex="-1"></a>positive class -&gt; 1 not 0</span>
-<span id="cb75-511"><a href="#cb75-511" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-split}</span></span>
-<span id="cb75-512"><a href="#cb75-512" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-513"><a href="#cb75-513" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
-<span id="cb75-514"><a href="#cb75-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-515"><a href="#cb75-515" aria-hidden="true" tabindex="-1"></a>df_nonnull <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_clean)</span>
-<span id="cb75-516"><a href="#cb75-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-517"><a href="#cb75-517" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb75-518"><a href="#cb75-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-519"><a href="#cb75-519" aria-hidden="true" tabindex="-1"></a>train_index <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(df_nonnull<span class="sc">$</span>y, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb75-510"><a href="#cb75-510" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create Test and Training dataset</span></span>
+<span id="cb75-511"><a href="#cb75-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-512"><a href="#cb75-512" aria-hidden="true" tabindex="-1"></a>Remove rows with NA</span>
+<span id="cb75-513"><a href="#cb75-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-514"><a href="#cb75-514" aria-hidden="true" tabindex="-1"></a>Train/Test Split (70% / 30%)</span>
+<span id="cb75-515"><a href="#cb75-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-516"><a href="#cb75-516" aria-hidden="true" tabindex="-1"></a>positive class -&gt; 1 not 0</span>
+<span id="cb75-517"><a href="#cb75-517" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-split}</span></span>
+<span id="cb75-518"><a href="#cb75-518" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-519"><a href="#cb75-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
 <span id="cb75-520"><a href="#cb75-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-521"><a href="#cb75-521" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> df_nonnull[train_index, ]</span>
-<span id="cb75-522"><a href="#cb75-522" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> df_nonnull[<span class="sc">-</span>train_index, ]</span>
-<span id="cb75-523"><a href="#cb75-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-524"><a href="#cb75-524" aria-hidden="true" tabindex="-1"></a><span class="co">#train_data$y_factor &lt;- relevel(train_data$y_factor, ref = "1")</span></span>
-<span id="cb75-525"><a href="#cb75-525" aria-hidden="true" tabindex="-1"></a><span class="co">#test_data$y_factor  &lt;- relevel(test_data$y_factor, ref = "1")</span></span>
+<span id="cb75-521"><a href="#cb75-521" aria-hidden="true" tabindex="-1"></a>df_nonnull <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_clean)</span>
+<span id="cb75-522"><a href="#cb75-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-523"><a href="#cb75-523" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb75-524"><a href="#cb75-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-525"><a href="#cb75-525" aria-hidden="true" tabindex="-1"></a>train_index <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(df_nonnull<span class="sc">$</span>y, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb75-526"><a href="#cb75-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-527"><a href="#cb75-527" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-528"><a href="#cb75-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-529"><a href="#cb75-529" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
-<span id="cb75-530"><a href="#cb75-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-531"><a href="#cb75-531" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-logreg}</span></span>
-<span id="cb75-532"><a href="#cb75-532" aria-hidden="true" tabindex="-1"></a>model_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-533"><a href="#cb75-533" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train_data,</span>
-<span id="cb75-534"><a href="#cb75-534" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
-<span id="cb75-535"><a href="#cb75-535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-536"><a href="#cb75-536" aria-hidden="true" tabindex="-1"></a>prob_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb75-537"><a href="#cb75-537" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-538"><a href="#cb75-538" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse threshold</span></span>
-<span id="cb75-539"><a href="#cb75-539" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_log <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb75-540"><a href="#cb75-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-541"><a href="#cb75-541" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>))</span>
-<span id="cb75-542"><a href="#cb75-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-543"><a href="#cb75-543" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_log, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-544"><a href="#cb75-544" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-545"><a href="#cb75-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-546"><a href="#cb75-546" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree</span></span>
-<span id="cb75-547"><a href="#cb75-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-548"><a href="#cb75-548" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-dectree}</span></span>
-<span id="cb75-549"><a href="#cb75-549" aria-hidden="true" tabindex="-1"></a>model_tree <span class="ot">&lt;-</span> <span class="fu">rpart</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-550"><a href="#cb75-550" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> train_data,</span>
-<span id="cb75-551"><a href="#cb75-551" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"class"</span>)</span>
-<span id="cb75-552"><a href="#cb75-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-553"><a href="#cb75-553" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(model_tree)</span>
-<span id="cb75-554"><a href="#cb75-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-555"><a href="#cb75-555" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
-<span id="cb75-556"><a href="#cb75-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-557"><a href="#cb75-557" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_tree, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-558"><a href="#cb75-558" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-559"><a href="#cb75-559" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-560"><a href="#cb75-560" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest</span></span>
-<span id="cb75-561"><a href="#cb75-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-562"><a href="#cb75-562" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-rforest}</span></span>
-<span id="cb75-563"><a href="#cb75-563" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm not sure where this came from, but it seems to not work</span></span>
-<span id="cb75-564"><a href="#cb75-564" aria-hidden="true" tabindex="-1"></a><span class="co">#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model</span></span>
+<span id="cb75-527"><a href="#cb75-527" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> df_nonnull[train_index, ]</span>
+<span id="cb75-528"><a href="#cb75-528" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> df_nonnull[<span class="sc">-</span>train_index, ]</span>
+<span id="cb75-529"><a href="#cb75-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-530"><a href="#cb75-530" aria-hidden="true" tabindex="-1"></a><span class="co">#train_data$y_factor &lt;- relevel(train_data$y_factor, ref = "1")</span></span>
+<span id="cb75-531"><a href="#cb75-531" aria-hidden="true" tabindex="-1"></a><span class="co">#test_data$y_factor  &lt;- relevel(test_data$y_factor, ref = "1")</span></span>
+<span id="cb75-532"><a href="#cb75-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-533"><a href="#cb75-533" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-534"><a href="#cb75-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-535"><a href="#cb75-535" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
+<span id="cb75-536"><a href="#cb75-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-537"><a href="#cb75-537" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-logreg}</span></span>
+<span id="cb75-538"><a href="#cb75-538" aria-hidden="true" tabindex="-1"></a>model_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-539"><a href="#cb75-539" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train_data,</span>
+<span id="cb75-540"><a href="#cb75-540" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
+<span id="cb75-541"><a href="#cb75-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-542"><a href="#cb75-542" aria-hidden="true" tabindex="-1"></a>prob_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb75-543"><a href="#cb75-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-544"><a href="#cb75-544" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse threshold</span></span>
+<span id="cb75-545"><a href="#cb75-545" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_log <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb75-546"><a href="#cb75-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-547"><a href="#cb75-547" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>))</span>
+<span id="cb75-548"><a href="#cb75-548" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-549"><a href="#cb75-549" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_log, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-550"><a href="#cb75-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-551"><a href="#cb75-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-552"><a href="#cb75-552" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree</span></span>
+<span id="cb75-553"><a href="#cb75-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-554"><a href="#cb75-554" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-dectree}</span></span>
+<span id="cb75-555"><a href="#cb75-555" aria-hidden="true" tabindex="-1"></a>model_tree <span class="ot">&lt;-</span> <span class="fu">rpart</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-556"><a href="#cb75-556" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> train_data,</span>
+<span id="cb75-557"><a href="#cb75-557" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"class"</span>)</span>
+<span id="cb75-558"><a href="#cb75-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-559"><a href="#cb75-559" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(model_tree)</span>
+<span id="cb75-560"><a href="#cb75-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-561"><a href="#cb75-561" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb75-562"><a href="#cb75-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-563"><a href="#cb75-563" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_tree, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-564"><a href="#cb75-564" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb75-565"><a href="#cb75-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-566"><a href="#cb75-566" aria-hidden="true" tabindex="-1"></a>model_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-567"><a href="#cb75-567" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> train_data,</span>
-<span id="cb75-568"><a href="#cb75-568" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ntree =</span> <span class="dv">200</span>)</span>
-<span id="cb75-569"><a href="#cb75-569" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data)</span>
-<span id="cb75-570"><a href="#cb75-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-571"><a href="#cb75-571" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_rf, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-572"><a href="#cb75-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-573"><a href="#cb75-573" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-574"><a href="#cb75-574" aria-hidden="true" tabindex="-1"></a>roc_rf <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
-<span id="cb75-575"><a href="#cb75-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-576"><a href="#cb75-576" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_rf)</span>
-<span id="cb75-577"><a href="#cb75-577" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf)</span>
-<span id="cb75-578"><a href="#cb75-578" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-579"><a href="#cb75-579" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-580"><a href="#cb75-580" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Evaluation</span></span>
+<span id="cb75-566"><a href="#cb75-566" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest</span></span>
+<span id="cb75-567"><a href="#cb75-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-568"><a href="#cb75-568" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-rforest}</span></span>
+<span id="cb75-569"><a href="#cb75-569" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm not sure where this came from, but it seems to not work</span></span>
+<span id="cb75-570"><a href="#cb75-570" aria-hidden="true" tabindex="-1"></a><span class="co">#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model</span></span>
+<span id="cb75-571"><a href="#cb75-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-572"><a href="#cb75-572" aria-hidden="true" tabindex="-1"></a>model_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-573"><a href="#cb75-573" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> train_data,</span>
+<span id="cb75-574"><a href="#cb75-574" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ntree =</span> <span class="dv">200</span>)</span>
+<span id="cb75-575"><a href="#cb75-575" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data)</span>
+<span id="cb75-576"><a href="#cb75-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-577"><a href="#cb75-577" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_rf, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-578"><a href="#cb75-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-579"><a href="#cb75-579" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-580"><a href="#cb75-580" aria-hidden="true" tabindex="-1"></a>roc_rf <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
 <span id="cb75-581"><a href="#cb75-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-582"><a href="#cb75-582" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculate Logistic Regression probabilities (probability of class 1)</span></span>
-<span id="cb75-583"><a href="#cb75-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-584"><a href="#cb75-584" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-logreg}</span></span>
-<span id="cb75-585"><a href="#cb75-585" aria-hidden="true" tabindex="-1"></a>log_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb75-586"><a href="#cb75-586" aria-hidden="true" tabindex="-1"></a>roc_log  <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, log_probs)</span>
-<span id="cb75-587"><a href="#cb75-587" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-588"><a href="#cb75-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-589"><a href="#cb75-589" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree probabilities</span></span>
-<span id="cb75-590"><a href="#cb75-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-591"><a href="#cb75-591" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-dectree}</span></span>
-<span id="cb75-592"><a href="#cb75-592" aria-hidden="true" tabindex="-1"></a>tree_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-593"><a href="#cb75-593" aria-hidden="true" tabindex="-1"></a>roc_tree <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, tree_probs)</span>
+<span id="cb75-582"><a href="#cb75-582" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_rf)</span>
+<span id="cb75-583"><a href="#cb75-583" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf)</span>
+<span id="cb75-584"><a href="#cb75-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-585"><a href="#cb75-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-586"><a href="#cb75-586" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Evaluation</span></span>
+<span id="cb75-587"><a href="#cb75-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-588"><a href="#cb75-588" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculate Logistic Regression probabilities (probability of class 1)</span></span>
+<span id="cb75-589"><a href="#cb75-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-590"><a href="#cb75-590" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-logreg}</span></span>
+<span id="cb75-591"><a href="#cb75-591" aria-hidden="true" tabindex="-1"></a>log_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb75-592"><a href="#cb75-592" aria-hidden="true" tabindex="-1"></a>roc_log  <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, log_probs)</span>
+<span id="cb75-593"><a href="#cb75-593" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb75-594"><a href="#cb75-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-595"><a href="#cb75-595" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-595"><a href="#cb75-595" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree probabilities</span></span>
 <span id="cb75-596"><a href="#cb75-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-597"><a href="#cb75-597" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest probabilities</span></span>
-<span id="cb75-598"><a href="#cb75-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-599"><a href="#cb75-599" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-rforest}</span></span>
-<span id="cb75-600"><a href="#cb75-600" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-601"><a href="#cb75-601" aria-hidden="true" tabindex="-1"></a>roc_rf   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
-<span id="cb75-602"><a href="#cb75-602" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-603"><a href="#cb75-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-597"><a href="#cb75-597" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-dectree}</span></span>
+<span id="cb75-598"><a href="#cb75-598" aria-hidden="true" tabindex="-1"></a>tree_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-599"><a href="#cb75-599" aria-hidden="true" tabindex="-1"></a>roc_tree <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, tree_probs)</span>
+<span id="cb75-600"><a href="#cb75-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-601"><a href="#cb75-601" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-602"><a href="#cb75-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-603"><a href="#cb75-603" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest probabilities</span></span>
 <span id="cb75-604"><a href="#cb75-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-605"><a href="#cb75-605" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot All ROC Curves on One Graph</span></span>
-<span id="cb75-606"><a href="#cb75-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-607"><a href="#cb75-607" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, plot-all-roc}</span></span>
-<span id="cb75-608"><a href="#cb75-608" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, </span>
-<span id="cb75-609"><a href="#cb75-609" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>, </span>
-<span id="cb75-610"><a href="#cb75-610" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-611"><a href="#cb75-611" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"ROC Curve Comparison"</span>)</span>
+<span id="cb75-605"><a href="#cb75-605" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-rforest}</span></span>
+<span id="cb75-606"><a href="#cb75-606" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-607"><a href="#cb75-607" aria-hidden="true" tabindex="-1"></a>roc_rf   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
+<span id="cb75-608"><a href="#cb75-608" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-609"><a href="#cb75-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-610"><a href="#cb75-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-611"><a href="#cb75-611" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot All ROC Curves on One Graph</span></span>
 <span id="cb75-612"><a href="#cb75-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-613"><a href="#cb75-613" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_tree, </span>
-<span id="cb75-614"><a href="#cb75-614" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>, </span>
-<span id="cb75-615"><a href="#cb75-615" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-616"><a href="#cb75-616" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-617"><a href="#cb75-617" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-618"><a href="#cb75-618" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf, </span>
-<span id="cb75-619"><a href="#cb75-619" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, </span>
-<span id="cb75-620"><a href="#cb75-620" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-621"><a href="#cb75-621" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-622"><a href="#cb75-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-623"><a href="#cb75-623" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
-<span id="cb75-624"><a href="#cb75-624" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
-<span id="cb75-625"><a href="#cb75-625" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Logistic Regression (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log),<span class="dv">3</span>),<span class="st">")"</span>),</span>
-<span id="cb75-626"><a href="#cb75-626" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Decision Tree (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_tree),<span class="dv">3</span>),<span class="st">")"</span>),</span>
-<span id="cb75-627"><a href="#cb75-627" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Random Forest (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_rf),<span class="dv">3</span>),<span class="st">")"</span>)</span>
-<span id="cb75-628"><a href="#cb75-628" aria-hidden="true" tabindex="-1"></a>       ),</span>
-<span id="cb75-629"><a href="#cb75-629" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>),</span>
-<span id="cb75-630"><a href="#cb75-630" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb75-631"><a href="#cb75-631" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-632"><a href="#cb75-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-633"><a href="#cb75-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-634"><a href="#cb75-634" aria-hidden="true" tabindex="-1"></a><span class="fu"># Marketing Campaign Strategy</span></span>
-<span id="cb75-635"><a href="#cb75-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-636"><a href="#cb75-636" aria-hidden="true" tabindex="-1"></a>Based on the modeling results:</span>
-<span id="cb75-637"><a href="#cb75-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-638"><a href="#cb75-638" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Random Forest achieved the highest AUC and strongest predictive power.</span>
-<span id="cb75-639"><a href="#cb75-639" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-frequency coffee visitors show highest responsiveness.</span>
-<span id="cb75-640"><a href="#cb75-640" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Time-of-day effects suggest targeted push timing.</span>
-<span id="cb75-641"><a href="#cb75-641" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Coupon type performance varies significantly.</span>
-<span id="cb75-642"><a href="#cb75-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-643"><a href="#cb75-643" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Campaign:</span></span>
-<span id="cb75-644"><a href="#cb75-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-645"><a href="#cb75-645" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Target high-frequency coffee consumers.</span>
-<span id="cb75-646"><a href="#cb75-646" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Schedule promotions during high-acceptance time windows.</span>
-<span id="cb75-647"><a href="#cb75-647" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Allocate more budget to top-performing coupon categories.</span>
-<span id="cb75-648"><a href="#cb75-648" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Use predictive scores to send personalized offers.</span>
-<span id="cb75-649"><a href="#cb75-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-650"><a href="#cb75-650" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb75-613"><a href="#cb75-613" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, plot-all-roc}</span></span>
+<span id="cb75-614"><a href="#cb75-614" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, </span>
+<span id="cb75-615"><a href="#cb75-615" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>, </span>
+<span id="cb75-616"><a href="#cb75-616" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-617"><a href="#cb75-617" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"ROC Curve Comparison"</span>)</span>
+<span id="cb75-618"><a href="#cb75-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-619"><a href="#cb75-619" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_tree, </span>
+<span id="cb75-620"><a href="#cb75-620" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>, </span>
+<span id="cb75-621"><a href="#cb75-621" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-622"><a href="#cb75-622" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-623"><a href="#cb75-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-624"><a href="#cb75-624" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf, </span>
+<span id="cb75-625"><a href="#cb75-625" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, </span>
+<span id="cb75-626"><a href="#cb75-626" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-627"><a href="#cb75-627" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-628"><a href="#cb75-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-629"><a href="#cb75-629" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb75-630"><a href="#cb75-630" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb75-631"><a href="#cb75-631" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Logistic Regression (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log),<span class="dv">3</span>),<span class="st">")"</span>),</span>
+<span id="cb75-632"><a href="#cb75-632" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Decision Tree (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_tree),<span class="dv">3</span>),<span class="st">")"</span>),</span>
+<span id="cb75-633"><a href="#cb75-633" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Random Forest (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_rf),<span class="dv">3</span>),<span class="st">")"</span>)</span>
+<span id="cb75-634"><a href="#cb75-634" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb75-635"><a href="#cb75-635" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>),</span>
+<span id="cb75-636"><a href="#cb75-636" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb75-637"><a href="#cb75-637" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-638"><a href="#cb75-638" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-639"><a href="#cb75-639" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-640"><a href="#cb75-640" aria-hidden="true" tabindex="-1"></a><span class="fu"># Marketing Campaign Strategy</span></span>
+<span id="cb75-641"><a href="#cb75-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-642"><a href="#cb75-642" aria-hidden="true" tabindex="-1"></a>Based on the modeling results:</span>
+<span id="cb75-643"><a href="#cb75-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-644"><a href="#cb75-644" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Random Forest achieved the highest AUC and strongest predictive power.</span>
+<span id="cb75-645"><a href="#cb75-645" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-frequency coffee visitors show highest responsiveness.</span>
+<span id="cb75-646"><a href="#cb75-646" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Time-of-day effects suggest targeted push timing.</span>
+<span id="cb75-647"><a href="#cb75-647" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Coupon type performance varies significantly.</span>
+<span id="cb75-648"><a href="#cb75-648" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-649"><a href="#cb75-649" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Campaign:</span></span>
+<span id="cb75-650"><a href="#cb75-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-651"><a href="#cb75-651" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Target high-frequency coffee consumers.</span>
+<span id="cb75-652"><a href="#cb75-652" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Schedule promotions during high-acceptance time windows.</span>
+<span id="cb75-653"><a href="#cb75-653" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Allocate more budget to top-performing coupon categories.</span>
+<span id="cb75-654"><a href="#cb75-654" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Use predictive scores to send personalized offers.</span>
+<span id="cb75-655"><a href="#cb75-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-656"><a href="#cb75-656" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
