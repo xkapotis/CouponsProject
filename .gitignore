@@ -9,3 +9,5 @@ qmd_archive/*_files
 qmd_archive/*html
 
 CouponsAnalysisReport.rmarkdown
+/.quarto/
+**/*.quarto_ipynb
