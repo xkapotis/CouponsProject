@@ -126,9 +126,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#random-forest-probabilities" id="toc-random-forest-probabilities" class="nav-link" data-scroll-target="#random-forest-probabilities"><span class="header-section-number">5.3</span> Random Forest probabilities</a></li>
   <li><a href="#plot-all-roc-curves-on-one-graph" id="toc-plot-all-roc-curves-on-one-graph" class="nav-link" data-scroll-target="#plot-all-roc-curves-on-one-graph"><span class="header-section-number">5.4</span> Plot All ROC Curves on One Graph</a></li>
   </ul></li>
-  <li><a href="#marketing-campaign-strategy" id="toc-marketing-campaign-strategy" class="nav-link" data-scroll-target="#marketing-campaign-strategy"><span class="header-section-number">6</span> Marketing Campaign Strategy</a>
+  <li><a href="#data-driven-marketing-campaign" id="toc-data-driven-marketing-campaign" class="nav-link" data-scroll-target="#data-driven-marketing-campaign"><span class="header-section-number">6</span> Data-Driven Marketing Campaign</a>
   <ul class="collapse">
-  <li><a href="#proposed-campaign" id="toc-proposed-campaign" class="nav-link" data-scroll-target="#proposed-campaign"><span class="header-section-number">6.0.1</span> Proposed Campaign:</a></li>
+  <li><a href="#key-customer-segments" id="toc-key-customer-segments" class="nav-link" data-scroll-target="#key-customer-segments"><span class="header-section-number">6.1</span> Key Customer Segments</a></li>
+  <li><a href="#optimal-targeting-strategy" id="toc-optimal-targeting-strategy" class="nav-link" data-scroll-target="#optimal-targeting-strategy"><span class="header-section-number">6.2</span> Optimal Targeting Strategy</a>
+  <ul class="collapse">
+  <li><a href="#timing" id="toc-timing" class="nav-link" data-scroll-target="#timing"><span class="header-section-number">6.2.1</span> Timing</a></li>
+  <li><a href="#coupon-expiration" id="toc-coupon-expiration" class="nav-link" data-scroll-target="#coupon-expiration"><span class="header-section-number">6.2.2</span> Coupon Expiration</a></li>
+  <li><a href="#predictive-scoring-threshold" id="toc-predictive-scoring-threshold" class="nav-link" data-scroll-target="#predictive-scoring-threshold"><span class="header-section-number">6.2.3</span> Predictive Scoring Threshold</a></li>
+  </ul></li>
+  <li><a href="#budget-allocation" id="toc-budget-allocation" class="nav-link" data-scroll-target="#budget-allocation"><span class="header-section-number">6.3</span> Budget Allocation</a></li>
+  <li><a href="#marketing-channels-tactics" id="toc-marketing-channels-tactics" class="nav-link" data-scroll-target="#marketing-channels-tactics"><span class="header-section-number">6.4</span> Marketing Channels &amp; Tactics</a></li>
+  <li><a href="#key-performance-indicators-kpis" id="toc-key-performance-indicators-kpis" class="nav-link" data-scroll-target="#key-performance-indicators-kpis"><span class="header-section-number">6.5</span> Key Performance Indicators (KPIs)</a></li>
+  <li><a href="#limitations-future-improvements" id="toc-limitations-future-improvements" class="nav-link" data-scroll-target="#limitations-future-improvements"><span class="header-section-number">6.6</span> Limitations &amp; Future Improvements</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="CouponsAnalysisReport.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -823,6 +833,7 @@ gt8    349         1111       1594                   1285              264
 </div>
 </div>
 </div>
+<p>This visualization presents the acceptance rate for each coupon category. The results show that <strong>Coffee House and Bar coupons have relatively higher acceptance rates compared to other categories</strong>. One possible explanation is that these types of places are <strong>easy for customers to visit as part of their daily routine</strong>, for example grabbing a coffee or meeting friends for a drink. In contrast, <strong>Restaurant(20–50) coupons have lower acceptance rates</strong>, possibly because going to a restaurant usually requires <strong>more time and planning compared to a quick coffee or bar visit</strong>.</p>
 </section>
 <section id="fig-time" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="fig-time"><span class="header-section-number">3.2</span> Acceptance Rate by Time of Day (Behavioral Timing Insight)</h2>
@@ -848,6 +859,7 @@ gt8    349         1111       1594                   1285              264
 </div>
 </div>
 </div>
+<p>This chart examines how coupon acceptance changes depending on the <strong>time of day</strong>. The results suggest that <strong>acceptance is slightly higher during the morning and afternoon periods</strong> compared to later hours. This may be because customers are more likely to use coupons for <strong>daily activities such as coffee or quick meals during these times</strong>. Overall, the visualization indicates that <strong>timing may influence how likely customers are to accept a coupon</strong>.</p>
 </section>
 <section id="income-vs-acceptance-customer-affordability-pattern" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="income-vs-acceptance-customer-affordability-pattern"><span class="header-section-number">3.3</span> Income vs Acceptance (Customer Affordability Pattern)</h2>
@@ -873,6 +885,7 @@ gt8    349         1111       1594                   1285              264
 </div>
 </div>
 </div>
+<p>This visualization explores the relationship between <strong>income level and coupon acceptance</strong>. The results show that <strong>customers in lower and middle income groups tend to accept coupons more often</strong>. This pattern may suggest that discounts and promotions are more attractive to customers who are more careful about spending. In contrast, <strong>higher income groups show slightly lower acceptance rates</strong>, which may indicate that price incentives are less important for them.</p>
 </section>
 <section id="coffee-house-visits-vs-acceptance-behavioral-engagement-signal" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="coffee-house-visits-vs-acceptance-behavioral-engagement-signal"><span class="header-section-number">3.4</span> Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</h2>
@@ -897,6 +910,7 @@ gt8    349         1111       1594                   1285              264
 </div>
 </div>
 </div>
+<p>This chart analyzes the relationship between <strong>how often customers visit coffee houses and their likelihood of accepting coupons</strong>. Customers who visit coffee houses more frequently show <strong>higher acceptance rates for these types of coupons</strong>. This suggests that people who already have a habit of visiting coffee shops are more likely to take advantage of related offers. Therefore, <strong>past behavior appears to be an important factor in predicting coupon acceptance.</strong></p>
 </section>
 <section id="heatmap-coupon-type-time-segmentation-insight" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="heatmap-coupon-type-time-segmentation-insight"><span class="header-section-number">3.5</span> Heatmap – Coupon Type × Time (Segmentation Insight)</h2>
@@ -923,6 +937,7 @@ gt8    349         1111       1594                   1285              264
 </div>
 </div>
 </div>
+<p>The heatmap combines <strong>coupon type and time of day</strong> to show how acceptance rates vary across different situations. Some combinations show <strong>higher acceptance levels, such as Coffee House coupons during morning hours</strong>. Other combinations appear less effective, indicating that <strong>not all offers perform the same at different times of the day</strong>. This suggests that <strong>both the type of coupon and the time it is offered may influence customer response</strong>.</p>
 </section>
 <section id="regression-analysis" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="regression-analysis"><span class="header-section-number">3.6</span> Regression analysis</h2>
@@ -1470,23 +1485,291 @@ Prediction Rejected Accepted
 </div>
 </section>
 </section>
-<section id="marketing-campaign-strategy" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Marketing Campaign Strategy</h1>
-<p>Based on the modeling results:</p>
+<section id="data-driven-marketing-campaign" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Data-Driven Marketing Campaign</h1>
+<p>Based on the insights gathered through exploratory data analysis and predictive modeling, we propose a comprehensive, data-driven marketing campaign aimed at maximizing coupon acceptance rates while minimizing unnecessary promotional costs.</p>
+<section id="key-customer-segments" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="key-customer-segments"><span class="header-section-number">6.1</span> Key Customer Segments</h2>
+<p>The analysis revealed that coupon acceptance is not uniform across all customers. We identified four distinct customer segments that differ significantly in their likelihood to accept a coupon:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Profile</th>
+<th>Best Coupon Type</th>
+<th>Expected Acceptance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Coffee Addict</em></td>
+<td>Visits coffee house 4+ times/month</td>
+<td>Coffee House</td>
+<td>~65%</td>
+</tr>
+<tr class="even">
+<td><em>Lunch Crowd</em></td>
+<td>Drives at midday, no urgent destination</td>
+<td>Carry out / Restaurant(&lt;$20)</td>
+<td>~70%</td>
+</tr>
+<tr class="odd">
+<td><em>Night Out</em></td>
+<td>Drives in the evening with friends</td>
+<td>Bar / Restaurant($20–$50)</td>
+<td>~55%</td>
+</tr>
+<tr class="even">
+<td><em>Family Driver</em></td>
+<td>Has children, drives with kids</td>
+<td>Carry out &amp; Take away</td>
+<td>~70%</td>
+</tr>
+</tbody>
+</table>
+<p>These segments were derived from the behavioral variables in the dataset (coffee_house, bar, carry_away, passanger, time) and validated through the decision tree splits identified in Section 4.3.</p>
+</section>
+<section id="optimal-targeting-strategy" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="optimal-targeting-strategy"><span class="header-section-number">6.2</span> Optimal Targeting Strategy</h2>
+<section id="timing" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="timing"><span class="header-section-number">6.2.1</span> Timing</h3>
+<p>The acceptance rate analysis by time of day (Section 3.2) shows that coupon acceptance peaks at <em>2PM (~67%)</em> and is lowest at <em>10PM (~52%)</em>. We therefore recommend the following send windows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time Window</th>
+<th>Recommended Coupon</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10:00 – 12:00</td>
+<td>Coffee House</td>
+<td>Morning coffee break — high demand</td>
+</tr>
+<tr class="even">
+<td>12:00 – 15:00</td>
+<td>Carry out / Restaurant(&lt;$20)</td>
+<td>Lunch peak — highest acceptance</td>
+</tr>
+<tr class="odd">
+<td>18:00 – 21:00</td>
+<td>Bar / Restaurant($20–$50)</td>
+<td>Evening outing with friends</td>
+</tr>
+<tr class="even">
+<td>Avoid 22:00+</td>
+<td>All types</td>
+<td>Lowest acceptance — budget waste</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coupon-expiration" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="coupon-expiration"><span class="header-section-number">6.2.2</span> Coupon Expiration</h3>
+<p>Expiration time plays a significant role in acceptance decisions:</p>
 <ul>
-<li>Random Forest achieved the highest AUC and strongest predictive power.</li>
-<li>High-frequency coffee visitors show highest responsiveness.</li>
-<li>Time-of-day effects suggest targeted push timing.</li>
-<li>Coupon type performance varies significantly.</li>
+<li><em>2-hour coupons</em> are most effective during midday hours when the customer is near the venue and can act immediately. They create a sense of urgency.</li>
+<li><em>1-day coupons</em> are better suited for Bar and Restaurant($20–$50) offers, where customers need time to plan an evening outing.</li>
 </ul>
-<section id="proposed-campaign" class="level3" data-number="6.0.1">
-<h3 data-number="6.0.1" class="anchored" data-anchor-id="proposed-campaign"><span class="header-section-number">6.0.1</span> Proposed Campaign:</h3>
-<ol type="1">
-<li>Target high-frequency coffee consumers.</li>
-<li>Schedule promotions during high-acceptance time windows.</li>
-<li>Allocate more budget to top-performing coupon categories.</li>
-<li>Use predictive scores to send personalized offers.</li>
-</ol>
+<p><em>Recommendation:</em> Send 2-hour coupons at lunchtime for fast food/carry out, and 1-day coupons in the morning for evening dining or bar visits.</p>
+</section>
+<section id="predictive-scoring-threshold" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="predictive-scoring-threshold"><span class="header-section-number">6.2.3</span> Predictive Scoring Threshold</h3>
+<p>The Random Forest model generates a probability score (0–1) for each customer, representing their likelihood of accepting a coupon. We propose a threshold-based targeting system to optimize campaign ROI:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score Range</th>
+<th>Action</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Score &gt; 0.70</td>
+<td>Send coupon immediately</td>
+<td>High acceptance probability</td>
+</tr>
+<tr class="even">
+<td>Score 0.50 – 0.70</td>
+<td>Send with A/B testing</td>
+<td>Moderate probability — worth testing</td>
+</tr>
+<tr class="odd">
+<td>Score &lt; 0.50</td>
+<td>Do not send</td>
+<td>Low probability — cost saving</td>
+</tr>
+</tbody>
+</table>
+<p>This approach reduces unnecessary coupon distribution while focusing budget on customers most likely to respond positively.</p>
+</section>
+</section>
+<section id="budget-allocation" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="budget-allocation"><span class="header-section-number">6.3</span> Budget Allocation</h2>
+<p>Based on the coupon-type acceptance rates identified in Section 3.1, we recommend the following budget distribution:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Coupon Type</th>
+<th>Acceptance Rate</th>
+<th>Priority</th>
+<th>Recommended Budget Share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Carry out &amp; Take away</td>
+<td>~70%</td>
+<td>★★★ High</td>
+<td>30%</td>
+</tr>
+<tr class="even">
+<td>Restaurant(&lt;$20)</td>
+<td>~70%</td>
+<td>★★★ High</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Coffee House</td>
+<td>~65%</td>
+<td>★★ Medium</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Restaurant($20–$50)</td>
+<td>~58%</td>
+<td>★★ Medium</td>
+<td>15%</td>
+</tr>
+<tr class="odd">
+<td>Bar</td>
+<td>~41%</td>
+<td>★ Low</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<p>Bar coupons should only be distributed to highly targeted segments (frequent bar visitors, evening drivers with friends) to avoid low-return spend.</p>
+</section>
+<section id="marketing-channels-tactics" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="marketing-channels-tactics"><span class="header-section-number">6.4</span> Marketing Channels &amp; Tactics</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Channel</th>
+<th>Target Segment</th>
+<th>Tactic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mobile push notification</td>
+<td>All segments</td>
+<td>Send coupon during identified high-acceptance time windows</td>
+</tr>
+<tr class="even">
+<td>In-app GPS trigger</td>
+<td>Lunch Crowd, Coffee Addict</td>
+<td>Trigger coupon when driver is within 15 min of venue</td>
+</tr>
+<tr class="odd">
+<td>Email (morning send)</td>
+<td>Night Out segment</td>
+<td>Send 1-day Bar/Restaurant coupons before 10AM</td>
+</tr>
+<tr class="even">
+<td>Loyalty program integration</td>
+<td>Frequent visitors (4~8, gt8)</td>
+<td>Offer escalating rewards for repeat coupon usage</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-performance-indicators-kpis" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="key-performance-indicators-kpis"><span class="header-section-number">6.5</span> Key Performance Indicators (KPIs)</h2>
+<p>To evaluate the success of the campaign, we propose monitoring the following KPIs on a monthly basis:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>KPI</th>
+<th>Definition</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coupon Redemption Rate</td>
+<td>% of sent coupons that were used</td>
+<td>&gt; 60%</td>
+</tr>
+<tr class="even">
+<td>Cost per Redemption</td>
+<td>Campaign cost / number of redemptions</td>
+<td>Reduction vs.&nbsp;baseline</td>
+</tr>
+<tr class="odd">
+<td>Revenue Lift</td>
+<td>Revenue increase vs.&nbsp;period without coupons</td>
+<td>&gt; 15%</td>
+</tr>
+<tr class="even">
+<td>Model Accuracy</td>
+<td>Ongoing accuracy of the Random Forest model</td>
+<td>Maintain &gt; 75%</td>
+</tr>
+<tr class="odd">
+<td>Segment Response Rate</td>
+<td>Acceptance rate per customer segment</td>
+<td>Improvement per segment</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="limitations-future-improvements" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="limitations-future-improvements"><span class="header-section-number">6.6</span> Limitations &amp; Future Improvements</h2>
+<p>We acknowledge the following limitations of this analysis:</p>
+<ul>
+<li>The dataset is based on a <em>survey</em>, not real transaction data. Actual behavior in real-world conditions may differ from survey responses.</li>
+<li>The model lacks <em>real-time GPS data</em>, which would significantly improve location-based targeting precision.</li>
+<li>The model requires <em>periodic retraining</em> as consumer habits evolve over time.</li>
+<li>The analysis does not account for <em>seasonal variation</em> (e.g., different behavior in winter vs.&nbsp;summer).</li>
+</ul>
+<p>To further improve campaign effectiveness, we recommend:</p>
+<ul>
+<li>Implementing <em>cross-validation</em> for more robust model evaluation.</li>
+<li>Applying <em>hyperparameter tuning</em> to further optimize the Random Forest model.</li>
+<li>Integrating <em>real-time location data</em> for dynamic, proximity-based coupon delivery.</li>
+<li>Establishing an <em>A/B testing framework</em> to continuously compare targeting strategies.</li>
+</ul>
 <hr>
 <!-- -->
 
@@ -2375,233 +2658,380 @@ Prediction Rejected Accepted
 <span id="cb75-427"><a href="#cb75-427" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
 <span id="cb75-428"><a href="#cb75-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb75-429"><a href="#cb75-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-430"><a href="#cb75-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-431"><a href="#cb75-431" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}</span></span>
-<span id="cb75-432"><a href="#cb75-432" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, acceptance-rate-by-time-of-day}</span></span>
-<span id="cb75-433"><a href="#cb75-433" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-434"><a href="#cb75-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
-<span id="cb75-435"><a href="#cb75-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-436"><a href="#cb75-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb75-437"><a href="#cb75-437" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb75-438"><a href="#cb75-438" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
-<span id="cb75-439"><a href="#cb75-439" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
-<span id="cb75-440"><a href="#cb75-440" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb75-441"><a href="#cb75-441" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-442"><a href="#cb75-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-443"><a href="#cb75-443" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-444"><a href="#cb75-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-445"><a href="#cb75-445" aria-hidden="true" tabindex="-1"></a><span class="fu">## Income vs Acceptance (Customer Affordability Pattern)</span></span>
-<span id="cb75-446"><a href="#cb75-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-447"><a href="#cb75-447" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, income-vs-acceptance}</span></span>
-<span id="cb75-448"><a href="#cb75-448" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-449"><a href="#cb75-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
-<span id="cb75-450"><a href="#cb75-450" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-451"><a href="#cb75-451" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-452"><a href="#cb75-452" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
-<span id="cb75-453"><a href="#cb75-453" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb75-454"><a href="#cb75-454" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb75-455"><a href="#cb75-455" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
-<span id="cb75-456"><a href="#cb75-456" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
-<span id="cb75-457"><a href="#cb75-457" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
-<span id="cb75-458"><a href="#cb75-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-430"><a href="#cb75-430" aria-hidden="true" tabindex="-1"></a>This visualization presents the acceptance rate for each coupon category. The </span>
+<span id="cb75-431"><a href="#cb75-431" aria-hidden="true" tabindex="-1"></a>results show that **Coffee House and Bar coupons have relatively higher </span>
+<span id="cb75-432"><a href="#cb75-432" aria-hidden="true" tabindex="-1"></a>acceptance rates compared to other categories**. One possible explanation is </span>
+<span id="cb75-433"><a href="#cb75-433" aria-hidden="true" tabindex="-1"></a>that these types of places are **easy for customers to visit as part of their </span>
+<span id="cb75-434"><a href="#cb75-434" aria-hidden="true" tabindex="-1"></a>daily routine**, for example grabbing a coffee or meeting friends for a drink. </span>
+<span id="cb75-435"><a href="#cb75-435" aria-hidden="true" tabindex="-1"></a>In contrast, **Restaurant(20–50) coupons have lower acceptance rates**, possibly</span>
+<span id="cb75-436"><a href="#cb75-436" aria-hidden="true" tabindex="-1"></a>because going to a restaurant usually requires **more time and planning compared </span>
+<span id="cb75-437"><a href="#cb75-437" aria-hidden="true" tabindex="-1"></a>to a quick coffee or bar visit**.</span>
+<span id="cb75-438"><a href="#cb75-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-439"><a href="#cb75-439" aria-hidden="true" tabindex="-1"></a><span class="fu">## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}</span></span>
+<span id="cb75-440"><a href="#cb75-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, acceptance-rate-by-time-of-day}</span></span>
+<span id="cb75-441"><a href="#cb75-441" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-442"><a href="#cb75-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">%&gt;%</span></span>
+<span id="cb75-443"><a href="#cb75-443" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-444"><a href="#cb75-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> accept_rate, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb75-445"><a href="#cb75-445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#e41a1c"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb75-446"><a href="#cb75-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#e41a1c"</span>) <span class="sc">+</span></span>
+<span id="cb75-447"><a href="#cb75-447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coupon Acceptance Rate by Time of Day"</span>,</span>
+<span id="cb75-448"><a href="#cb75-448" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb75-449"><a href="#cb75-449" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-450"><a href="#cb75-450" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-451"><a href="#cb75-451" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-452"><a href="#cb75-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-453"><a href="#cb75-453" aria-hidden="true" tabindex="-1"></a>This chart examines how coupon acceptance changes depending on the **time of </span>
+<span id="cb75-454"><a href="#cb75-454" aria-hidden="true" tabindex="-1"></a>day**. The results suggest that **acceptance is slightly higher during the </span>
+<span id="cb75-455"><a href="#cb75-455" aria-hidden="true" tabindex="-1"></a>morning and afternoon periods** compared to later hours. This may be because </span>
+<span id="cb75-456"><a href="#cb75-456" aria-hidden="true" tabindex="-1"></a>customers are more likely to use coupons for **daily activities such as coffee </span>
+<span id="cb75-457"><a href="#cb75-457" aria-hidden="true" tabindex="-1"></a>or quick meals during these times**. Overall, the visualization indicates that </span>
+<span id="cb75-458"><a href="#cb75-458" aria-hidden="true" tabindex="-1"></a>**timing may influence how likely customers are to accept a coupon**.</span>
 <span id="cb75-459"><a href="#cb75-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-460"><a href="#cb75-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
+<span id="cb75-460"><a href="#cb75-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Income vs Acceptance (Customer Affordability Pattern)</span></span>
 <span id="cb75-461"><a href="#cb75-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-462"><a href="#cb75-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coffe-vists-vs-acceptance}</span></span>
+<span id="cb75-462"><a href="#cb75-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, income-vs-acceptance}</span></span>
 <span id="cb75-463"><a href="#cb75-463" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-464"><a href="#cb75-464" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
+<span id="cb75-464"><a href="#cb75-464" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(income) <span class="sc">%&gt;%</span></span>
 <span id="cb75-465"><a href="#cb75-465" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-466"><a href="#cb75-466" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-467"><a href="#cb75-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
-<span id="cb75-468"><a href="#cb75-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
-<span id="cb75-469"><a href="#cb75-469" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
-<span id="cb75-470"><a href="#cb75-470" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-471"><a href="#cb75-471" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-472"><a href="#cb75-472" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-473"><a href="#cb75-473" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
+<span id="cb75-466"><a href="#cb75-466" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-467"><a href="#cb75-467" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4daf4a"</span>) <span class="sc">+</span></span>
+<span id="cb75-468"><a href="#cb75-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb75-469"><a href="#cb75-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb75-470"><a href="#cb75-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Income Level"</span>,</span>
+<span id="cb75-471"><a href="#cb75-471" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Income Level"</span>,</span>
+<span id="cb75-472"><a href="#cb75-472" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>)</span>
+<span id="cb75-473"><a href="#cb75-473" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb75-474"><a href="#cb75-474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-475"><a href="#cb75-475" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupontype-by-time}</span></span>
-<span id="cb75-476"><a href="#cb75-476" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-477"><a href="#cb75-477" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
-<span id="cb75-478"><a href="#cb75-478" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb75-479"><a href="#cb75-479" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
-<span id="cb75-480"><a href="#cb75-480" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb75-481"><a href="#cb75-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb75-482"><a href="#cb75-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
-<span id="cb75-483"><a href="#cb75-483" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
-<span id="cb75-484"><a href="#cb75-484" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
-<span id="cb75-485"><a href="#cb75-485" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
-<span id="cb75-486"><a href="#cb75-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb75-487"><a href="#cb75-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-488"><a href="#cb75-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-489"><a href="#cb75-489" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression analysis</span></span>
-<span id="cb75-490"><a href="#cb75-490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-491"><a href="#cb75-491" aria-hidden="true" tabindex="-1"></a>We wil now run the entire dataset through a general linear regression </span>
-<span id="cb75-492"><a href="#cb75-492" aria-hidden="true" tabindex="-1"></a>model in order to gain some further insights from the data</span>
-<span id="cb75-493"><a href="#cb75-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-494"><a href="#cb75-494" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-before-reg}</span></span>
-<span id="cb75-495"><a href="#cb75-495" aria-hidden="true" tabindex="-1"></a>df_no_extra_col <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
-<span id="cb75-496"><a href="#cb75-496" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_no_extra_col)</span>
-<span id="cb75-497"><a href="#cb75-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-498"><a href="#cb75-498" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-reg}</span></span>
-<span id="cb75-499"><a href="#cb75-499" aria-hidden="true" tabindex="-1"></a>reg_analysis <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., <span class="at">data=</span>df_no_extra_col, <span class="at">family=</span>binomial)</span>
-<span id="cb75-500"><a href="#cb75-500" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_analysis)</span>
-<span id="cb75-501"><a href="#cb75-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-502"><a href="#cb75-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-503"><a href="#cb75-503" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictive Modeling</span></span>
-<span id="cb75-504"><a href="#cb75-504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-505"><a href="#cb75-505" aria-hidden="true" tabindex="-1"></a>We will use 3 models:  Logistic Regression, Decision Tree, Random Forest</span>
-<span id="cb75-506"><a href="#cb75-506" aria-hidden="true" tabindex="-1"></a>Remove y_numeric</span>
-<span id="cb75-507"><a href="#cb75-507" aria-hidden="true" tabindex="-1"></a>Keep y_factor as target</span>
-<span id="cb75-508"><a href="#cb75-508" aria-hidden="true" tabindex="-1"></a>Remove irrelevant columns (IDs etc.)</span>
-<span id="cb75-509"><a href="#cb75-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-510"><a href="#cb75-510" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create Test and Training dataset</span></span>
-<span id="cb75-511"><a href="#cb75-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-512"><a href="#cb75-512" aria-hidden="true" tabindex="-1"></a>Remove rows with NA</span>
-<span id="cb75-513"><a href="#cb75-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-514"><a href="#cb75-514" aria-hidden="true" tabindex="-1"></a>Train/Test Split (70% / 30%)</span>
-<span id="cb75-515"><a href="#cb75-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-516"><a href="#cb75-516" aria-hidden="true" tabindex="-1"></a>positive class -&gt; 1 not 0</span>
-<span id="cb75-517"><a href="#cb75-517" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-split}</span></span>
-<span id="cb75-518"><a href="#cb75-518" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb75-519"><a href="#cb75-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
-<span id="cb75-520"><a href="#cb75-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-521"><a href="#cb75-521" aria-hidden="true" tabindex="-1"></a>df_nonnull <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_clean)</span>
-<span id="cb75-522"><a href="#cb75-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-523"><a href="#cb75-523" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb75-524"><a href="#cb75-524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-525"><a href="#cb75-525" aria-hidden="true" tabindex="-1"></a>train_index <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(df_nonnull<span class="sc">$</span>y, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb75-475"><a href="#cb75-475" aria-hidden="true" tabindex="-1"></a>This visualization explores the relationship between **income level and coupon </span>
+<span id="cb75-476"><a href="#cb75-476" aria-hidden="true" tabindex="-1"></a>acceptance**. The results show that **customers in lower and middle income </span>
+<span id="cb75-477"><a href="#cb75-477" aria-hidden="true" tabindex="-1"></a>groups tend to accept coupons more often**. This pattern may suggest that </span>
+<span id="cb75-478"><a href="#cb75-478" aria-hidden="true" tabindex="-1"></a>discounts and promotions are more attractive to customers who are more careful </span>
+<span id="cb75-479"><a href="#cb75-479" aria-hidden="true" tabindex="-1"></a>about spending. In contrast, **higher income groups show slightly lower </span>
+<span id="cb75-480"><a href="#cb75-480" aria-hidden="true" tabindex="-1"></a>acceptance rates**, which may indicate that price incentives are less important </span>
+<span id="cb75-481"><a href="#cb75-481" aria-hidden="true" tabindex="-1"></a>for them.</span>
+<span id="cb75-482"><a href="#cb75-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-483"><a href="#cb75-483" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)</span></span>
+<span id="cb75-484"><a href="#cb75-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-485"><a href="#cb75-485" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coffe-vists-vs-acceptance}</span></span>
+<span id="cb75-486"><a href="#cb75-486" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-487"><a href="#cb75-487" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coffee_house) <span class="sc">%&gt;%</span></span>
+<span id="cb75-488"><a href="#cb75-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-489"><a href="#cb75-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coffee_house, <span class="at">y =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-490"><a href="#cb75-490" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#984ea3"</span>) <span class="sc">+</span></span>
+<span id="cb75-491"><a href="#cb75-491" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate by Coffee Visit Frequency"</span>,</span>
+<span id="cb75-492"><a href="#cb75-492" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Monthly Coffee Visits"</span>,</span>
+<span id="cb75-493"><a href="#cb75-493" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-494"><a href="#cb75-494" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-495"><a href="#cb75-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-496"><a href="#cb75-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-497"><a href="#cb75-497" aria-hidden="true" tabindex="-1"></a>This chart analyzes the relationship between **how often customers visit coffee </span>
+<span id="cb75-498"><a href="#cb75-498" aria-hidden="true" tabindex="-1"></a>houses and their likelihood of accepting coupons**. Customers who visit coffee </span>
+<span id="cb75-499"><a href="#cb75-499" aria-hidden="true" tabindex="-1"></a>houses more frequently show **higher acceptance rates for these types of </span>
+<span id="cb75-500"><a href="#cb75-500" aria-hidden="true" tabindex="-1"></a>coupons**. This suggests that people who already have a habit of visiting coffee</span>
+<span id="cb75-501"><a href="#cb75-501" aria-hidden="true" tabindex="-1"></a>shops are more likely to take advantage of related offers. Therefore, **past </span>
+<span id="cb75-502"><a href="#cb75-502" aria-hidden="true" tabindex="-1"></a>behavior appears to be an important factor in predicting coupon acceptance.**</span>
+<span id="cb75-503"><a href="#cb75-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-504"><a href="#cb75-504" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heatmap – Coupon Type × Time (Segmentation Insight)</span></span>
+<span id="cb75-505"><a href="#cb75-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-506"><a href="#cb75-506" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, coupontype-by-time}</span></span>
+<span id="cb75-507"><a href="#cb75-507" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb75-508"><a href="#cb75-508" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(coupon, time) <span class="sc">%&gt;%</span></span>
+<span id="cb75-509"><a href="#cb75-509" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">accept_rate =</span> <span class="fu">mean</span>(y_numeric, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb75-510"><a href="#cb75-510" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> coupon, <span class="at">y =</span> time, <span class="at">fill =</span> accept_rate)) <span class="sc">+</span></span>
+<span id="cb75-511"><a href="#cb75-511" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb75-512"><a href="#cb75-512" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb75-513"><a href="#cb75-513" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Acceptance Rate: Coupon Type by Time of Day"</span>,</span>
+<span id="cb75-514"><a href="#cb75-514" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Coupon Type"</span>,</span>
+<span id="cb75-515"><a href="#cb75-515" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time of Day"</span>,</span>
+<span id="cb75-516"><a href="#cb75-516" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Acceptance Rate"</span>) <span class="sc">+</span></span>
+<span id="cb75-517"><a href="#cb75-517" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb75-518"><a href="#cb75-518" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-519"><a href="#cb75-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-520"><a href="#cb75-520" aria-hidden="true" tabindex="-1"></a>The heatmap combines **coupon type and time of day** to show how acceptance </span>
+<span id="cb75-521"><a href="#cb75-521" aria-hidden="true" tabindex="-1"></a>rates vary across different situations. Some combinations show **higher </span>
+<span id="cb75-522"><a href="#cb75-522" aria-hidden="true" tabindex="-1"></a>acceptance levels, such as Coffee House coupons during morning hours**. Other </span>
+<span id="cb75-523"><a href="#cb75-523" aria-hidden="true" tabindex="-1"></a>combinations appear less effective, indicating that **not all offers perform the</span>
+<span id="cb75-524"><a href="#cb75-524" aria-hidden="true" tabindex="-1"></a>same at different times of the day**. This suggests that **both the type of </span>
+<span id="cb75-525"><a href="#cb75-525" aria-hidden="true" tabindex="-1"></a>coupon and the time it is offered may influence customer response**.</span>
 <span id="cb75-526"><a href="#cb75-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-527"><a href="#cb75-527" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> df_nonnull[train_index, ]</span>
-<span id="cb75-528"><a href="#cb75-528" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> df_nonnull[<span class="sc">-</span>train_index, ]</span>
-<span id="cb75-529"><a href="#cb75-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-530"><a href="#cb75-530" aria-hidden="true" tabindex="-1"></a><span class="co">#train_data$y_factor &lt;- relevel(train_data$y_factor, ref = "1")</span></span>
-<span id="cb75-531"><a href="#cb75-531" aria-hidden="true" tabindex="-1"></a><span class="co">#test_data$y_factor  &lt;- relevel(test_data$y_factor, ref = "1")</span></span>
-<span id="cb75-532"><a href="#cb75-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-533"><a href="#cb75-533" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-534"><a href="#cb75-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-535"><a href="#cb75-535" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
-<span id="cb75-536"><a href="#cb75-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-537"><a href="#cb75-537" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-logreg}</span></span>
-<span id="cb75-538"><a href="#cb75-538" aria-hidden="true" tabindex="-1"></a>model_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-539"><a href="#cb75-539" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train_data,</span>
-<span id="cb75-540"><a href="#cb75-540" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
-<span id="cb75-541"><a href="#cb75-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-542"><a href="#cb75-542" aria-hidden="true" tabindex="-1"></a>prob_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb75-543"><a href="#cb75-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-544"><a href="#cb75-544" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse threshold</span></span>
-<span id="cb75-545"><a href="#cb75-545" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_log <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb75-546"><a href="#cb75-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-547"><a href="#cb75-547" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>))</span>
-<span id="cb75-548"><a href="#cb75-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-549"><a href="#cb75-549" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_log, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-550"><a href="#cb75-550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-527"><a href="#cb75-527" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression analysis</span></span>
+<span id="cb75-528"><a href="#cb75-528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-529"><a href="#cb75-529" aria-hidden="true" tabindex="-1"></a>We wil now run the entire dataset through a general linear regression </span>
+<span id="cb75-530"><a href="#cb75-530" aria-hidden="true" tabindex="-1"></a>model in order to gain some further insights from the data</span>
+<span id="cb75-531"><a href="#cb75-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-532"><a href="#cb75-532" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-before-reg}</span></span>
+<span id="cb75-533"><a href="#cb75-533" aria-hidden="true" tabindex="-1"></a>df_no_extra_col <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
+<span id="cb75-534"><a href="#cb75-534" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_no_extra_col)</span>
+<span id="cb75-535"><a href="#cb75-535" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-536"><a href="#cb75-536" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-summary-reg}</span></span>
+<span id="cb75-537"><a href="#cb75-537" aria-hidden="true" tabindex="-1"></a>reg_analysis <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., <span class="at">data=</span>df_no_extra_col, <span class="at">family=</span>binomial)</span>
+<span id="cb75-538"><a href="#cb75-538" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_analysis)</span>
+<span id="cb75-539"><a href="#cb75-539" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-540"><a href="#cb75-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-541"><a href="#cb75-541" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictive Modeling</span></span>
+<span id="cb75-542"><a href="#cb75-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-543"><a href="#cb75-543" aria-hidden="true" tabindex="-1"></a>We will use 3 models:  Logistic Regression, Decision Tree, Random Forest</span>
+<span id="cb75-544"><a href="#cb75-544" aria-hidden="true" tabindex="-1"></a>Remove y_numeric</span>
+<span id="cb75-545"><a href="#cb75-545" aria-hidden="true" tabindex="-1"></a>Keep y_factor as target</span>
+<span id="cb75-546"><a href="#cb75-546" aria-hidden="true" tabindex="-1"></a>Remove irrelevant columns (IDs etc.)</span>
+<span id="cb75-547"><a href="#cb75-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-548"><a href="#cb75-548" aria-hidden="true" tabindex="-1"></a><span class="fu">## Create Test and Training dataset</span></span>
+<span id="cb75-549"><a href="#cb75-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-550"><a href="#cb75-550" aria-hidden="true" tabindex="-1"></a>Remove rows with NA</span>
 <span id="cb75-551"><a href="#cb75-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-552"><a href="#cb75-552" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree</span></span>
+<span id="cb75-552"><a href="#cb75-552" aria-hidden="true" tabindex="-1"></a>Train/Test Split (70% / 30%)</span>
 <span id="cb75-553"><a href="#cb75-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-554"><a href="#cb75-554" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-dectree}</span></span>
-<span id="cb75-555"><a href="#cb75-555" aria-hidden="true" tabindex="-1"></a>model_tree <span class="ot">&lt;-</span> <span class="fu">rpart</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-556"><a href="#cb75-556" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> train_data,</span>
-<span id="cb75-557"><a href="#cb75-557" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"class"</span>)</span>
+<span id="cb75-554"><a href="#cb75-554" aria-hidden="true" tabindex="-1"></a>positive class -&gt; 1 not 0</span>
+<span id="cb75-555"><a href="#cb75-555" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, data-split}</span></span>
+<span id="cb75-556"><a href="#cb75-556" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb75-557"><a href="#cb75-557" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>y_numeric, <span class="sc">-</span>y_factor)</span>
 <span id="cb75-558"><a href="#cb75-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-559"><a href="#cb75-559" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(model_tree)</span>
+<span id="cb75-559"><a href="#cb75-559" aria-hidden="true" tabindex="-1"></a>df_nonnull <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df_clean)</span>
 <span id="cb75-560"><a href="#cb75-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-561"><a href="#cb75-561" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb75-561"><a href="#cb75-561" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb75-562"><a href="#cb75-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-563"><a href="#cb75-563" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_tree, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-564"><a href="#cb75-564" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-565"><a href="#cb75-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-566"><a href="#cb75-566" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest</span></span>
+<span id="cb75-563"><a href="#cb75-563" aria-hidden="true" tabindex="-1"></a>train_index <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(df_nonnull<span class="sc">$</span>y, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb75-564"><a href="#cb75-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-565"><a href="#cb75-565" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> df_nonnull[train_index, ]</span>
+<span id="cb75-566"><a href="#cb75-566" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> df_nonnull[<span class="sc">-</span>train_index, ]</span>
 <span id="cb75-567"><a href="#cb75-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-568"><a href="#cb75-568" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-rforest}</span></span>
-<span id="cb75-569"><a href="#cb75-569" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm not sure where this came from, but it seems to not work</span></span>
-<span id="cb75-570"><a href="#cb75-570" aria-hidden="true" tabindex="-1"></a><span class="co">#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model</span></span>
-<span id="cb75-571"><a href="#cb75-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-572"><a href="#cb75-572" aria-hidden="true" tabindex="-1"></a>model_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(y <span class="sc">~</span> ., </span>
-<span id="cb75-573"><a href="#cb75-573" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> train_data,</span>
-<span id="cb75-574"><a href="#cb75-574" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ntree =</span> <span class="dv">200</span>)</span>
-<span id="cb75-575"><a href="#cb75-575" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data)</span>
-<span id="cb75-576"><a href="#cb75-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-577"><a href="#cb75-577" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_rf, test_data<span class="sc">$</span>y)</span>
-<span id="cb75-578"><a href="#cb75-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-579"><a href="#cb75-579" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-580"><a href="#cb75-580" aria-hidden="true" tabindex="-1"></a>roc_rf <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
+<span id="cb75-568"><a href="#cb75-568" aria-hidden="true" tabindex="-1"></a><span class="co">#train_data$y_factor &lt;- relevel(train_data$y_factor, ref = "1")</span></span>
+<span id="cb75-569"><a href="#cb75-569" aria-hidden="true" tabindex="-1"></a><span class="co">#test_data$y_factor  &lt;- relevel(test_data$y_factor, ref = "1")</span></span>
+<span id="cb75-570"><a href="#cb75-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-571"><a href="#cb75-571" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-572"><a href="#cb75-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-573"><a href="#cb75-573" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logistic Regression</span></span>
+<span id="cb75-574"><a href="#cb75-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-575"><a href="#cb75-575" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-logreg}</span></span>
+<span id="cb75-576"><a href="#cb75-576" aria-hidden="true" tabindex="-1"></a>model_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-577"><a href="#cb75-577" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> train_data,</span>
+<span id="cb75-578"><a href="#cb75-578" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> binomial)</span>
+<span id="cb75-579"><a href="#cb75-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-580"><a href="#cb75-580" aria-hidden="true" tabindex="-1"></a>prob_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
 <span id="cb75-581"><a href="#cb75-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-582"><a href="#cb75-582" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_rf)</span>
-<span id="cb75-583"><a href="#cb75-583" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf)</span>
-<span id="cb75-584"><a href="#cb75-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-585"><a href="#cb75-585" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-586"><a href="#cb75-586" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Evaluation</span></span>
-<span id="cb75-587"><a href="#cb75-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-588"><a href="#cb75-588" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculate Logistic Regression probabilities (probability of class 1)</span></span>
+<span id="cb75-582"><a href="#cb75-582" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse threshold</span></span>
+<span id="cb75-583"><a href="#cb75-583" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_log <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb75-584"><a href="#cb75-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-585"><a href="#cb75-585" aria-hidden="true" tabindex="-1"></a>pred_log <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Rejected"</span>, <span class="st">"Accepted"</span>))</span>
+<span id="cb75-586"><a href="#cb75-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-587"><a href="#cb75-587" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_log, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-588"><a href="#cb75-588" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb75-589"><a href="#cb75-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-590"><a href="#cb75-590" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-logreg}</span></span>
-<span id="cb75-591"><a href="#cb75-591" aria-hidden="true" tabindex="-1"></a>log_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb75-592"><a href="#cb75-592" aria-hidden="true" tabindex="-1"></a>roc_log  <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, log_probs)</span>
-<span id="cb75-593"><a href="#cb75-593" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-594"><a href="#cb75-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-595"><a href="#cb75-595" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree probabilities</span></span>
+<span id="cb75-590"><a href="#cb75-590" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree</span></span>
+<span id="cb75-591"><a href="#cb75-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-592"><a href="#cb75-592" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-dectree}</span></span>
+<span id="cb75-593"><a href="#cb75-593" aria-hidden="true" tabindex="-1"></a>model_tree <span class="ot">&lt;-</span> <span class="fu">rpart</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-594"><a href="#cb75-594" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> train_data,</span>
+<span id="cb75-595"><a href="#cb75-595" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">"class"</span>)</span>
 <span id="cb75-596"><a href="#cb75-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-597"><a href="#cb75-597" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-dectree}</span></span>
-<span id="cb75-598"><a href="#cb75-598" aria-hidden="true" tabindex="-1"></a>tree_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-599"><a href="#cb75-599" aria-hidden="true" tabindex="-1"></a>roc_tree <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, tree_probs)</span>
+<span id="cb75-597"><a href="#cb75-597" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(model_tree)</span>
+<span id="cb75-598"><a href="#cb75-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-599"><a href="#cb75-599" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
 <span id="cb75-600"><a href="#cb75-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-601"><a href="#cb75-601" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb75-602"><a href="#cb75-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-603"><a href="#cb75-603" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest probabilities</span></span>
-<span id="cb75-604"><a href="#cb75-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-605"><a href="#cb75-605" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-rforest}</span></span>
-<span id="cb75-606"><a href="#cb75-606" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
-<span id="cb75-607"><a href="#cb75-607" aria-hidden="true" tabindex="-1"></a>roc_rf   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
-<span id="cb75-608"><a href="#cb75-608" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-601"><a href="#cb75-601" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_tree, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-602"><a href="#cb75-602" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-603"><a href="#cb75-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-604"><a href="#cb75-604" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest</span></span>
+<span id="cb75-605"><a href="#cb75-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-606"><a href="#cb75-606" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, model-rforest}</span></span>
+<span id="cb75-607"><a href="#cb75-607" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm not sure where this came from, but it seems to not work</span></span>
+<span id="cb75-608"><a href="#cb75-608" aria-hidden="true" tabindex="-1"></a><span class="co">#varImpPlot(model_rf) # check for near zero importance variables if yes then delete them and retrain model</span></span>
 <span id="cb75-609"><a href="#cb75-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-610"><a href="#cb75-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-611"><a href="#cb75-611" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot All ROC Curves on One Graph</span></span>
-<span id="cb75-612"><a href="#cb75-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-613"><a href="#cb75-613" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, plot-all-roc}</span></span>
-<span id="cb75-614"><a href="#cb75-614" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, </span>
-<span id="cb75-615"><a href="#cb75-615" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>, </span>
-<span id="cb75-616"><a href="#cb75-616" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-617"><a href="#cb75-617" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"ROC Curve Comparison"</span>)</span>
-<span id="cb75-618"><a href="#cb75-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-619"><a href="#cb75-619" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_tree, </span>
-<span id="cb75-620"><a href="#cb75-620" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>, </span>
-<span id="cb75-621"><a href="#cb75-621" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-622"><a href="#cb75-622" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-610"><a href="#cb75-610" aria-hidden="true" tabindex="-1"></a>model_rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(y <span class="sc">~</span> ., </span>
+<span id="cb75-611"><a href="#cb75-611" aria-hidden="true" tabindex="-1"></a>                         <span class="at">data =</span> train_data,</span>
+<span id="cb75-612"><a href="#cb75-612" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ntree =</span> <span class="dv">200</span>)</span>
+<span id="cb75-613"><a href="#cb75-613" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data)</span>
+<span id="cb75-614"><a href="#cb75-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-615"><a href="#cb75-615" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred_rf, test_data<span class="sc">$</span>y)</span>
+<span id="cb75-616"><a href="#cb75-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-617"><a href="#cb75-617" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-618"><a href="#cb75-618" aria-hidden="true" tabindex="-1"></a>roc_rf <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
+<span id="cb75-619"><a href="#cb75-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-620"><a href="#cb75-620" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(roc_rf)</span>
+<span id="cb75-621"><a href="#cb75-621" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf)</span>
+<span id="cb75-622"><a href="#cb75-622" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb75-623"><a href="#cb75-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-624"><a href="#cb75-624" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf, </span>
-<span id="cb75-625"><a href="#cb75-625" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, </span>
-<span id="cb75-626"><a href="#cb75-626" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb75-627"><a href="#cb75-627" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-628"><a href="#cb75-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-629"><a href="#cb75-629" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
-<span id="cb75-630"><a href="#cb75-630" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
-<span id="cb75-631"><a href="#cb75-631" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Logistic Regression (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log),<span class="dv">3</span>),<span class="st">")"</span>),</span>
-<span id="cb75-632"><a href="#cb75-632" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Decision Tree (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_tree),<span class="dv">3</span>),<span class="st">")"</span>),</span>
-<span id="cb75-633"><a href="#cb75-633" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Random Forest (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_rf),<span class="dv">3</span>),<span class="st">")"</span>)</span>
-<span id="cb75-634"><a href="#cb75-634" aria-hidden="true" tabindex="-1"></a>       ),</span>
-<span id="cb75-635"><a href="#cb75-635" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>),</span>
-<span id="cb75-636"><a href="#cb75-636" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb75-637"><a href="#cb75-637" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-624"><a href="#cb75-624" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Evaluation</span></span>
+<span id="cb75-625"><a href="#cb75-625" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-626"><a href="#cb75-626" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculate Logistic Regression probabilities (probability of class 1)</span></span>
+<span id="cb75-627"><a href="#cb75-627" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-628"><a href="#cb75-628" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-logreg}</span></span>
+<span id="cb75-629"><a href="#cb75-629" aria-hidden="true" tabindex="-1"></a>log_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_log, test_data, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb75-630"><a href="#cb75-630" aria-hidden="true" tabindex="-1"></a>roc_log  <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, log_probs)</span>
+<span id="cb75-631"><a href="#cb75-631" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-632"><a href="#cb75-632" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-633"><a href="#cb75-633" aria-hidden="true" tabindex="-1"></a><span class="fu">## Decision Tree probabilities</span></span>
+<span id="cb75-634"><a href="#cb75-634" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-635"><a href="#cb75-635" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-dectree}</span></span>
+<span id="cb75-636"><a href="#cb75-636" aria-hidden="true" tabindex="-1"></a>tree_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_tree, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-637"><a href="#cb75-637" aria-hidden="true" tabindex="-1"></a>roc_tree <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, tree_probs)</span>
 <span id="cb75-638"><a href="#cb75-638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-639"><a href="#cb75-639" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-640"><a href="#cb75-640" aria-hidden="true" tabindex="-1"></a><span class="fu"># Marketing Campaign Strategy</span></span>
-<span id="cb75-641"><a href="#cb75-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-642"><a href="#cb75-642" aria-hidden="true" tabindex="-1"></a>Based on the modeling results:</span>
-<span id="cb75-643"><a href="#cb75-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-644"><a href="#cb75-644" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Random Forest achieved the highest AUC and strongest predictive power.</span>
-<span id="cb75-645"><a href="#cb75-645" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-frequency coffee visitors show highest responsiveness.</span>
-<span id="cb75-646"><a href="#cb75-646" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Time-of-day effects suggest targeted push timing.</span>
-<span id="cb75-647"><a href="#cb75-647" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Coupon type performance varies significantly.</span>
+<span id="cb75-639"><a href="#cb75-639" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-640"><a href="#cb75-640" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-641"><a href="#cb75-641" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Forest probabilities</span></span>
+<span id="cb75-642"><a href="#cb75-642" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-643"><a href="#cb75-643" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval-rforest}</span></span>
+<span id="cb75-644"><a href="#cb75-644" aria-hidden="true" tabindex="-1"></a>rf_probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_rf, test_data, <span class="at">type =</span> <span class="st">"prob"</span>)[,<span class="dv">2</span>]</span>
+<span id="cb75-645"><a href="#cb75-645" aria-hidden="true" tabindex="-1"></a>roc_rf   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_data<span class="sc">$</span>y, rf_probs)</span>
+<span id="cb75-646"><a href="#cb75-646" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-647"><a href="#cb75-647" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-648"><a href="#cb75-648" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-649"><a href="#cb75-649" aria-hidden="true" tabindex="-1"></a><span class="fu">### Proposed Campaign:</span></span>
+<span id="cb75-649"><a href="#cb75-649" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot All ROC Curves on One Graph</span></span>
 <span id="cb75-650"><a href="#cb75-650" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-651"><a href="#cb75-651" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Target high-frequency coffee consumers.</span>
-<span id="cb75-652"><a href="#cb75-652" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Schedule promotions during high-acceptance time windows.</span>
-<span id="cb75-653"><a href="#cb75-653" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Allocate more budget to top-performing coupon categories.</span>
-<span id="cb75-654"><a href="#cb75-654" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Use predictive scores to send personalized offers.</span>
-<span id="cb75-655"><a href="#cb75-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-656"><a href="#cb75-656" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb75-651"><a href="#cb75-651" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, plot-all-roc}</span></span>
+<span id="cb75-652"><a href="#cb75-652" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, </span>
+<span id="cb75-653"><a href="#cb75-653" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>, </span>
+<span id="cb75-654"><a href="#cb75-654" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-655"><a href="#cb75-655" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"ROC Curve Comparison"</span>)</span>
+<span id="cb75-656"><a href="#cb75-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-657"><a href="#cb75-657" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_tree, </span>
+<span id="cb75-658"><a href="#cb75-658" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>, </span>
+<span id="cb75-659"><a href="#cb75-659" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-660"><a href="#cb75-660" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-661"><a href="#cb75-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-662"><a href="#cb75-662" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_rf, </span>
+<span id="cb75-663"><a href="#cb75-663" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, </span>
+<span id="cb75-664"><a href="#cb75-664" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb75-665"><a href="#cb75-665" aria-hidden="true" tabindex="-1"></a>     <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb75-666"><a href="#cb75-666" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-667"><a href="#cb75-667" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb75-668"><a href="#cb75-668" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(</span>
+<span id="cb75-669"><a href="#cb75-669" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Logistic Regression (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log),<span class="dv">3</span>),<span class="st">")"</span>),</span>
+<span id="cb75-670"><a href="#cb75-670" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Decision Tree (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_tree),<span class="dv">3</span>),<span class="st">")"</span>),</span>
+<span id="cb75-671"><a href="#cb75-671" aria-hidden="true" tabindex="-1"></a>         <span class="fu">paste</span>(<span class="st">"Random Forest (AUC ="</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_rf),<span class="dv">3</span>),<span class="st">")"</span>)</span>
+<span id="cb75-672"><a href="#cb75-672" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb75-673"><a href="#cb75-673" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>),</span>
+<span id="cb75-674"><a href="#cb75-674" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb75-675"><a href="#cb75-675" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb75-676"><a href="#cb75-676" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-677"><a href="#cb75-677" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data-Driven Marketing Campaign</span></span>
+<span id="cb75-678"><a href="#cb75-678" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-679"><a href="#cb75-679" aria-hidden="true" tabindex="-1"></a>Based on the insights gathered through exploratory data analysis and predictive</span>
+<span id="cb75-680"><a href="#cb75-680" aria-hidden="true" tabindex="-1"></a>modeling, we propose a comprehensive, data-driven marketing campaign aimed at</span>
+<span id="cb75-681"><a href="#cb75-681" aria-hidden="true" tabindex="-1"></a>maximizing coupon acceptance rates while minimizing unnecessary promotional </span>
+<span id="cb75-682"><a href="#cb75-682" aria-hidden="true" tabindex="-1"></a>costs.</span>
+<span id="cb75-683"><a href="#cb75-683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-684"><a href="#cb75-684" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Customer Segments</span></span>
+<span id="cb75-685"><a href="#cb75-685" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-686"><a href="#cb75-686" aria-hidden="true" tabindex="-1"></a>The analysis revealed that coupon acceptance is not uniform across all </span>
+<span id="cb75-687"><a href="#cb75-687" aria-hidden="true" tabindex="-1"></a>customers. We identified four distinct customer segments that differ </span>
+<span id="cb75-688"><a href="#cb75-688" aria-hidden="true" tabindex="-1"></a>significantly in their likelihood to accept a coupon:</span>
+<span id="cb75-689"><a href="#cb75-689" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-690"><a href="#cb75-690" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Segment <span class="pp">|</span> Profile <span class="pp">|</span> Best Coupon Type <span class="pp">|</span> Expected Acceptance <span class="pp">|</span></span>
+<span id="cb75-691"><a href="#cb75-691" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb75-692"><a href="#cb75-692" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> *Coffee Addict* <span class="pp">|</span> Visits coffee house 4+ times/month <span class="pp">|</span> Coffee House <span class="pp">|</span> ~65% <span class="pp">|</span></span>
+<span id="cb75-693"><a href="#cb75-693" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> *Lunch Crowd* <span class="pp">|</span> Drives at midday, no urgent destination <span class="pp">|</span> Carry out / Restaurant(&lt;$20) <span class="pp">|</span> ~70% <span class="pp">|</span></span>
+<span id="cb75-694"><a href="#cb75-694" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> *Night Out* <span class="pp">|</span> Drives in the evening with friends <span class="pp">|</span> Bar / Restaurant($20–$50)<span class="pp">|</span> ~55% <span class="pp">|</span></span>
+<span id="cb75-695"><a href="#cb75-695" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> *Family Driver* <span class="pp">|</span> Has children, drives with kids <span class="pp">|</span> Carry out &amp; Take away <span class="pp">|</span> ~70% <span class="pp">|</span></span>
+<span id="cb75-696"><a href="#cb75-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-697"><a href="#cb75-697" aria-hidden="true" tabindex="-1"></a>These segments were derived from the behavioral variables in the dataset</span>
+<span id="cb75-698"><a href="#cb75-698" aria-hidden="true" tabindex="-1"></a>(coffee_house, bar, carry_away, passanger, time) and validated through</span>
+<span id="cb75-699"><a href="#cb75-699" aria-hidden="true" tabindex="-1"></a>the decision tree splits identified in Section 4.3.</span>
+<span id="cb75-700"><a href="#cb75-700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-701"><a href="#cb75-701" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optimal Targeting Strategy</span></span>
+<span id="cb75-702"><a href="#cb75-702" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-703"><a href="#cb75-703" aria-hidden="true" tabindex="-1"></a><span class="fu">### Timing</span></span>
+<span id="cb75-704"><a href="#cb75-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-705"><a href="#cb75-705" aria-hidden="true" tabindex="-1"></a>The acceptance rate analysis by time of day (Section 3.2) shows that coupon</span>
+<span id="cb75-706"><a href="#cb75-706" aria-hidden="true" tabindex="-1"></a>acceptance peaks at *2PM (~67%)* and is lowest at *10PM (~52%)*. We therefore </span>
+<span id="cb75-707"><a href="#cb75-707" aria-hidden="true" tabindex="-1"></a>recommend the following send windows:</span>
+<span id="cb75-708"><a href="#cb75-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-709"><a href="#cb75-709" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Time Window <span class="pp">|</span> Recommended Coupon <span class="pp">|</span> Rationale <span class="pp">|</span></span>
+<span id="cb75-710"><a href="#cb75-710" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb75-711"><a href="#cb75-711" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10:00 – 12:00 <span class="pp">|</span> Coffee House <span class="pp">|</span> Morning coffee break — high demand <span class="pp">|</span></span>
+<span id="cb75-712"><a href="#cb75-712" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 12:00 – 15:00 <span class="pp">|</span> Carry out / Restaurant(&lt;$20) <span class="pp">|</span> Lunch peak — highest acceptance <span class="pp">|</span></span>
+<span id="cb75-713"><a href="#cb75-713" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 18:00 – 21:00 <span class="pp">|</span> Bar / Restaurant($20–$50) <span class="pp">|</span> Evening outing with friends <span class="pp">|</span></span>
+<span id="cb75-714"><a href="#cb75-714" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Avoid 22:00+ <span class="pp">|</span> All types <span class="pp">|</span> Lowest acceptance — budget waste <span class="pp">|</span></span>
+<span id="cb75-715"><a href="#cb75-715" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-716"><a href="#cb75-716" aria-hidden="true" tabindex="-1"></a><span class="fu">### Coupon Expiration</span></span>
+<span id="cb75-717"><a href="#cb75-717" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-718"><a href="#cb75-718" aria-hidden="true" tabindex="-1"></a>Expiration time plays a significant role in acceptance decisions:</span>
+<span id="cb75-719"><a href="#cb75-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-720"><a href="#cb75-720" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*2-hour coupons* are most effective during midday hours when the customer is </span>
+<span id="cb75-721"><a href="#cb75-721" aria-hidden="true" tabindex="-1"></a>  near the venue and can act immediately. They create a sense of urgency.</span>
+<span id="cb75-722"><a href="#cb75-722" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*1-day coupons* are better suited for Bar and Restaurant($20–$50) offers, </span>
+<span id="cb75-723"><a href="#cb75-723" aria-hidden="true" tabindex="-1"></a>  where customers need time to plan an evening outing.</span>
+<span id="cb75-724"><a href="#cb75-724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-725"><a href="#cb75-725" aria-hidden="true" tabindex="-1"></a>*Recommendation:* Send 2-hour coupons at lunchtime for fast food/carry out, and </span>
+<span id="cb75-726"><a href="#cb75-726" aria-hidden="true" tabindex="-1"></a>1-day coupons in the morning for evening dining or bar visits.</span>
+<span id="cb75-727"><a href="#cb75-727" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-728"><a href="#cb75-728" aria-hidden="true" tabindex="-1"></a><span class="fu">### Predictive Scoring Threshold</span></span>
+<span id="cb75-729"><a href="#cb75-729" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-730"><a href="#cb75-730" aria-hidden="true" tabindex="-1"></a>The Random Forest model generates a probability score (0–1) for each customer,</span>
+<span id="cb75-731"><a href="#cb75-731" aria-hidden="true" tabindex="-1"></a>representing their likelihood of accepting a coupon. We propose a</span>
+<span id="cb75-732"><a href="#cb75-732" aria-hidden="true" tabindex="-1"></a>threshold-based targeting system to optimize campaign ROI:</span>
+<span id="cb75-733"><a href="#cb75-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-734"><a href="#cb75-734" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score Range <span class="pp">|</span> Action <span class="pp">|</span> Rationale <span class="pp">|</span></span>
+<span id="cb75-735"><a href="#cb75-735" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb75-736"><a href="#cb75-736" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score &gt; 0.70 <span class="pp">|</span> Send coupon immediately <span class="pp">|</span> High acceptance probability <span class="pp">|</span></span>
+<span id="cb75-737"><a href="#cb75-737" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score 0.50 – 0.70 <span class="pp">|</span> Send with A/B testing <span class="pp">|</span> Moderate probability — worth testing <span class="pp">|</span></span>
+<span id="cb75-738"><a href="#cb75-738" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score &lt; 0.50 <span class="pp">|</span> Do not send <span class="pp">|</span> Low probability — cost saving <span class="pp">|</span></span>
+<span id="cb75-739"><a href="#cb75-739" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-740"><a href="#cb75-740" aria-hidden="true" tabindex="-1"></a>This approach reduces unnecessary coupon distribution while focusing budget</span>
+<span id="cb75-741"><a href="#cb75-741" aria-hidden="true" tabindex="-1"></a>on customers most likely to respond positively.</span>
+<span id="cb75-742"><a href="#cb75-742" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-743"><a href="#cb75-743" aria-hidden="true" tabindex="-1"></a><span class="fu">## Budget Allocation</span></span>
+<span id="cb75-744"><a href="#cb75-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-745"><a href="#cb75-745" aria-hidden="true" tabindex="-1"></a>Based on the coupon-type acceptance rates identified in Section 3.1,</span>
+<span id="cb75-746"><a href="#cb75-746" aria-hidden="true" tabindex="-1"></a>we recommend the following budget distribution:</span>
+<span id="cb75-747"><a href="#cb75-747" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-748"><a href="#cb75-748" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coupon Type <span class="pp">|</span> Acceptance Rate <span class="pp">|</span> Priority <span class="pp">|</span> Recommended Budget Share <span class="pp">|</span></span>
+<span id="cb75-749"><a href="#cb75-749" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb75-750"><a href="#cb75-750" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Carry out &amp; Take away <span class="pp">|</span> ~70% <span class="pp">|</span> ★★★ High <span class="pp">|</span> 30% <span class="pp">|</span></span>
+<span id="cb75-751"><a href="#cb75-751" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Restaurant(&lt;$20) <span class="pp">|</span> ~70% <span class="pp">|</span> ★★★ High <span class="pp">|</span> 30% <span class="pp">|</span></span>
+<span id="cb75-752"><a href="#cb75-752" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coffee House <span class="pp">|</span> ~65% <span class="pp">|</span> ★★ Medium <span class="pp">|</span> 20% <span class="pp">|</span></span>
+<span id="cb75-753"><a href="#cb75-753" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Restaurant($20–$50) <span class="pp">|</span> ~58% <span class="pp">|</span> ★★ Medium <span class="pp">|</span> 15% <span class="pp">|</span></span>
+<span id="cb75-754"><a href="#cb75-754" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bar <span class="pp">|</span> ~41% <span class="pp">|</span> ★ Low <span class="pp">|</span> 5% <span class="pp">|</span></span>
+<span id="cb75-755"><a href="#cb75-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-756"><a href="#cb75-756" aria-hidden="true" tabindex="-1"></a>Bar coupons should only be distributed to highly targeted segments</span>
+<span id="cb75-757"><a href="#cb75-757" aria-hidden="true" tabindex="-1"></a>(frequent bar visitors, evening drivers with friends) to avoid</span>
+<span id="cb75-758"><a href="#cb75-758" aria-hidden="true" tabindex="-1"></a>low-return spend.</span>
+<span id="cb75-759"><a href="#cb75-759" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-760"><a href="#cb75-760" aria-hidden="true" tabindex="-1"></a><span class="fu">## Marketing Channels &amp; Tactics</span></span>
+<span id="cb75-761"><a href="#cb75-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-762"><a href="#cb75-762" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Channel <span class="pp">|</span> Target Segment <span class="pp">|</span> Tactic <span class="pp">|</span></span>
+<span id="cb75-763"><a href="#cb75-763" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb75-764"><a href="#cb75-764" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mobile push notification <span class="pp">|</span> All segments <span class="pp">|</span> Send coupon during identified high-acceptance time windows <span class="pp">|</span></span>
+<span id="cb75-765"><a href="#cb75-765" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> In-app GPS trigger <span class="pp">|</span> Lunch Crowd, Coffee Addict <span class="pp">|</span> Trigger coupon when driver is within 15 min of venue <span class="pp">|</span></span>
+<span id="cb75-766"><a href="#cb75-766" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Email (morning send) <span class="pp">|</span> Night Out segment <span class="pp">|</span> Send 1-day Bar/Restaurant coupons before 10AM <span class="pp">|</span></span>
+<span id="cb75-767"><a href="#cb75-767" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Loyalty program integration <span class="pp">|</span> Frequent visitors (4~8, gt8) <span class="pp">|</span> Offer escalating rewards for repeat coupon usage <span class="pp">|</span></span>
+<span id="cb75-768"><a href="#cb75-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-769"><a href="#cb75-769" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Performance Indicators (KPIs)</span></span>
+<span id="cb75-770"><a href="#cb75-770" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-771"><a href="#cb75-771" aria-hidden="true" tabindex="-1"></a>To evaluate the success of the campaign, we propose monitoring the following </span>
+<span id="cb75-772"><a href="#cb75-772" aria-hidden="true" tabindex="-1"></a>KPIs on a monthly basis:</span>
+<span id="cb75-773"><a href="#cb75-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-774"><a href="#cb75-774" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> KPI <span class="pp">|</span> Definition <span class="pp">|</span> Target <span class="pp">|</span></span>
+<span id="cb75-775"><a href="#cb75-775" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb75-776"><a href="#cb75-776" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coupon Redemption Rate <span class="pp">|</span> % of sent coupons that were used <span class="pp">|</span> &gt; 60% <span class="pp">|</span></span>
+<span id="cb75-777"><a href="#cb75-777" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cost per Redemption <span class="pp">|</span> Campaign cost / number of redemptions <span class="pp">|</span> Reduction vs. baseline <span class="pp">|</span></span>
+<span id="cb75-778"><a href="#cb75-778" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Revenue Lift <span class="pp">|</span> Revenue increase vs. period without coupons <span class="pp">|</span> &gt; 15% <span class="pp">|</span></span>
+<span id="cb75-779"><a href="#cb75-779" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Model Accuracy <span class="pp">|</span> Ongoing accuracy of the Random Forest model <span class="pp">|</span> Maintain &gt; 75% <span class="pp">|</span></span>
+<span id="cb75-780"><a href="#cb75-780" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Segment Response Rate <span class="pp">|</span> Acceptance rate per customer segment <span class="pp">|</span> Improvement per segment <span class="pp">|</span></span>
+<span id="cb75-781"><a href="#cb75-781" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-782"><a href="#cb75-782" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations &amp; Future Improvements</span></span>
+<span id="cb75-783"><a href="#cb75-783" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-784"><a href="#cb75-784" aria-hidden="true" tabindex="-1"></a>We acknowledge the following limitations of this analysis:</span>
+<span id="cb75-785"><a href="#cb75-785" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-786"><a href="#cb75-786" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The dataset is based on a *survey*, not real transaction data. Actual</span>
+<span id="cb75-787"><a href="#cb75-787" aria-hidden="true" tabindex="-1"></a>  behavior in real-world conditions may differ from survey responses.</span>
+<span id="cb75-788"><a href="#cb75-788" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The model lacks *real-time GPS data*, which would significantly improve</span>
+<span id="cb75-789"><a href="#cb75-789" aria-hidden="true" tabindex="-1"></a>  location-based targeting precision.</span>
+<span id="cb75-790"><a href="#cb75-790" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The model requires *periodic retraining* as consumer habits evolve over time.</span>
+<span id="cb75-791"><a href="#cb75-791" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The analysis does not account for *seasonal variation* (e.g., different </span>
+<span id="cb75-792"><a href="#cb75-792" aria-hidden="true" tabindex="-1"></a>  behavior in winter vs. summer).</span>
+<span id="cb75-793"><a href="#cb75-793" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-794"><a href="#cb75-794" aria-hidden="true" tabindex="-1"></a>To further improve campaign effectiveness, we recommend:</span>
+<span id="cb75-795"><a href="#cb75-795" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-796"><a href="#cb75-796" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implementing *cross-validation* for more robust model evaluation.</span>
+<span id="cb75-797"><a href="#cb75-797" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Applying *hyperparameter tuning* to further optimize the Random Forest model.</span>
+<span id="cb75-798"><a href="#cb75-798" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integrating *real-time location data* for dynamic, proximity-based coupon </span>
+<span id="cb75-799"><a href="#cb75-799" aria-hidden="true" tabindex="-1"></a>  delivery.</span>
+<span id="cb75-800"><a href="#cb75-800" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Establishing an *A/B testing framework* to continuously compare targeting </span>
+<span id="cb75-801"><a href="#cb75-801" aria-hidden="true" tabindex="-1"></a>  strategies.</span>
+<span id="cb75-802"><a href="#cb75-802" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-803"><a href="#cb75-803" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

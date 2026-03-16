@@ -427,6 +427,14 @@ df %>%
        y = "Acceptance Rate") +
   theme_minimal()
 ```
+This visualization presents the acceptance rate for each coupon category. The 
+results show that **Coffee House and Bar coupons have relatively higher 
+acceptance rates compared to other categories**. One possible explanation is 
+that these types of places are **easy for customers to visit as part of their 
+daily routine**, for example grabbing a coffee or meeting friends for a drink. 
+In contrast, **Restaurant(20–50) coupons have lower acceptance rates**, possibly
+because going to a restaurant usually requires **more time and planning compared 
+to a quick coffee or bar visit**.
 
 ## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}
 ```{r, acceptance-rate-by-time-of-day}
@@ -441,6 +449,13 @@ df %>%
        y = "Acceptance Rate") +
   theme_minimal()
 ```
+
+This chart examines how coupon acceptance changes depending on the **time of 
+day**. The results suggest that **acceptance is slightly higher during the 
+morning and afternoon periods** compared to later hours. This may be because 
+customers are more likely to use coupons for **daily activities such as coffee 
+or quick meals during these times**. Overall, the visualization indicates that 
+**timing may influence how likely customers are to accept a coupon**.
 
 ## Income vs Acceptance (Customer Affordability Pattern)
 
@@ -457,6 +472,14 @@ df %>%
        y = "Acceptance Rate")
 ```
 
+This visualization explores the relationship between **income level and coupon 
+acceptance**. The results show that **customers in lower and middle income 
+groups tend to accept coupons more often**. This pattern may suggest that 
+discounts and promotions are more attractive to customers who are more careful 
+about spending. In contrast, **higher income groups show slightly lower 
+acceptance rates**, which may indicate that price incentives are less important 
+for them.
+
 ## Coffee House Visits vs Acceptance (Behavioral Engagement Signal)
 
 ```{r, coffe-vists-vs-acceptance}
@@ -470,6 +493,14 @@ df %>%
        y = "Acceptance Rate") +
   theme_minimal()
 ```
+
+This chart analyzes the relationship between **how often customers visit coffee 
+houses and their likelihood of accepting coupons**. Customers who visit coffee 
+houses more frequently show **higher acceptance rates for these types of 
+coupons**. This suggests that people who already have a habit of visiting coffee
+shops are more likely to take advantage of related offers. Therefore, **past 
+behavior appears to be an important factor in predicting coupon acceptance.**
+
 ## Heatmap – Coupon Type × Time (Segmentation Insight)
 
 ```{r, coupontype-by-time}
@@ -485,6 +516,13 @@ df %>%
        fill = "Acceptance Rate") +
   theme_minimal()
 ```
+
+The heatmap combines **coupon type and time of day** to show how acceptance 
+rates vary across different situations. Some combinations show **higher 
+acceptance levels, such as Coffee House coupons during morning hours**. Other 
+combinations appear less effective, indicating that **not all offers perform the
+same at different times of the day**. This suggests that **both the type of 
+coupon and the time it is offered may influence customer response**.
 
 ## Regression analysis
 
@@ -636,21 +674,130 @@ legend("bottomright",
        lwd = 2)
 ```
 
+# Data-Driven Marketing Campaign
 
-# Marketing Campaign Strategy
+Based on the insights gathered through exploratory data analysis and predictive
+modeling, we propose a comprehensive, data-driven marketing campaign aimed at
+maximizing coupon acceptance rates while minimizing unnecessary promotional 
+costs.
 
-Based on the modeling results:
+## Key Customer Segments
 
--   Random Forest achieved the highest AUC and strongest predictive power.
--   High-frequency coffee visitors show highest responsiveness.
--   Time-of-day effects suggest targeted push timing.
--   Coupon type performance varies significantly.
+The analysis revealed that coupon acceptance is not uniform across all 
+customers. We identified four distinct customer segments that differ 
+significantly in their likelihood to accept a coupon:
 
-### Proposed Campaign:
+| Segment | Profile | Best Coupon Type | Expected Acceptance |
+|---|---|---|---|
+| *Coffee Addict* | Visits coffee house 4+ times/month | Coffee House | ~65% |
+| *Lunch Crowd* | Drives at midday, no urgent destination | Carry out / Restaurant(<$20) | ~70% |
+| *Night Out* | Drives in the evening with friends | Bar / Restaurant($20–$50)| ~55% |
+| *Family Driver* | Has children, drives with kids | Carry out & Take away | ~70% |
 
-1.  Target high-frequency coffee consumers.
-2.  Schedule promotions during high-acceptance time windows.
-3.  Allocate more budget to top-performing coupon categories.
-4.  Use predictive scores to send personalized offers.
+These segments were derived from the behavioral variables in the dataset
+(coffee_house, bar, carry_away, passanger, time) and validated through
+the decision tree splits identified in Section 4.3.
+
+## Optimal Targeting Strategy
+
+### Timing
+
+The acceptance rate analysis by time of day (Section 3.2) shows that coupon
+acceptance peaks at *2PM (~67%)* and is lowest at *10PM (~52%)*. We therefore 
+recommend the following send windows:
+
+| Time Window | Recommended Coupon | Rationale |
+|---|---|---|
+| 10:00 – 12:00 | Coffee House | Morning coffee break — high demand |
+| 12:00 – 15:00 | Carry out / Restaurant(<$20) | Lunch peak — highest acceptance |
+| 18:00 – 21:00 | Bar / Restaurant($20–$50) | Evening outing with friends |
+| Avoid 22:00+ | All types | Lowest acceptance — budget waste |
+
+### Coupon Expiration
+
+Expiration time plays a significant role in acceptance decisions:
+
+- *2-hour coupons* are most effective during midday hours when the customer is 
+  near the venue and can act immediately. They create a sense of urgency.
+- *1-day coupons* are better suited for Bar and Restaurant($20–$50) offers, 
+  where customers need time to plan an evening outing.
+
+*Recommendation:* Send 2-hour coupons at lunchtime for fast food/carry out, and 
+1-day coupons in the morning for evening dining or bar visits.
+
+### Predictive Scoring Threshold
+
+The Random Forest model generates a probability score (0–1) for each customer,
+representing their likelihood of accepting a coupon. We propose a
+threshold-based targeting system to optimize campaign ROI:
+
+| Score Range | Action | Rationale |
+|---|---|---|
+| Score > 0.70 | Send coupon immediately | High acceptance probability |
+| Score 0.50 – 0.70 | Send with A/B testing | Moderate probability — worth testing |
+| Score < 0.50 | Do not send | Low probability — cost saving |
+
+This approach reduces unnecessary coupon distribution while focusing budget
+on customers most likely to respond positively.
+
+## Budget Allocation
+
+Based on the coupon-type acceptance rates identified in Section 3.1,
+we recommend the following budget distribution:
+
+| Coupon Type | Acceptance Rate | Priority | Recommended Budget Share |
+|---|---|---|---|
+| Carry out & Take away | ~70% | ★★★ High | 30% |
+| Restaurant(<$20) | ~70% | ★★★ High | 30% |
+| Coffee House | ~65% | ★★ Medium | 20% |
+| Restaurant($20–$50) | ~58% | ★★ Medium | 15% |
+| Bar | ~41% | ★ Low | 5% |
+
+Bar coupons should only be distributed to highly targeted segments
+(frequent bar visitors, evening drivers with friends) to avoid
+low-return spend.
+
+## Marketing Channels & Tactics
+
+| Channel | Target Segment | Tactic |
+|---|---|---|
+| Mobile push notification | All segments | Send coupon during identified high-acceptance time windows |
+| In-app GPS trigger | Lunch Crowd, Coffee Addict | Trigger coupon when driver is within 15 min of venue |
+| Email (morning send) | Night Out segment | Send 1-day Bar/Restaurant coupons before 10AM |
+| Loyalty program integration | Frequent visitors (4~8, gt8) | Offer escalating rewards for repeat coupon usage |
+
+## Key Performance Indicators (KPIs)
+
+To evaluate the success of the campaign, we propose monitoring the following 
+KPIs on a monthly basis:
+
+| KPI | Definition | Target |
+|---|---|---|
+| Coupon Redemption Rate | % of sent coupons that were used | > 60% |
+| Cost per Redemption | Campaign cost / number of redemptions | Reduction vs. baseline |
+| Revenue Lift | Revenue increase vs. period without coupons | > 15% |
+| Model Accuracy | Ongoing accuracy of the Random Forest model | Maintain > 75% |
+| Segment Response Rate | Acceptance rate per customer segment | Improvement per segment |
+
+## Limitations & Future Improvements
+
+We acknowledge the following limitations of this analysis:
+
+- The dataset is based on a *survey*, not real transaction data. Actual
+  behavior in real-world conditions may differ from survey responses.
+- The model lacks *real-time GPS data*, which would significantly improve
+  location-based targeting precision.
+- The model requires *periodic retraining* as consumer habits evolve over time.
+- The analysis does not account for *seasonal variation* (e.g., different 
+  behavior in winter vs. summer).
+
+To further improve campaign effectiveness, we recommend:
+
+- Implementing *cross-validation* for more robust model evaluation.
+- Applying *hyperparameter tuning* to further optimize the Random Forest model.
+- Integrating *real-time location data* for dynamic, proximity-based coupon 
+  delivery.
+- Establishing an *A/B testing framework* to continuously compare targeting 
+  strategies.
 
 ------------------------------------------------------------------------
