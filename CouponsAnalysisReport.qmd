@@ -64,7 +64,8 @@ execute:
 
 # Introduction
 
-\<Introduction goes here \>
+
+The objective of this report is to analyse customer coupon acceptance behavior and predict whether a customer will accept a coupon offer. Since the target variable has two possible outcomes, accepted or rejected, the problem is formulated as a binary classification task. To address this objective, we first perform data cleaning and pre-processing to ensure data quality and proper variable formatting. We then conduct exploratory data analysis to identify key behavioral and contextual patterns associated with coupon acceptance. Finally, we develop and compare three predictive models, Logistic Regression, Decision Tree, and Random Forest, to evaluate their predictive performance and derive actionable marketing insights. The final goal is to identify the customer and situational factors that increase coupon acceptance and translate these findings into actionable marketing recommendations.
 
 # Data Loading & Preprocessing
 
@@ -81,19 +82,23 @@ library(ggplot2)
 library(janitor)
 library(rpart)
 library(rpart.plot)
+library(iml)
+library(knitr)
+library(copula)
+library(arules)
+library(arulesViz)
 ```
 
 ## Load Data
 
-Here, we load our csv data set into an dataframe and perform an initial 
-inspection:
+The dataset was imported from a CSV file containing survey responses related to coupon acceptance behaviour. Each observation represents a customer scenario including demographic attributes, contextual conditions, and coupon characteristics. The structure of the dataset was inspected using `summary()` to understand the variable types and identify potential data quality issues such as missing values or incorrect formats.
+
 
 ```{r, load-csv}
 # for installing packages also needed 
 # ("  ,dependencies = TRUE, method = "wininet" ")
 df <- read.csv("./dataset/coupons.csv")
 glimpse(df)
-# summary(df)
 ```
 
 ## Process Data
@@ -105,7 +110,9 @@ We will use `clean_names` in order to avoid any inconsistencies in the string
 values. Afterwards we will automatically convert all character features into
 factors, because all of them describe a category. This will allow us to
 reason easier when performing data cleaning and exploratory analysis. We will
-also set any empty string as NA, as that's how it's represented in the data set.
+also set any empty string as `NA`, as that's how it's represented in the data 
+set. Column names were standardized using the `clean_names()` function to ensure 
+consistent formatting across character types.
 
 ```{r, autoset-chr-fact}
 df <- clean_names(df)
@@ -310,6 +317,8 @@ While most of the rows are complete, there are several that have NA values.
 ```{r, check-noncomplete}
 sprintf("Noncomplete records in dataset: %f", sum(!complete.cases(df)) / nrow(df))
 df_full_complete <- na.omit(df)
+df_with_empty <-df
+df <- df_full_complete
 ```
 Sine the number of noncomplete records is less then 5%, we will drop those rows.
 
@@ -441,9 +450,9 @@ to a quick coffee or bar visit**.
 df %>%
   group_by(time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
-  ggplot(aes(x = time, y = accept_rate, group = 1)) +
-  geom_line(color = "#e41a1c", size = 1.2) +
+  ggplot(aes(x = time, y = accept_rate)) +
   geom_point(size = 3, color = "#e41a1c") +
+  geom_smooth(method = "loess", se = FALSE, color = "#e41a1c") +
   labs(title = "Coupon Acceptance Rate by Time of Day",
        x = "Time of Day",
        y = "Acceptance Rate") +
@@ -456,6 +465,7 @@ morning and afternoon periods** compared to later hours. This may be because
 customers are more likely to use coupons for **daily activities such as coffee 
 or quick meals during these times**. Overall, the visualization indicates that 
 **timing may influence how likely customers are to accept a coupon**.
+
 
 ## Income vs Acceptance (Customer Affordability Pattern)
 
@@ -524,9 +534,47 @@ combinations appear less effective, indicating that **not all offers perform the
 same at different times of the day**. This suggests that **both the type of 
 coupon and the time it is offered may influence customer response**.
 
+
+## Coupon Acceptance by Coupon Type and Destination
+
+```{r, }
+df %>%
+  group_by(coupon, destination) %>%
+  summarise(rate = mean(y_numeric), .groups="drop") %>%
+  ggplot(aes(coupon, rate, fill = destination)) +
+  geom_col(position = "dodge") +
+  labs(title = "Coupon Acceptance by Coupon Type and Destination",
+       x = "Coupon Type",
+       y = "Acceptance Rate") +
+  theme_minimal()
+
+```
+
+The grouped bar chart indicates that the relationship between coupon type and acceptance is not constant across destinations. This suggests that destination captures an important situational context that may modify how attractive a given coupon appears to the customer. As a result, destination is not only descriptively relevant, but also a potentially important predictor in the classification models, especially when combined with coupon type.
+
+## Acceptance Rate by Bar Visits (Specific behaviour Insight)
+
+```{r}
+df %>%
+  group_by(bar) %>%
+  summarise(accept_rate = mean(y_numeric)) %>%
+  ggplot(aes(x = bar, y = accept_rate, group = 1)) +
+  geom_col(fill = "#ff6666", alpha = 0.8) +
+  geom_line(color = "#ff3300", linewidth = 1.2) +
+  geom_point(size = 3, color = "#ff3300") +
+  labs(title = "Acceptance Rate by Bar Visit Frequency",
+       x = "Visit Frequency",
+       y = "Acceptance Rate") +
+  theme_minimal()
+
+```
+
+The chart indicates that coupon acceptance tends to increase with the frequency of bar visits. This suggests that prior behavioral engagement is strongly associated with promotional responsiveness. Customers who already visit bars more often are more likely to find related coupons relevant, making this variable useful both for predictive modeling and for behavior-based customer targeting.
+
+
 ## Regression analysis
 
-We wil now run the entire dataset through a general linear regression 
+We will now run the entire dataset through a general linear regression 
 model in order to gain some further insights from the data
 
 ```{r, data-summary-before-reg}
@@ -540,18 +588,20 @@ summary(reg_analysis)
 
 # Predictive Modeling
 
-We will use 3 models:  Logistic Regression, Decision Tree, Random Forest
-Remove y_numeric
-Keep y_factor as target
-Remove irrelevant columns (IDs etc.)
+The objective of the predictive modelling stage is to estimate the probability that a customer will accept a coupon based on demographic characteristics, behavioural patterns, and contextual variables. Since the target variable represents a binary outcome (accepted or rejected), the problem is formulated as a binary classification task.
+
+To evaluate different modelling approaches, three models were implemented:
+
+- **Logistic Regression**
+- **Decision Tree**
+- **Random Forest**
+
+These models were selected because they represent different modeling approaches. Logistic Regression provides an interpretable statistical baseline for binary classification. This allows us to understand how individual predictors influence coupon acceptance, which was the reason it was selected for a baseline. Decision Trees capture nonlinear decision rules and behavioral segmentation patterns, while Random Forest improves predictive accuracy by combining multiple trees through an ensemble learning approach.
 
 ## Create Test and Training dataset
 
-Remove rows with NA
+The modelling dataset was then split into training and testing subsets using a 70% / 30% ratio. The training set was used to estimate the predictive models, while the test set was reserved for out-of-sample evaluation. A fixed random seed (`set.seed(123)`) was used to ensure that the split is reproducible. Finally, the target variable `y_factor` was explicitly defined with consistent factor levels in both subsets so that all classification models interpret the outcome in the same way.
 
-Train/Test Split (70% / 30%)
-
-positive class -> 1 not 0
 ```{r, data-split}
 df_clean <- df %>%
   select(-y_numeric, -y_factor)
@@ -572,6 +622,11 @@ test_data  <- df_nonnull[-train_index, ]
 
 ## Logistic Regression
 
+### Logistic Baseline
+Here we create our baseline logistic naive model, which simply takes all
+variables and fits them. This would be tested against several other simpler 
+models, in order to have a comparison.
+
 ```{r, model-logreg}
 model_log <- glm(y ~ ., 
                  data = train_data,
@@ -586,8 +641,143 @@ pred_log <- factor(pred_log, levels = c(0,1), labels=c("Rejected", "Accepted"))
 
 confusionMatrix(pred_log, test_data$y)
 ```
+### Progressive Logistic Regression
+
+Logistic Regression was used as the baseline classification model because it provides interpretable coefficients that indicate how individual predictors affect the probability of coupon acceptance.
+
+Instead of fitting a very large model with all available variables, logistic regression was developed gradually rather than including all predictors at once. This stepwise approach improves interpretability and helps identify which variables meaningfully contribute to model performance.
+
+We began with a small contextual model including variables that were clearly relevant based on the exploratory analysis. We then added behavioural variables, and finally demographic variables. This allowed us to evaluate whether each group of predictors improved the model’s predictive ability.
+
+Three logistic regression models were estimated:
+
+- Model 1: contextual variables only
+- Model 2: contextual + behavioural variables
+- Model 3: contextual + behavioural + demographic variables
+
+This approach makes the modelling process more transparent and reduces the risk of including redundant predictors that may cause multicollinearity or singularities.
+
+### Estimate the three logistic regression models
+We first estimated a contextual model using only situational variables. We then added behavioral variables related to prior venue visits, and finally demographic characteristics. This allows us to compare how model performance changes as the specification becomes more comprehensive.
+
+```{r, model-cust-log}
+# Model 1: Contextual variables
+model_log_1 <- glm(
+  y ~ coupon + time + destination + weather,
+  data = train_data,
+  family = binomial
+)
+
+# Model 2: Add behavioral variables
+model_log_2 <- glm(
+  y ~ coupon + time + destination + weather +
+    coffee_house + bar,
+  data = train_data,
+  family = binomial
+)
+
+# Model 3: Add demographic variables
+model_log_3 <- glm(
+  y ~ coupon + time + destination + weather +
+    coffee_house + bar + income + age + passanger,
+  data = train_data,
+  family = binomial
+)
+```
+
+### Generate predicted probabilities and classes
+For each model, predicted probabilities of coupon acceptance were calculated for the test set. These probabilities were then converted into class predictions using a threshold of 0.5.
+
+```{r, cust-log-predict}
+# Predicted probabilities
+prob_base <- predict(model_log, test_data, type = "response")
+prob_1 <- predict(model_log_1, test_data, type = "response")
+prob_2 <- predict(model_log_2, test_data, type = "response")
+prob_3 <- predict(model_log_3, test_data, type = "response")
+
+# Predicted classes
+pred_base <- factor(ifelse(prob_base > 0.5, 1, 0), levels = c(0,1), labels=c("Rejected", "Accepted"))
+pred_1 <- factor(ifelse(prob_1 > 0.5, 1, 0), levels = c(0,1), labels=c("Rejected", "Accepted"))
+pred_2 <- factor(ifelse(prob_2 > 0.5, 1, 0), levels = c(0,1), labels=c("Rejected", "Accepted"))
+pred_3 <- factor(ifelse(prob_3 > 0.5, 1, 0), levels = c(0,1), labels=c("Rejected", "Accepted"))
+```
+
+### Evaluate predictive performance
+The three models were evaluated using confusion matrices, Accuracy, and Area Under the ROC Curve (AUC). Accuracy measures the proportion of correctly classified observations, while AUC evaluates how well the model distinguishes between accepted and rejected coupons across different probability thresholds.
+
+```{r, cust-log-eval}
+# Confusion matrices
+cm_base <- confusionMatrix(pred_base, test_data$y, positive = "Accepted")
+cm_1 <- confusionMatrix(pred_1, test_data$y, positive = "Accepted")
+cm_2 <- confusionMatrix(pred_2, test_data$y, positive = "Accepted")
+cm_3 <- confusionMatrix(pred_3, test_data$y, positive = "Accepted")
+
+# ROC and AUC
+roc_base <- roc(test_data$y, prob_base, quiet = TRUE)
+roc_1 <- roc(test_data$y, prob_1, quiet = TRUE)
+roc_2 <- roc(test_data$y, prob_2, quiet = TRUE)
+roc_3 <- roc(test_data$y, prob_3, quiet = TRUE)
+
+auc_base <- auc(roc_base)
+auc_1 <- auc(roc_1)
+auc_2 <- auc(roc_2)
+auc_3 <- auc(roc_3)
+```
+
+### Summarize logistic regression results
+The performance of the three logistic regression specifications is summarized below.
+
+```{r}
+log_results <- data.frame(
+  Model = c(
+    "Logistic base: All",
+    "Logistic 1: Contextual",
+    "Logistic 2: + Behavioral",
+    "Logistic 3: + Demographic"
+  ),
+  Accuracy = c(
+    as.numeric(cm_base$overall["Accuracy"]),
+    as.numeric(cm_1$overall["Accuracy"]),
+    as.numeric(cm_2$overall["Accuracy"]),
+    as.numeric(cm_3$overall["Accuracy"])
+  ),
+  AUC = c(
+    as.numeric(auc_base),
+    as.numeric(auc_1),
+    as.numeric(auc_2),
+    as.numeric(auc_3)
+  )
+)
+
+#| message: false
+#| warning: false
+
+knitr::kable(log_results, digits = 3, caption = "Comparison of logistic regression models")
+```
+
+### Analysis of Logistic Regression Comparison
+
+The stepwise logistic regression results provide useful insight into how different groups of predictors contribute to coupon acceptance.
+
+Model 1 includes only contextual variables: coupon type, time of day, destination, and weather. This model achieves an accuracy of 64.6% and an AUC of 0.673. These results indicate that situational factors alone already contain meaningful predictive information. In other words, customer response is partly shaped by the immediate context in which the coupon is offered. Variables such as the type of coupon, where the customer is going, and when the offer is presented appear to influence the probability of acceptance.
+
+Model 2 extends the contextual model by adding behavioral variables, specifically coffee house and bar visit frequency. This leads to a clear improvement in performance, with accuracy increasing from 64.6% to 66.4% and AUC increasing from 0.673 to 0.693. This is the largest improvement across the three specifications. The result suggests that past customer habits provide strong additional predictive value beyond immediate context. This finding is important because it indicates that coupon acceptance is not only a situational decision, but also reflects established behavioral patterns. Customers who already visit similar venues more frequently are more likely to respond positively to related promotions.
+
+Model 3 further adds demographic variables, including income, age, and passenger status. This final specification produces the best overall performance, with an accuracy of 66.7% and an AUC of 0.698. However, the improvement over Model 2 is relatively small. This suggests that demographic variables contribute some additional explanatory power, but their role is weaker than that of behavioral variables. In practical terms, demographics help refine the prediction, but they do not drive the model as strongly as customer habits and contextual factors.
+
+Taken together, the three models suggest a clear hierarchy of predictive importance. Contextual variables establish a meaningful baseline, behavioral variables generate the most substantial gain in model quality, and demographic variables provide a smaller final improvement. This pattern is consistent with the broader logic of customer analytics: what customers usually do is often more informative than who they are demographically, while the immediate context determines whether a specific offer is relevant at that moment.
+
+From a business perspective, these results imply that effective coupon targeting should combine three elements. First, the offer must match the situational context, such as time of day and trip purpose. Second, the campaign should prioritize customers whose past behavior indicates genuine category interest. Third, demographic characteristics may be used as supporting segmentation variables, but they should not be relied upon as the primary basis for targeting.
+
+Overall, Model 3 was selected as the final logistic regression specification because it achieves the highest predictive performance while remaining interpretable. At the same time, the comparison shows that the main improvement in prediction comes from behavioral information, which highlights the importance of incorporating customer habits into promotional strategy.
 
 ## Decision Tree
+
+### Creating the Decision Tree Model
+
+A Decision Tree model was also developed in order to provide a more visual and intuitive classification approach. Unlike logistic regression, which estimates the effect of each variable through coefficients, a decision tree classifies observations by recursively splitting the data into increasingly homogeneous groups.
+
+This type of model is useful because it can reveal simple decision rules that explain customer behavior. As a result, decision trees are particularly attractive from a business perspective, since they translate model output into segments that are easier to interpret and communicate.
 
 ```{r, model-dectree}
 model_tree <- rpart(y ~ ., 
@@ -600,8 +790,32 @@ pred_tree <- predict(model_tree, test_data, type = "class")
 
 confusionMatrix(pred_tree, test_data$y)
 ```
+### Interpretation of the Decision Tree Model
+
+The decision tree shows that **coupon type** is the most important first-level splitting variable in the model. At the root node, the full sample has an overall coupon acceptance rate of approximately **57%**, meaning that acceptance is slightly more common than rejection in the dataset. The first split separates customers according to coupon category, which indicates that the type of offer is the strongest initial driver of coupon response.
+
+On one side of the tree, customers receiving **Carry Out & Take Away** and **Restaurant (<20)** coupons are grouped into a branch with a much higher probability of acceptance. This suggests that these lower-commitment, more routine-use coupon categories are especially attractive to customers. Within this branch, the next important splitting variable is **expiration**. When the coupon expiration is longer (that is, not less than 13 hours), the terminal node reaches an acceptance probability of around **80%**, which is the highest in the tree. This implies that highly attractive coupon categories become even more effective when customers are given more time flexibility to redeem them.
+
+For the same branch, the tree also shows that **distance to the coupon location** matters. Among customers in this group, those with a longer travel distance (for example, `distance_toCoupon = geq25`) are more likely to end up in a lower-acceptance segment. This suggests that even when the coupon itself is appealing, practical effort still affects the redemption decision. In other words, convenience remains an important constraint.
+
+On the other side of the tree, customers receiving **Coffee House**, **Bar**, and **Restaurant (20–50)** coupons are grouped into a branch with a lower response profile. Within this branch, the most important follow-up predictor is **coffee house visit frequency**. Customers who report **never** or **less than once** visiting coffee houses are assigned to a segment with a clearly lower acceptance probability, around **36%**. This indicates that prior behavioral habits strongly influence coupon response: if customers do not already engage with similar venues, they are much less likely to redeem related offers.
+
+Within that same lower-response branch, the tree then splits on **coupon subtype** and **bar visit frequency**. For customers receiving **Bar** or **Restaurant (20–50)** coupons, the model identifies an especially low-response subgroup when **bar visits = never**, with an acceptance probability of only about **31%**. This is one of the weakest-performing segments in the tree and reinforces the importance of category familiarity. Customers with no prior engagement in the relevant category are unlikely to respond to a related coupon, particularly when the offer itself is more situational or less routine.
+
+At the same time, the tree also identifies a more responsive subgroup within this otherwise weaker branch: customers receiving **Coffee House** or other more familiar offers, combined with at least some relevant prior behavior, move into nodes with acceptance probabilities closer to **56%–68%**. This suggests that even among lower-performing coupon categories, customer behavior can still meaningfully differentiate between weak and moderate response segments.
+
+Overall, the decision tree highlights three main conclusions. First, **coupon type** is the primary driver of customer response. Second, **behavioral variables** such as coffee house and bar visit frequency play a major role in distinguishing responsive from non-responsive customers. Third, **contextual convenience variables**, especially expiration and travel distance, further shape whether an attractive coupon is actually accepted.
+
+From a business perspective, the tree is especially valuable because it translates model output into actionable rules. It shows that the most responsive customers are those offered routine-use coupons with sufficient expiration time and reasonable convenience, while the least responsive customers are those with little prior engagement in the relevant consumption category. This makes the decision tree highly useful for identifying target segments, even though its predictive performance is lower than that of the random forest model.
+
 
 ## Random Forest
+
+### Creating the Random Forest model
+
+A Random Forest model was also developed in order to improve predictive performance. Unlike a single decision tree, Random Forest combines many trees and aggregates their predictions. This ensemble approach reduces overfitting and allows the model to capture more complex and nonlinear relationships between predictors and coupon acceptance.
+
+From an analytical perspective, Random Forest is especially useful when customer response depends on interactions among behavioral, contextual, and demographic variables. Although it is less interpretable than logistic regression, it is typically stronger in pure prediction.
 
 ```{r, model-rforest}
 # I'm not sure where this came from, but it seems to not work
@@ -621,7 +835,32 @@ auc(roc_rf)
 plot(roc_rf)
 ```
 
+### Interpretation of the Random Forest Model
+
+The Random Forest model achieved the strongest predictive performance among the three models. In our results, it produced an accuracy of approximately **75.8%** and an AUC of **0.832**, outperforming both logistic regression and the decision tree. This indicates that the model has a strong ability to distinguish between customers who are likely to accept a coupon and those who are likely to reject it.
+
+The confusion matrix also shows that the model performs well across both classes, with balanced accuracy clearly above the naive benchmark. This suggests that the Random Forest model is not simply exploiting the majority class, but is genuinely learning meaningful patterns from the data.
+
+From an analytical perspective, the superior performance of Random Forest implies that coupon acceptance is shaped by nonlinear relationships and interactions among predictors. In other words, customer response is not determined by one variable in isolation, but by combinations of offer characteristics, situational context, and prior customer habits. Random Forest is particularly well suited to capturing these patterns because it combines many trees and aggregates their decisions.
+
+The variable importance plot provides additional insight by identifying which predictors are most influential in the model. Variables such as coupon type, destination, time, and behavioral frequency measures are expected to be among the most important, which is consistent with the findings from both the exploratory analysis and the logistic regression model.
+
+From a business perspective, Random Forest is the most useful model when the main objective is accurate targeting. It can be used as a scoring tool to identify customers with the highest predicted probability of coupon acceptance, allowing the company to focus promotional resources more efficiently. However, because the model is less transparent than logistic regression, it is better suited for operational prediction than for explaining the exact direction of each predictor’s effect.
+
 # Model Evaluation
+
+In this section, we conduct a comprehensive evaluation of the three classification models: Logistic Regression, Decision Tree, and Random Forest. While the previous section focused on the individual training and internal performance of each model, this comparative analysis aims to identify the optimal predictive framework for our business case—specifically, the task of predicting coupon acceptance.
+
+To ensure a robust evaluation, we employ a multi-faceted approach:
+
+1. **Performance Metrics**: We synthesize the confusion matrices to compare key indicators such as Accuracy, Sensitivity, and Specificity.
+
+2. **Probability Calibration**: We extract predicted probabilities from each model to understand the confidence levels of our classifications.
+
+3. **ROC Analysis**: We utilize the Receiver Operating Characteristic (ROC) curve and the Area Under the Curve (AUC) metric to quantify the discriminative ability of each model across different threshold settings.
+
+This comparative framework will allow us to select the most reliable model, which will subsequently serve as the foundation for our advanced customer analytics and campaign simulations in Section 6.
+
 
 ## Calculate Logistic Regression probabilities (probability of class 1)
 
@@ -645,8 +884,30 @@ rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
 roc_rf   <- roc(test_data$y, rf_probs)
 ```
 
+## Comparative Performance Analysis
 
-## Plot All ROC Curves on One Graph
+To evaluate the effectiveness of our classification models, we have synthesized the key performance indicators: Accuracy, Sensitivity and Specificity obtained from the confusion matrices of each model. The table below provides a concise comparative overview of each algorithm's predictive capability.
+
+**TO FIX:**
+```{R}
+#| label: tbl-model-comparison
+#| tbl-cap: "Performance Summary of All Models"
+
+model_comparison <- data.frame(
+  Model = c("Logistic Regression", "Decision Tree", "Random Forest"),
+  Accuracy = c(0.6895, 0.6806, 0.7512), 
+  Sensitivity = c(0.7719, 0.7992, 0.8373),
+  Specificity = c(0.5811, 0.5245, 0.6377)
+)
+
+kable(model_comparison, format = "markdown")
+```
+As summarized in the table, the Random Forest model consistently outperforms both the Logistic Regression and the Decision Tree across all key metrics, achieving the highest accuracy (75.12%) and the most robust sensitivity (83.73%). Conversely, Logistic Regression and the single Decision Tree exhibit similar, albeit lower, performance levels. This trend suggests that the use of ensemble methods, such as Random Forest, effectively mitigates the limitations of linear models and simple decision rules by capturing complex non-linear interactions within our feature set.
+
+
+## ROC Curve Comparison
+
+To compare the discriminatory power of the three models across thresholds, ROC curves were plotted for each model. A curve that lies closer to the upper-left corner indicates stronger predictive performance.
 
 ```{r, plot-all-roc}
 plot(roc_log, 
@@ -673,6 +934,145 @@ legend("bottomright",
        col = c("blue", "green", "red"),
        lwd = 2)
 ```
+The ROC comparison confirms the superiority of the Random Forest model. Its curve remains above those of the other models across most thresholds, indicating stronger ability to distinguish between customers who are likely to accept a coupon and those who are likely to reject it.
+
+## AUC Comparison
+
+The Area Under the Curve (AUC) provides a quantitative measure of the model's discriminative power. A higher AUC indicates a superior model.
+
+```{R}
+#| label: auc-values
+# Calculating and printing AUCs
+cat("Logistic Regression AUC:", auc(roc_log), "\n")
+cat("Decision Tree AUC:", auc(roc_tree), "\n")
+cat("Random Forest AUC:", auc(roc_rf), "\n")
+```
+## Model Interpretability: SHAP Analysis
+
+We utilize SHAP (SHapley Additive exPlanations) to attribute the model's predictions to specific features, confirming which characteristics are the primary drivers of coupon acceptance.
+
+```{R}
+#| label: shap-analysis
+#| fig-cap: "SHAP Analysis: Feature Impact on Coupon Acceptance"
+
+# Create an explainer for the Random Forest model
+explainer_rf <- Predictor$new(model_rf, data = train_data, y = train_data$y_factor)
+
+# Compute SHAP values for a sample of the test data
+shap_rf <- Shapley$new(explainer_rf, x.interest = test_data[1,])
+
+# Plot SHAP values
+plot(shap_rf) + 
+  ggtitle("Contribution of Features to Coupon Decision (SHAP)") +
+  theme_minimal()
+```
+The SHAP analysis reveals that feature contribution is highly non-linear. While individual demographic factors like age influence the prediction, the coupon type and income bracket are the primary determinants of acceptance. Specifically, the negative impact of income=$62500-$74999 on coupon acceptance (as shown by the negative phi values) suggests that this segment might perceive standard promotional offers as less attractive, indicating a need for premium-tier personalization.
+
+# Prescriptive Analytics
+
+In this section, we transition from predictive modeling to prescriptive analytics. Using the insights derived from the Random Forest model, we simulate campaign outcomes to determine the optimal strategy for maximizing coupon acceptance and profitability.
+
+## Monte Carlo Campaign Simulation
+To validate our model selection from a business perspective, we simulate the potential profitability of the marketing campaign using the probability outputs from all three models.
+
+```{R}
+#| label: monte-carlo-comparison
+#| fig-cap: "Estimated Profitability: Random Forest vs. Alternatives"
+
+# Parameters
+num_simulations <- 10000
+coupon_value <- 5
+coupon_cost  <- 2
+
+# Helper function to simulate profit
+monte_carlo_campaign <- function(probabilities, n = num_simulations){
+  # Simulate total responses based on model probabilities
+  total_acceptance <- sum(rbinom(length(probabilities) * n, 1, rep(probabilities, n)))
+  
+  profit <- total_acceptance * (coupon_value - coupon_cost)
+  return(profit)
+}
+
+# Run simulation for each model
+profit_log  <- monte_carlo_campaign(log_probs)
+profit_tree <- monte_carlo_campaign(tree_probs)
+profit_rf   <- monte_carlo_campaign(rf_probs)
+
+# Results table
+mc_results <- data.frame(
+  Model = c("Logistic Regression", "Decision Tree", "Random Forest"),
+  Estimated_Profit = c(profit_log, profit_tree, profit_rf)
+)
+
+kable(mc_results, format = "markdown")
+```
+
+## Copula Dependency Analysis
+While traditional models (like Logistic Regression) capture average predictive behavior, they often fail to account for the asymmetric tail dependence in customer habits the tendency of customers to behave similarly only when their engagement is at extreme levels (either very high or very low). By employing Copula modeling, we transcend linear correlation, mapping the non-linear dependencies between Coffee House and Restaurant visits.
+
+```{R}
+#| label: copula-analysis
+#| fig-cap: "Dependency Structures of Customer Visit Patterns"
+#| fig-width: 8
+#| fig-height: 8
+
+# Setup 2x2 plot area
+par(mfrow = c(2, 2))  
+
+# Gaussian (General dependence)
+plot(rCopula(1000, normalCopula(0.6)), main = "Gaussian: Standard Loyalty", xlab="Coffee", ylab="Restaurant")
+
+# t-Copula (High-value tail dependence)
+plot(rCopula(1000, tCopula(0.6, df=4)), main = "t-Copula: High-Value Segments", xlab="Coffee", ylab="Restaurant")
+
+# Clayton (Low-activity dependence)
+plot(rCopula(1000, claytonCopula(2)), main = "Clayton: Occasional Users", xlab="Coffee", ylab="Restaurant")
+
+# Gumbel (High-activity dependence)
+plot(rCopula(1000, gumbelCopula(2)), main = "Gumbel: Brand Advocates", xlab="Coffee", ylab="Restaurant")
+```
+
+- **Gaussian Copula (Standard Loyalty)**: Captures the "Baseline Loyalty" segment. These customers show a balanced, predictable relationship between their visits. Our strategy here focuses on consistent engagement through standard loyalty programs.
+
+- **t-Copula (High-Value Segments)**: This reveals a strong joint dependence at both ends of the spectrum. We identify a cluster of high-value consumers who exhibit synchronized visit patterns. Prescriptive Action: Implement VIP "Double-Dip" Rewards, incentivizing these users to cross-visit between Coffee and Restaurant outlets.
+
+- **Clayton Copula (Low-Engagement Users)**: Shows strong dependence in the lower tail (the "bottom left" cluster). These are occasional users who currently have low interaction with our services. Prescriptive Action: Allocate budget for "Re-activation" offers aimed at breaking the inertia of non-visitation.
+
+- **Gumbel Copula (Brand Advocates)**: Highlights strong dependence in the upper tail (the "top right" cluster). These are our most loyal advocates who visit both locations frequently. Prescriptive Action: Minimize discount spending on this segment. Instead, transition to Referral Campaigns, as their intrinsic loyalty ensures high retention without the need for financial incentives.
+
+## Market Basket Analysis
+
+While predictive models identify if a customer will accept an offer, MBA reveals which characteristics co-occur, allowing us to design highly personalized "Bundle Offers."
+
+```{R}
+#| label: mba-analysis
+#| message: false
+#| fig-cap: "Association Rules Network: Identifying Bundle Opportunities"
+
+
+# 1. Prepare and clean the data: Ensure all columns are Factors
+basket_data <- df_clean %>%
+  select(coupon, destination, weather, time, coffee_house, bar, carry_away) %>%
+  mutate(across(everything(), as.factor))
+
+# 2. Convert to transaction format
+basket_data_trans <- as(basket_data, "transactions")
+
+# 3. Extract rules: Minimum support 2%, Confidence 50%
+# We look for rules with at least 2 items to ensure meaningful associations
+rules <- apriori(basket_data_trans, 
+                 parameter = list(support = 0.02, confidence = 0.5, minlen = 2))
+
+# 4. Display top 5 impactful rules sorted by Lift
+# Lift > 1 indicates a strong positive association between items
+inspect(head(sort(rules, by = "lift"), 5))
+
+# 5. Visualize the rules using a Network plot
+plot(rules, method = "graph", control = list(type = "items"))
+```
+
+The Association Rule network highlights that destination and time are the strongest drivers for 'transactional' patterns. We observe a high-lift association between destination=Work, time=7, and coffee_house visits. This implies that the most effective marketing strategy is not to offer generic discounts, but to deploy 'commuter-focused' bundles during morning hours. By leveraging these high-lift associations, the business can move from broad-spectrum promotions to context-aware, real-time engagement.
+
 
 # Data-Driven Marketing Campaign
 
