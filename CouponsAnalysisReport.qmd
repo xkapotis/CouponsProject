@@ -623,9 +623,12 @@ test_data  <- df_nonnull[-train_index, ]
 ## Logistic Regression
 
 ### Logistic Baseline
-Here we create our baseline logistic naive model, which simply takes all
-variables and fits them. This would be tested against several other simpler 
-models, in order to have a comparison.
+
+As an initial benchmark, a **baseline logistic regression model** was
+estimated using **all available predictors** in the training dataset.
+**Logistic regression** is appropriate for this problem because the
+**target variable is binary**, distinguishing between **coupon
+acceptance** and **rejection**.
 
 ```{r, model-logreg}
 model_log <- glm(y ~ ., 
@@ -641,24 +644,74 @@ pred_log <- factor(pred_log, levels = c(0,1), labels=c("Rejected", "Accepted"))
 
 confusionMatrix(pred_log, test_data$y)
 ```
+The model produces **predicted probabilities of coupon acceptance** for
+each observation in the test set. These probabilities were then
+converted into class predictions using a **threshold of 0.5**, where
+values above the threshold were classified as **Accepted** and values
+below it as **Rejected**. The resulting **confusion matrix** allows us
+to assess how well the model classifies **unseen observations**.
+
+From an analytical perspective, this baseline model serves **two
+purposes**. First, it provides an **interpretable starting point** for
+understanding coupon acceptance behavior. Second, it establishes a
+**reference level of predictive performance** against which more
+structured or more advanced models can be compared. Because the model
+includes **all predictors at once**, it may capture a broad range of
+information, but it can also be affected by **redundancy**,
+**multicollinearity**, or variables that add **noise rather than useful
+signal**.
+
+For this reason, the **baseline logistic regression** should be viewed
+as an **initial benchmark** rather than the final specification. Its
+performance helps evaluate whether a more **selective, stepwise
+model-building approach** improves **interpretability** and **predictive
+quality**.
+
 ### Progressive Logistic Regression
 
-Logistic Regression was used as the baseline classification model because it provides interpretable coefficients that indicate how individual predictors affect the probability of coupon acceptance.
+After estimating the **baseline logistic regression** with all available
+predictors, a more **structured logistic modeling strategy** was
+adopted. The purpose of this second stage was not only to improve
+**interpretability**, but also to examine how different groups of
+variables contribute to **predictive performance**.
 
-Instead of fitting a very large model with all available variables, logistic regression was developed gradually rather than including all predictors at once. This stepwise approach improves interpretability and helps identify which variables meaningfully contribute to model performance.
+Rather than relying only on a single large model, logistic regression
+was developed **progressively**. This approach follows **good modeling
+practice**, as it allows us to evaluate whether additional predictors
+provide meaningful **explanatory** and **predictive value**. It also
+reduces the risk of overcomplicating the model with **redundant
+variables** and makes the contribution of each variable group easier to
+interpret.
 
-We began with a small contextual model including variables that were clearly relevant based on the exploratory analysis. We then added behavioural variables, and finally demographic variables. This allowed us to evaluate whether each group of predictors improved the model’s predictive ability.
+The progressive specification was guided by the results of the
+**exploratory analysis** and the **professor's feedback**. We began with
+a **contextual model**, including only situational variables directly
+related to the **coupon offer** and the **immediate environment**. We
+then added **behavioral variables**, capturing prior customer habits
+such as **coffee house** and **bar visit frequency**. Finally, we
+extended the model with **demographic variables**, including **income,
+age, and passenger status**.
 
-Three logistic regression models were estimated:
+Three logistic regression models were therefore estimated:
 
-- Model 1: contextual variables only
-- Model 2: contextual + behavioural variables
-- Model 3: contextual + behavioural + demographic variables
+-   **Model 1:** contextual variables only
 
-This approach makes the modelling process more transparent and reduces the risk of including redundant predictors that may cause multicollinearity or singularities.
+-   **Model 2:** contextual + behavioral variables
 
-### Estimate the three logistic regression models
-We first estimated a contextual model using only situational variables. We then added behavioral variables related to prior venue visits, and finally demographic characteristics. This allows us to compare how model performance changes as the specification becomes more comprehensive.
+-   **Model 3:** contextual + behavioral + demographic variables
+
+This **stepwise approach** makes the modeling process more
+**transparent** and allows us to assess whether **behavioral** and
+**demographic information** improve performance beyond the core
+**contextual drivers** of coupon acceptance.
+
+###  Estimation of the Progressive Logistic Regression Models
+
+The three models below were estimated **sequentially** to compare how
+predictive performance changes as the specification becomes richer. This
+comparison helps identify whether coupon acceptance is explained
+primarily by **situational context**, by **prior customer behavior**, or
+by a combination of **behavioral** and **demographic characteristics**.
 
 ```{r, model-cust-log}
 # Model 1: Contextual variables
@@ -757,19 +810,67 @@ knitr::kable(log_results, digits = 3, caption = "Comparison of logistic regressi
 
 ### Analysis of Logistic Regression Comparison
 
-The stepwise logistic regression results provide useful insight into how different groups of predictors contribute to coupon acceptance.
+The logistic regression analysis was developed in **two stages**. First,
+a **baseline model** including all available predictors was estimated in
+order to provide a broad **reference specification**. Second, a
+**progressive set of logistic regression models** was constructed in
+order to examine how different groups of variables contribute to coupon
+acceptance.
 
-Model 1 includes only contextual variables: coupon type, time of day, destination, and weather. This model achieves an accuracy of 64.6% and an AUC of 0.673. These results indicate that situational factors alone already contain meaningful predictive information. In other words, customer response is partly shaped by the immediate context in which the coupon is offered. Variables such as the type of coupon, where the customer is going, and when the offer is presented appear to influence the probability of acceptance.
+The **baseline logistic regression**, which includes **all available
+predictors**, achieves the strongest overall performance among the
+logistic specifications, with an **Accuracy of 0.702** and an **AUC of
+0.746**. This indicates that the **full set of variables** contains
+substantial predictive information. At the same time, because this model
+includes all predictors simultaneously, it is **less transparent** and
+more likely to contain **redundant** or **overlapping information**.
+Therefore, its role in this section is to serve as a **broad benchmark**
+against which the progressive models can be compared.
 
-Model 2 extends the contextual model by adding behavioral variables, specifically coffee house and bar visit frequency. This leads to a clear improvement in performance, with accuracy increasing from 64.6% to 66.4% and AUC increasing from 0.673 to 0.693. This is the largest improvement across the three specifications. The result suggests that past customer habits provide strong additional predictive value beyond immediate context. This finding is important because it indicates that coupon acceptance is not only a situational decision, but also reflects established behavioral patterns. Customers who already visit similar venues more frequently are more likely to respond positively to related promotions.
+**Model 1**, which includes only **contextual variables**, reaches an
+**Accuracy of 0.644** and an **AUC of 0.691**. These results show that
+**situational factors** such as **coupon type, time of day, destination,
+and weather** already explain a meaningful part of coupon acceptance. In
+other words, the **immediate context of the offer** plays an important
+role in shaping customer response.
 
-Model 3 further adds demographic variables, including income, age, and passenger status. This final specification produces the best overall performance, with an accuracy of 66.7% and an AUC of 0.698. However, the improvement over Model 2 is relatively small. This suggests that demographic variables contribute some additional explanatory power, but their role is weaker than that of behavioral variables. In practical terms, demographics help refine the prediction, but they do not drive the model as strongly as customer habits and contextual factors.
+**Model 2** adds **behavioral variables**, specifically **coffee house**
+and **bar visit frequency**, and improves performance to an **Accuracy
+of 0.675** and an **AUC of 0.710**. This is the **largest improvement
+within the progressive sequence**. The result suggests that **prior
+customer habits** provide strong additional predictive value beyond
+immediate context. It indicates that coupon acceptance is not purely
+situational, but also reflects **established behavioral preferences**
+and **venue familiarity**.
 
-Taken together, the three models suggest a clear hierarchy of predictive importance. Contextual variables establish a meaningful baseline, behavioral variables generate the most substantial gain in model quality, and demographic variables provide a smaller final improvement. This pattern is consistent with the broader logic of customer analytics: what customers usually do is often more informative than who they are demographically, while the immediate context determines whether a specific offer is relevant at that moment.
+**Model 3** further adds **demographic variables**, including **income,
+age, and passenger status**. This leads to a smaller additional
+improvement, reaching an **Accuracy of 0.676** and an **AUC of 0.717**.
+The relatively modest gain over Model 2 suggests that **demographic
+variables** contribute useful supporting information, but their effect
+is **weaker than that of behavioral predictors**. In practical terms,
+demographics help **refine the model**, but they do not drive predictive
+performance as strongly as **customer habits** and **contextual
+conditions**.
 
-From a business perspective, these results imply that effective coupon targeting should combine three elements. First, the offer must match the situational context, such as time of day and trip purpose. Second, the campaign should prioritize customers whose past behavior indicates genuine category interest. Third, demographic characteristics may be used as supporting segmentation variables, but they should not be relied upon as the primary basis for targeting.
+Taken together, the comparison reveals **two important points**. First,
+the **full baseline model** performs best among the logistic
+specifications, which shows that the larger predictor set captures
+additional useful information. Second, the **progressive models** are
+analytically valuable because they clarify how predictive power is built
+up. **Contextual variables** provide the initial predictive structure,
+**behavioral variables** contribute the strongest incremental gain, and
+**demographic variables** add a smaller final refinement.
 
-Overall, Model 3 was selected as the final logistic regression specification because it achieves the highest predictive performance while remaining interpretable. At the same time, the comparison shows that the main improvement in prediction comes from behavioral information, which highlights the importance of incorporating customer habits into promotional strategy.
+From a business perspective, these results suggest that coupon
+acceptance should be understood as the combined outcome of **three
+dimensions**: the **offer context**, the customer's **past behavior**,
+and the customer's **profile characteristics**. The baseline model
+provides the **highest-performing benchmark**, while the progressive
+models help explain which categories of predictors matter most.
+Therefore, the value of this comparison lies not only in **performance
+measurement**, but also in showing that **behavioral information** is
+especially important for improving coupon acceptance prediction.
 
 ## Decision Tree
 
@@ -792,22 +893,85 @@ confusionMatrix(pred_tree, test_data$y)
 ```
 ### Interpretation of the Decision Tree Model
 
-The decision tree shows that **coupon type** is the most important first-level splitting variable in the model. At the root node, the full sample has an overall coupon acceptance rate of approximately **57%**, meaning that acceptance is slightly more common than rejection in the dataset. The first split separates customers according to coupon category, which indicates that the type of offer is the strongest initial driver of coupon response.
+The **decision tree** provides an **interpretable, rule-based
+structure** that explains how different variables interact to shape
+coupon acceptance. At the **root node**, the overall acceptance rate is
+approximately **57%**, indicating that acceptance is slightly more
+common than rejection in the dataset.
 
-On one side of the tree, customers receiving **Carry Out & Take Away** and **Restaurant (<20)** coupons are grouped into a branch with a much higher probability of acceptance. This suggests that these lower-commitment, more routine-use coupon categories are especially attractive to customers. Within this branch, the next important splitting variable is **expiration**. When the coupon expiration is longer (that is, not less than 13 hours), the terminal node reaches an acceptance probability of around **80%**, which is the highest in the tree. This implies that highly attractive coupon categories become even more effective when customers are given more time flexibility to redeem them.
+The first and most important split in the tree is based on **coupon
+type**, which shows that the **type of offer** is the strongest initial
+driver of customer response. This first division separates customers
+into groups with clearly different response patterns, indicating that
+coupon acceptance depends heavily on the **nature of the offer itself**.
 
-For the same branch, the tree also shows that **distance to the coupon location** matters. Among customers in this group, those with a longer travel distance (for example, `distance_toCoupon = geq25`) are more likely to end up in a lower-acceptance segment. This suggests that even when the coupon itself is appealing, practical effort still affects the redemption decision. In other words, convenience remains an important constraint.
+One branch of the tree groups customers receiving **Carry Out & Take
+Away** and **Restaurant (\<20)** coupons into a relatively
+**high-response segment**. Within this group, **expiration time**
+becomes a key predictor. When the coupon expiration period is longer
+(that is, not less than 13 hours), the probability of acceptance rises
+substantially and reaches approximately **80%** in the most favorable
+terminal node. This indicates that **lower-commitment, more routine-use
+coupon categories** become especially effective when customers are given
+more **flexibility to redeem them**.
 
-On the other side of the tree, customers receiving **Coffee House**, **Bar**, and **Restaurant (20–50)** coupons are grouped into a branch with a lower response profile. Within this branch, the most important follow-up predictor is **coffee house visit frequency**. Customers who report **never** or **less than once** visiting coffee houses are assigned to a segment with a clearly lower acceptance probability, around **36%**. This indicates that prior behavioral habits strongly influence coupon response: if customers do not already engage with similar venues, they are much less likely to redeem related offers.
+Within the same branch, **distance to the coupon location** further
+refines the outcome. Customers in this group who are located farther
+away (for example, distance greater than or equal to 25 minutes) are
+assigned to **lower-response segments**. This suggests that even when a
+coupon is inherently attractive, **practical convenience** remains an
+important factor in the final redemption decision.
 
-Within that same lower-response branch, the tree then splits on **coupon subtype** and **bar visit frequency**. For customers receiving **Bar** or **Restaurant (20–50)** coupons, the model identifies an especially low-response subgroup when **bar visits = never**, with an acceptance probability of only about **31%**. This is one of the weakest-performing segments in the tree and reinforces the importance of category familiarity. Customers with no prior engagement in the relevant category are unlikely to respond to a related coupon, particularly when the offer itself is more situational or less routine.
+The other major branch of the tree groups customers receiving **Coffee
+House**, **Bar**, and **Restaurant (20--50)** coupons into a
+**lower-response profile**. In this part of the tree, **coffee house
+visit frequency** becomes the next important splitting variable.
+Customers who report **never** or **less than once** visiting coffee
+houses are assigned to segments with much lower acceptance rates, around
+**36%**. This indicates that **prior behavioral habits** strongly affect
+coupon responsiveness: customers are less likely to accept promotions
+related to categories with which they have **little prior engagement**.
 
-At the same time, the tree also identifies a more responsive subgroup within this otherwise weaker branch: customers receiving **Coffee House** or other more familiar offers, combined with at least some relevant prior behavior, move into nodes with acceptance probabilities closer to **56%–68%**. This suggests that even among lower-performing coupon categories, customer behavior can still meaningfully differentiate between weak and moderate response segments.
+Further splits in this lower-response branch reinforce the same
+behavioral logic. Among customers receiving **Bar** or **Restaurant
+(20--50)** coupons, those who **never visit bars** form one of the
+**weakest-performing segments** in the tree, with an acceptance rate of
+approximately **31%**. This shows that **category familiarity matters**:
+if a customer does not already engage with similar venues, the related
+coupon is much less likely to be accepted.
 
-Overall, the decision tree highlights three main conclusions. First, **coupon type** is the primary driver of customer response. Second, **behavioral variables** such as coffee house and bar visit frequency play a major role in distinguishing responsive from non-responsive customers. Third, **contextual convenience variables**, especially expiration and travel distance, further shape whether an attractive coupon is actually accepted.
 
-From a business perspective, the tree is especially valuable because it translates model output into actionable rules. It shows that the most responsive customers are those offered routine-use coupons with sufficient expiration time and reasonable convenience, while the least responsive customers are those with little prior engagement in the relevant consumption category. This makes the decision tree highly useful for identifying target segments, even though its predictive performance is lower than that of the random forest model.
+At the same time, the tree also identifies **moderately responsive
+subgroups** within this otherwise weaker branch. Customers with at least
+some prior relevant behavior move into segments with acceptance
+probabilities closer to **56%--68%**, showing that even within less
+favorable coupon categories, **customer habits** still meaningfully
+differentiate between **weaker** and **stronger response groups**.
 
+From a performance perspective, the decision tree achieves an **accuracy
+of 67.8%**. The confusion matrix also shows that the model does not
+perform equally strongly across the two classes. Under the current
+coding, the **positive class is Rejected**. The model correctly
+identifies about **54.4% of rejected coupons** (**sensitivity**) and
+about **78.0% of accepted coupons** (**specificity**). This suggests
+that the tree is more effective at recognizing **acceptance outcomes**
+than **rejection outcomes**.
+
+Analytically, the decision tree highlights **three main conclusions**.
+First, **coupon type** is the dominant factor shaping customer response.
+Second, **behavioral variables**, especially prior **coffee house** and
+**bar visit frequency**, play a crucial role in identifying
+**responsive** and **non-responsive** segments. Third, **contextual
+convenience variables**, such as **expiration time** and **travel
+distance**, further determine whether an otherwise attractive coupon is
+actually redeemed.
+
+From a business perspective, the decision tree is valuable because it
+translates the model into **clear, actionable rules**. It shows that the
+most responsive customers are those receiving **practical, routine-use
+offers** that align with their existing habits and are **convenient to
+redeem**, while the least responsive customers are those with **little
+prior engagement** in the relevant category.
 
 ## Random Forest
 
@@ -837,15 +1001,55 @@ plot(roc_rf)
 
 ### Interpretation of the Random Forest Model
 
-The Random Forest model achieved the strongest predictive performance among the three models. In our results, it produced an accuracy of approximately **75.8%** and an AUC of **0.832**, outperforming both logistic regression and the decision tree. This indicates that the model has a strong ability to distinguish between customers who are likely to accept a coupon and those who are likely to reject it.
+The **Random Forest model** produced an **accuracy of 75.8%** and an
+**AUC of 0.832**, indicating that it has a **strong ability** to
+classify coupon acceptance outcomes and to distinguish between
+**accepted** and **rejected** coupons across different probability
+thresholds.
 
-The confusion matrix also shows that the model performs well across both classes, with balanced accuracy clearly above the naive benchmark. This suggests that the Random Forest model is not simply exploiting the majority class, but is genuinely learning meaningful patterns from the data.
+The confusion matrix shows that the model performs well overall and
+clearly exceeds the **naive benchmark**. The **balanced accuracy of
+74.3%** indicates that the model captures **meaningful information**
+from the predictors rather than relying only on the **majority class**.
+At the same time, the class-specific results show that performance is
+not identical across the two outcomes. Under the current coding of the
+confusion matrix, the model correctly identifies approximately **63.5%
+of rejected coupons** (**sensitivity**) and **85.2% of accepted
+coupons** (**specificity**). This suggests that the model is especially
+effective at recognizing customers who are likely to **accept a
+coupon**.
 
-From an analytical perspective, the superior performance of Random Forest implies that coupon acceptance is shaped by nonlinear relationships and interactions among predictors. In other words, customer response is not determined by one variable in isolation, but by combinations of offer characteristics, situational context, and prior customer habits. Random Forest is particularly well suited to capturing these patterns because it combines many trees and aggregates their decisions.
+From an analytical perspective, the Random Forest results suggest that
+coupon acceptance depends on **complex, nonlinear relationships** among
+variables. Rather than being driven by one predictor in isolation,
+customer response appears to be shaped by combinations of **coupon
+type**, **contextual conditions**, and **prior behavioral patterns**.
+Random Forest is well suited to this type of problem because it
+aggregates **many decision trees** and can therefore capture
+**interaction effects** and **nonlinear structures** more effectively
+than a single tree.
 
-The variable importance plot provides additional insight by identifying which predictors are most influential in the model. Variables such as coupon type, destination, time, and behavioral frequency measures are expected to be among the most important, which is consistent with the findings from both the exploratory analysis and the logistic regression model.
+The AUC value of **0.832** further supports this interpretation. It
+indicates that the model has **strong discriminatory power** across a
+range of classification thresholds, meaning that it can rank customers
+reasonably well according to their **probability of coupon acceptance**.
+This is especially useful when the objective is to **score** or
+**prioritize customers** rather than simply assign a fixed yes/no label.
 
-From a business perspective, Random Forest is the most useful model when the main objective is accurate targeting. It can be used as a scoring tool to identify customers with the highest predicted probability of coupon acceptance, allowing the company to focus promotional resources more efficiently. However, because the model is less transparent than logistic regression, it is better suited for operational prediction than for explaining the exact direction of each predictor’s effect.
+The **variable importance plot** adds another layer of interpretation by
+highlighting which predictors contribute most strongly to the model.
+Variables such as **coupon type, destination, time, and prior visit
+frequencies** are expected to play an important role, which is
+consistent with the patterns observed in the **exploratory analysis**
+and the **rule-based logic identified by the decision tree**.
+
+From a business perspective, the Random Forest model is useful as an
+**operational prediction tool**. It can help identify customers with a
+**higher estimated probability of accepting a coupon**, which supports
+more **focused** and **data-driven campaign targeting**. However,
+because the model does not provide **simple coefficients** like logistic
+regression, it is **less transparent** in explaining the exact direction
+of each predictor's effect.
 
 # Model Evaluation
 
