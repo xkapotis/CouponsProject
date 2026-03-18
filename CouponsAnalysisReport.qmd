@@ -62,7 +62,7 @@ execute:
   # echo: true
 ---
 
-# Introduction
+# Introduction {#sec-introduction}
 
 
 The objective of this report is to analyse customer coupon acceptance behavior 
@@ -78,7 +78,7 @@ actionable marketing insights. The final goal is to identify the customer and
 situational factors that increase coupon acceptance and translate these findings
 into actionable marketing recommendations.
 
-# Data Loading & Preprocessing
+# Data Loading & Preprocessing {#sec-data-loading}
 
 ## Load Libraries
 
@@ -277,18 +277,17 @@ df <- df %>%
   mutate(across(all_of(cols_0to8), factor_0to8))
 rm(cols_0to8, factor_0to8)
 
-df$education <- factor(
-                  df$education,
-                  levels = c("Some High School",
-                             "High School Graduate",
-                             "Some college - no degree",
-                             "Associates degree",
-                             "Bachelors degree",
-                             "Graduate degree (Masters or Doctorate)"),
-                  ordered = TRUE)
+df$education <- factor(df$education,
+                       levels = c("Some High School",
+                                  "High School Graduate",
+                                  "Some college - no degree",
+                                  "Associates degree",
+                                  "Bachelors degree",
+                                  "Graduate degree (Masters or Doctorate)"),
+                       ordered = TRUE)
 
 df$age <- factor(df$age,
-                 levels = c("below21", 
+                 levels = c("below21",
                             "21",
                             "26",
                             "31",
@@ -297,7 +296,7 @@ df$age <- factor(df$age,
                             "46",
                             "50plus"),
                  ordered = TRUE)
-df$income <- factor(df$income,                 
+df$income <- factor(df$income,
                     levels = c("Less than $12500",
                                "$12500 - $24999",
                                "$25000 - $37499",
@@ -332,7 +331,7 @@ for each specific coupon type. Therefore we will split the dataset several ways.
 We will investigate and prepare the entire dataset for analysis and modelling.
 While most of the rows are complete, there are several that have NA values.
 ```{r, check-noncomplete}
-sprintf("Noncomplete records in dataset: %f", 
+sprintf("Noncomplete records in dataset: %f",
         sum(!complete.cases(df)) / nrow(df))
 df_full_complete <- na.omit(df)
 df_with_empty <-df
@@ -357,14 +356,14 @@ Function to convert any single value to hours
 convert_to_hours <- function(x) {
   # Extract all number-unit pairs (works for compound like "1d 2h 30m")
   matches <- str_match_all(x, "(\\d+\\.?\\d*)\\s*([a-zA-Z]+)")[[1]]
-  
-  if(nrow(matches) == 0) return(NA_real_)  # fallback if no match
+
+  if (nrow(matches) == 0) return(NA_real_)  # fallback if no match
   total_hours <- 0
-  
-  for(i in 1:nrow(matches)) {
-    num <- as.numeric(matches[i,2])
-    unit <- tolower(matches[i,3])
-    
+
+  for (i in 1:nrow(matches)) {
+    num <- as.numeric(matches[i, 2])
+    unit <- tolower(matches[i, 3])
+
     total_hours <- total_hours + switch(unit,
                                         "m" = num / 60,
                                         "h" = num,
@@ -372,7 +371,7 @@ convert_to_hours <- function(x) {
                                         "w" = num * 24 * 7,
                                         NA_real_)
   }
-  
+
   return(total_hours)
 }
 ```
@@ -429,7 +428,7 @@ df$expiration_original <- NULL
 df$time_original  <- NULL
 
 # I will create two y y_numeric and y_factor the numeric will be for plotting
-# and trends and y_factor will be the target variable for modeling 
+# and trends and y_factor will be the target variable for modeling
 # (classification).
 df <- df %>%
   mutate(
@@ -441,9 +440,9 @@ df <- df %>%
 -------------------------------------------------
 
 
-# Exploratory Data Analysis
+# Exploratory Data Analysis {#sec-exploratory}
 
-## Coupon Type vs Acceptance Rate (Core Business Insight) {#fig-coupon}
+## Coupon Type vs Acceptance Rate (Core Business Insight) {#sec-coupon}
 
 ```{r, coupon-type-vs-acceptance-rate}
 df %>%
@@ -466,7 +465,7 @@ In contrast, **Restaurant(20–50) coupons have lower acceptance rates**, possib
 because going to a restaurant usually requires **more time and planning compared 
 to a quick coffee or bar visit**.
 
-## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#fig-time}
+## Acceptance Rate by Time of Day (Behavioral Timing Insight)  {#sec-time}
 ```{r, acceptance-rate-by-time-of-day}
 df %>%
   group_by(time) %>%
@@ -617,7 +616,7 @@ reg_analysis <- glm(y ~ ., data=df_no_extra_col, family=binomial)
 summary(reg_analysis)
 ```
 
-# Predictive Modeling
+# Predictive Modeling {#sec-predictive-modeling}
 
 The objective of the predictive modelling stage is to estimate the probability 
 that a customer will accept a coupon based on demographic characteristics, 
@@ -929,7 +928,7 @@ Therefore, the value of this comparison lies not only in **performance
 measurement**, but also in showing that **behavioral information** is
 especially important for improving coupon acceptance prediction.
 
-## Decision Tree
+## Decision Tree {#sec-decision-tree}
 
 ### Creating the Decision Tree Model
 
@@ -1119,7 +1118,7 @@ because the model does not provide **simple coefficients** like logistic
 regression, it is **less transparent** in explaining the exact direction
 of each predictor's effect.
 
-# Model Evaluation
+# Model Evaluation {#sec-evaluation}
 
 In this section, we conduct a comprehensive evaluation of the three 
 classification models: Logistic Regression, Decision Tree, and Random Forest. 
@@ -1142,7 +1141,7 @@ To ensure a robust evaluation, we employ a multi-faceted approach:
 
 This comparative framework will allow us to select the most reliable model, 
 which will subsequently serve as the foundation for our advanced customer 
-analytics and campaign simulations in Section 6.
+analytics and campaign simulations in [@sec-predictive-analytics].
 
 
 ## Calculate Logistic Regression probabilities (probability of class 1)
@@ -1274,7 +1273,7 @@ Specifically, the negative impact of income=$62500-$74999 on coupon acceptance
 standard promotional offers as less attractive, indicating a need for 
 premium-tier personalization.
 
-# Prescriptive Analytics
+# Predictive Analytics {#sec-predictive-analytics}
 
 In this section, we transition from predictive modeling to prescriptive 
 analytics. Using the insights derived from the Random Forest model, we simulate 
@@ -1422,7 +1421,7 @@ discounts, but to deploy 'commuter-focused' bundles during morning hours. By
 leveraging these high-lift associations, the business can move from 
 broad-spectrum promotions to context-aware, real-time engagement.
 
-# Data-Driven Marketing Campaign
+# Data-Driven Marketing Campaign {#sec-marketing}
 
 Based on the insights gathered through exploratory data analysis and predictive
 modeling, we propose a comprehensive, data-driven marketing campaign aimed at
@@ -1444,13 +1443,13 @@ significantly in their likelihood to accept a coupon:
 
 These segments were derived from the behavioral variables in the dataset
 (coffee_house, bar, carry_away, passanger, time) and validated through
-the decision tree splits identified in Section 4.3.
+the decision tree splits identified in [@sec-decision-tree].
 
 ## Optimal Targeting Strategy
 
 ### Timing
 
-The acceptance rate analysis by time of day (Section 3.2) shows that coupon
+The acceptance rate analysis by time of day ([@sec-time]) shows that coupon
 acceptance peaks at *2PM (~67%)* and is lowest at *10PM (~52%)*. We therefore 
 recommend the following send windows:
 
@@ -1490,7 +1489,7 @@ on customers most likely to respond positively.
 
 ## Budget Allocation
 
-Based on the coupon-type acceptance rates identified in Section 3.1,
+Based on the coupon-type acceptance rates identified in [@sec-coupon],
 we recommend the following budget distribution:
 
 | Coupon Type | Acceptance Rate | Priority | Recommended Budget Share |
