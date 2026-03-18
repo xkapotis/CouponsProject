@@ -92,6 +92,7 @@ library(ggplot2)
 library(janitor)
 library(rpart)
 library(rpart.plot)
+library(dplyr)
 library(iml)
 library(knitr)
 library(copula)
@@ -186,7 +187,7 @@ df$distance_toCoupon <- case_when(
 df$distance_toCoupon <- factor(df$distance_toCoupon,
                                levels = c("geq5", "geq15", "geq25"),
                                ordered = TRUE)
-df <- df %>% 
+df <- df %>%
   select(-to_coupon_geq5min, -to_coupon_geq15min, -to_coupon_geq25min)
 ```
 
@@ -236,14 +237,14 @@ t_ny <- c("No", "Yes")
 
 # Shorthand for relabeling 0/1 data to a set of labels
 binary_to_factor <- function(x, lbls = t_ny) {
-  x <- factor(x, levels = c(0,1), labels = lbls)
+  x <- factor(x, levels = c(0, 1), labels = lbls)
   relevel(x, lbls[1]) # redundant
 }
 
 df$y <- binary_to_factor(df$y, lbls = c("Rejected", "Accepted")) # Target
 df$y <- relevel(df$y, ref = "Rejected")
 
-df$has_children <- binary_to_factor(df$has_children, 
+df$has_children <- binary_to_factor(df$has_children,
                                     lbls = c("No children", "Has children"))
 cols_yn <- c()
 #cols_yn <- c("direction_opp",
@@ -267,10 +268,10 @@ categories, we will use the most common value as a reference.
 factor_0to8 <- function(x) {
   factor(x, levels = c("never", "less1", "1~3", "4~8", "gt8"), ordered = TRUE)
 }
-cols_0to8 <- c("bar", 
-               "coffee_house", 
-               "carry_away", 
-               "restaurant_less_than20", 
+cols_0to8 <- c("bar",
+               "coffee_house",
+               "carry_away",
+               "restaurant_less_than20",
                "restaurant20to50")
 df <- df %>%
   mutate(across(all_of(cols_0to8), factor_0to8))
@@ -333,7 +334,7 @@ While most of the rows are complete, there are several that have NA values.
 sprintf("Noncomplete records in dataset: %f",
         sum(!complete.cases(df)) / nrow(df))
 df_full_complete <- na.omit(df)
-df_with_empty <-df
+df_with_empty <- df
 df <- df_full_complete
 ```
 Sine the number of noncomplete records is less then 5%, we will drop those rows.
@@ -359,7 +360,7 @@ convert_to_hours <- function(x) {
   if (nrow(matches) == 0) return(NA_real_)  # fallback if no match
   total_hours <- 0
 
-  for (i in 1:nrow(matches)) {
+  for (i in seq_len(nrow(matches))) {
     num <- as.numeric(matches[i, 2])
     unit <- tolower(matches[i, 3])
 
@@ -432,7 +433,7 @@ df$time_original  <- NULL
 df <- df %>%
   mutate(
     y_numeric = (as.numeric(y) - 1),
-    y_factor = factor(y, levels = c(0,1))
+    y_factor = factor(y, levels = c(0, 1))
   )
 ```
 
@@ -532,7 +533,7 @@ behavior appears to be an important factor in predicting coupon acceptance.**
 
 ## Heatmap – Coupon Type × Time (Segmentation Insight)
 
-```{r, coupontype-by-time}
+```{r, coupon-type-by-time}
 df %>%
   group_by(coupon, time) %>%
   summarise(accept_rate = mean(y_numeric, na.rm = TRUE)) %>%
@@ -556,10 +557,10 @@ coupon and the time it is offered may influence customer response**.
 
 ## Coupon Acceptance by Coupon Type and Destination
 
-```{r, }
+```{r, coupon-type-and-destination}
 df %>%
   group_by(coupon, destination) %>%
-  summarise(rate = mean(y_numeric), .groups="drop") %>%
+  summarise(rate = mean(y_numeric), .groups = "drop") %>%
   ggplot(aes(coupon, rate, fill = destination)) +
   geom_col(position = "dodge") +
   labs(title = "Coupon Acceptance by Coupon Type and Destination",
@@ -578,7 +579,7 @@ classification models, especially when combined with coupon type.
 
 ## Acceptance Rate by Bar Visits (Specific behaviour Insight)
 
-```{r}
+```{r, coupon-by-barvisits}
 df %>%
   group_by(bar) %>%
   summarise(accept_rate = mean(y_numeric)) %>%
@@ -611,7 +612,7 @@ df_no_extra_col <- df %>% select(-y_numeric, -y_factor)
 summary(df_no_extra_col)
 ```
 ```{r, data-summary-reg}
-reg_analysis <- glm(y ~ ., data=df_no_extra_col, family=binomial)
+reg_analysis <- glm(y ~ ., data = df_no_extra_col, family=binomial)
 summary(reg_analysis)
 ```
 
@@ -659,10 +660,6 @@ train_index <- createDataPartition(df_nonnull$y, p = 0.7, list = FALSE)
 
 train_data <- df_nonnull[train_index, ]
 test_data  <- df_nonnull[-train_index, ]
-
-#train_data$y_factor <- relevel(train_data$y_factor, ref = "1")
-#test_data$y_factor  <- relevel(test_data$y_factor, ref = "1")
-
 ```
 
 ## Logistic Regression
@@ -676,7 +673,7 @@ estimated using **all available predictors** in the training dataset.
 acceptance** and **rejection**.
 
 ```{r, model-logreg}
-model_log <- glm(y ~ ., 
+model_log <- glm(y ~ .,
                  data = train_data,
                  family = binomial)
 
@@ -685,7 +682,7 @@ prob_log <- predict(model_log, test_data, type = "response")
 # Reverse threshold
 pred_log <- ifelse(prob_log > 0.5, 1, 0)
 
-pred_log <- factor(pred_log, levels = c(0,1), labels=c("Rejected", "Accepted"))
+pred_log <- factor(pred_log, levels = c(0, 1), labels=c("Rejected", "Accepted"))
 
 confusionMatrix(pred_log, test_data$y)
 ```
@@ -834,7 +831,7 @@ auc_3 <- auc(roc_3)
 The performance of the three logistic regression specifications is summarized 
 below.
 
-```{r}
+```{r, summary-log-regressions}
 log_results <- data.frame(
   Model = c(
     "Logistic base: All",
@@ -859,8 +856,8 @@ log_results <- data.frame(
 #| message: false
 #| warning: false
 
-knitr::kable(log_results, digits = 3, 
-			 caption = "Comparison of logistic regression models")
+knitr::kable(log_results, digits = 3,
+             caption = "Comparison of logistic regression models")
 ```
 
 ### Analysis of Logistic Regression Comparison
@@ -943,7 +940,7 @@ attractive from a business perspective, since they translate model output into
 segments that are easier to interpret and communicate.
 
 ```{r, model-dectree}
-model_tree <- rpart(y ~ ., 
+model_tree <- rpart(y ~ .,
                     data = train_data,
                     method = "class")
 
@@ -1051,14 +1048,14 @@ variables. Although it is less interpretable than logistic regression, it is
 typically stronger in pure prediction.
 
 ```{r, model-rforest}
-model_rf <- randomForest(y ~ ., 
+model_rf <- randomForest(y ~ .,
                          data = train_data,
                          ntree = 200)
 pred_rf <- predict(model_rf, test_data)
 
 confusionMatrix(pred_rf, test_data$y)
 
-rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+rf_probs <- predict(model_rf, test_data, type = "prob")[, 2]
 roc_rf <- roc(test_data$y, rf_probs)
 
 auc(roc_rf)
@@ -1147,21 +1144,26 @@ analytics and campaign simulations in [@sec-predictive-analytics].
 
 ```{r, eval-logreg}
 log_probs <- predict(model_log, test_data, type = "response")
+log_probs_class <- ifelse(log_probs > 0.5, 1, 0)
+log_probs_class <- factor(log_probs_class, labels = c("Rejected", "Accepted"))
 roc_log  <- roc(test_data$y, log_probs)
 ```
 
 ## Decision Tree probabilities
 
 ```{r, eval-dectree}
-tree_probs <- predict(model_tree, test_data, type = "prob")[,2]
+tree_probs <- predict(model_tree, test_data, type = "prob")[, 2]
+tree_probs_class <- ifelse(tree_probs > 0.5, 1, 0)
+tree_probs_class <- factor(tree_probs_class, labels = c("Rejected", "Accepted"))
 roc_tree <- roc(test_data$y, tree_probs)
-
 ```
 
 ## Random Forest probabilities
 
 ```{r, eval-rforest}
-rf_probs <- predict(model_rf, test_data, type = "prob")[,2]
+rf_probs <- predict(model_rf, test_data, type = "prob")[, 2]
+rf_probs_class <- ifelse(rf_probs > 0.5, 1, 0)
+rf_probs_class <- factor(rf_probs_class, labels = c("Rejected", "Accepted"))
 roc_rf   <- roc(test_data$y, rf_probs)
 ```
 
@@ -1176,19 +1178,29 @@ comparative overview of each algorithm's predictive capability.
 ```{r, tbl-model-comparision}
 #| tbl-cap: "Performance Summary of All Models"
 
+
+cm_log  <- confusionMatrix(log_probs_class, test_data$y)
+cm_tree <- confusionMatrix(tree_probs_class, test_data$y)
+cm_rf   <- confusionMatrix(rf_probs_class, test_data$y)
+
 model_comparison <- data.frame(
   Model = c("Logistic Regression", "Decision Tree", "Random Forest"),
-  Accuracy = c(0.6895, 0.6806, 0.7512), 
-  Sensitivity = c(0.7719, 0.7992, 0.8373),
-  Specificity = c(0.5811, 0.5245, 0.6377)
+  Accuracy = c(cm_log$overall["Accuracy"],
+               cm_tree$overall["Accuracy"],
+               cm_rf$overall["Accuracy"]),
+  Sensitivity = c(cm_log$byClass["Sensitivity"],
+                  cm_tree$byClass["Sensitivity"],
+                  cm_rf$byClass["Sensitivity"]),
+  Specificity = c(cm_log$byClass["Specificity"],
+                  cm_tree$byClass["Specificity"],
+                  cm_rf$byClass["Specificity"])
 )
-
 kable(model_comparison, format = "markdown")
 ```
 As summarized in the table, the Random Forest model consistently outperforms 
 both the Logistic Regression and the Decision Tree across all key metrics, 
-achieving the highest accuracy (75.12%) and the most robust sensitivity 
-(83.73%). Conversely, Logistic Regression and the single Decision Tree exhibit 
+achieving the highest accuracy (75.90%) and the most robust sensitivity 
+(63.65%). Conversely, Logistic Regression and the single Decision Tree exhibit 
 similar, albeit lower, performance levels. This trend suggests that the use of 
 ensemble methods, such as Random Forest, effectively mitigates the limitations 
 of linear models and simple decision rules by capturing complex non-linear 
@@ -1202,26 +1214,26 @@ curves were plotted for each model. A curve that lies closer to the upper-left
 corner indicates stronger predictive performance.
 
 ```{r, plot-all-roc}
-plot(roc_log, 
-     col = "blue", 
+plot(roc_log,
+     col = "blue",
      lwd = 2,
      main = "ROC Curve Comparison")
 
-plot(roc_tree, 
-     col = "green", 
+plot(roc_tree,
+     col = "green",
      lwd = 2,
      add = TRUE)
 
-plot(roc_rf, 
-     col = "red", 
+plot(roc_rf,
+     col = "red",
      lwd = 2,
      add = TRUE)
 
 legend("bottomright",
        legend = c(
-         paste("Logistic Regression (AUC =", round(auc(roc_log),3),")"),
-         paste("Decision Tree (AUC =", round(auc(roc_tree),3),")"),
-         paste("Random Forest (AUC =", round(auc(roc_rf),3),")")
+         paste("Logistic Regression (AUC =", round(auc(roc_log), 3), ")"),
+         paste("Decision Tree (AUC =", round(auc(roc_tree), 3), ")"),
+         paste("Random Forest (AUC =", round(auc(roc_rf), 3), ")")
        ),
        col = c("blue", "green", "red"),
        lwd = 2)
@@ -1257,10 +1269,10 @@ explainer_rf <- Predictor$new(model_rf,
                               y = train_data$y_factor)
 
 # Compute SHAP values for a sample of the test data
-shap_rf <- Shapley$new(explainer_rf, x.interest = test_data[1,])
+shap_rf <- Shapley$new(explainer_rf, x.interest = test_data[1, ])
 
 # Plot SHAP values
-plot(shap_rf) + 
+plot(shap_rf) +
   ggtitle("Contribution of Features to Coupon Decision (SHAP)") +
   theme_minimal()
 ```
@@ -1339,7 +1351,7 @@ plot(rCopula(1000, normalCopula(0.6)),
      ylab = "Restaurant")
 
 # t-Copula (High-value tail dependence)
-plot(rCopula(1000, tCopula(0.6, df=4)),
+plot(rCopula(1000, tCopula(0.6, df = 4)),
      main = "t-Copula: High-Value Segments",
      xlab = "Coffee",
      ylab = "Restaurant")
@@ -1401,7 +1413,7 @@ basket_data_trans <- as(basket_data, "transactions")
 
 # 3. Extract rules: Minimum support 2%, Confidence 50%
 # We look for rules with at least 2 items to ensure meaningful associations
-rules <- apriori(basket_data_trans, 
+rules <- apriori(basket_data_trans,
                  parameter = list(support = 0.02, confidence = 0.5, minlen = 2))
 
 # 4. Display top 5 impactful rules sorted by Lift
