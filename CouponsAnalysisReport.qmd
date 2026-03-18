@@ -1,12 +1,11 @@
 ---
 title: "Data-Driven Coupon Acceptance Analysis"
-author: "Group 2: 
-Ayse Ciftci (fXXX),
-Christos Kapotis (fXXX),
-Ioannis Koutsogiannis (fXXX),
-Lazar Nenovski (fXXX),
-Dallandyshe Shabani (fXXX)
-"
+authors: 
+    - name: "Ayse Ciftci (f2862501)"
+    - name: "Christos Kapotis (f2862507)"
+    - name: "Ioannis Koutsogiannis (f2862511)"
+    - name: "Lazar Nenovski (f2862502)"
+    - name: "Dallandyshe Shabani (f2862522)"
 date: today
 format:
   html:
