@@ -21,6 +21,8 @@ format:
     mainfont: Source Sans Pro
     monofont: Fira Code
     fontsize: 11pt
+    toc: true
+    toc-depth: 2
     geometry:
       - top=2.2cm
       - bottom=2.2cm
@@ -35,6 +37,8 @@ format:
     # Stylistic options for the LaTeX render
     header-includes:
       - \usepackage{fontspec}
+      - \setmonofont{Fira Code}[Ligatures=TeX, Contextuals=Alternate]
+      - \usepackage{twemojis}
       - \usepackage{microtype}
       - \usepackage{booktabs}
       - \usepackage{siunitx}
@@ -607,14 +611,91 @@ targeting.
 We will now run the entire dataset through a general linear regression 
 model in order to gain some further insights from the data
 
-```{r, data-summary-before-reg}
-df_no_extra_col <- df %>% select(-y_numeric, -y_factor)
-summary(df_no_extra_col)
-```
 ```{r, data-summary-reg}
+df_no_extra_col <- df %>% select(-y_numeric, -y_factor)
 reg_analysis <- glm(y ~ ., data = df_no_extra_col, family=binomial)
 summary(reg_analysis)
 ```
+
+### Important coeficcients
+
+We will now interpret those results. Some selected most important features of
+the data set are as follows:
+
+#### **Coupon type - Carry out & Take away**
+  - coef = **+1.2044**, > p \< 2e-16.
+  - Interpretation: **Odds of accepting ≈ 3.3× higher** for carry-out coupons vs 
+    the baseline coupon category. Very large positive effect.
+
+#### **Coupon type - Restaurant (\<20)**
+  - coef = **+1.0244**, p \< 2e-16.
+  - Interpretation: Small-restaurant coupons strongly increase acceptance 
+    (\~2.8× odds).
+
+#### **Direction relative to trip - direction_oppNo**
+  - coef = **+0.5561**, p ≈ 5.9e-15.
+  - Interpretation: If the coupon is **not opposite** the traveler's direction 
+    (i.e., along their route), odds of acceptance increase substantially 
+    (\~74% higher).
+
+#### **Expiration (numeric)**
+  - coef = **+0.0392** per unit, p \< 2e-16.
+  - Interpretation: **Longer time until expiration** increases acceptance 
+    modestly but reliably. 
+
+#### **Passenger composition**
+  - **Friend(s)**: coef = **+0.2352**, p ≈ 0.0027. -> Travelling with friends
+    **increases** acceptance.
+  - **Partner**: coef = **+0.2490**, p ≈ 0.0057. -> Travelling with partner
+    **increases** acceptance.
+  - **Kid(s)**: coef = **−0.3998**, p ≈ 4.5e-05. -> Travelling with kids
+    **reduces** acceptance (fewer impulse detours).
+
+#### **Weather**
+  - **Rainy**: coef = **−0.5731**, p \~ 4e-12.
+  - **Snowy**: coef = **−0.4438**, p \~ 2.6e-05.
+  - Interpretation: **Bad weather strongly reduces** coupon acceptance (people 
+    avoid detours in rain/snow).
+
+#### **Passenger destination**
+ - **destination = Home**: coef = **−0.6877**, p ≪ 0.001.
+ - **destination = Work**: coef = **−0.8844**, p ≪ 0.001.
+ - Interpretation: If the passenger's destination is home or work (versus the 
+   baseline "No Urgent Place" or other), they are much **less likely** to accept
+   coupons, suggesting that utilitarian trips minimize detours.
+
+### Interpretation of the coeficcients
+
+Based on this most important values, we could draw the following conclusions
+about customer behaviours **only based on this analysis**:
+
+#### **People strongly prefer quick/convenient food options.**
+
+Carry-out and small-restaurant coupons have the **largest positive effects**. 
+That means users are willing to accept offers that require *minimal time/effort*
+and fit into an existing quick meal decision.
+
+#### **Coupons that align with the trip route matter a lot.** 
+
+If a coupon is **not opposite** the person's direction (i.e., it's along the 
+way), acceptance rises \~74% --- **route alignment** is a prime determinant of 
+whether a coupon is used.
+
+#### **Bad weather and utilitarian trips sharply reduce detours/impulse 
+redirections.** 
+
+Rain and snow cut acceptance by roughly 36--44%. Trips with destinations like 
+**home or work** are much less likely to yield coupon-driven detours.
+
+#### **Companions influence willingness to detour.** 
+
+Travelling with friends or partner increases acceptance; with kids it decreases.
+So social contexts increase spontaneity; family constraints reduce it.
+
+#### **Expiration window matters: longer valid coupons get more acceptance.** 
+
+The positive coefficient on expiration implies people prefer some slack - 
+extremely short expiration windows reduce acceptance.
 
 # Predictive Modeling {#sec-predictive-modeling}
 
